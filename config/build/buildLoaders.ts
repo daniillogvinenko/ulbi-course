@@ -3,6 +3,20 @@ import webpack from "webpack";
 import { BuildOptions } from "./types/config";
 
 export function buildLoader({ isDev }: BuildOptions): webpack.RuleSetRule[] {
+  const fileLoader = {
+    test: /\.(png|jpe?g|gif|woff2|woff)$/i,
+    use: [
+      {
+        loader: "file-loader",
+      },
+    ],
+  };
+
+  const svgLoader = {
+    test: /\.svg$/i,
+    use: ["@svgr/webpack"],
+  };
+
   const typescriptLoader = {
     test: /\.tsx?$/,
     use: "ts-loader",
@@ -29,5 +43,5 @@ export function buildLoader({ isDev }: BuildOptions): webpack.RuleSetRule[] {
     ],
   };
 
-  return [typescriptLoader, cssLoader];
+  return [fileLoader, svgLoader, typescriptLoader, cssLoader];
 }
