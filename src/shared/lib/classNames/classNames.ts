@@ -6,11 +6,23 @@ export function classNames(
   mods?: Mods,
   additional?: string[]
 ): string {
+  let addClasses: string[] = [];
+  let modsClasses: Mods = {};
+  if (additional) {
+    addClasses = [...additional.filter(Boolean)];
+  }
+  if (!mods) {
+    modsClasses = {};
+  } else {
+    modsClasses = { ...mods };
+  }
   return [
     cls,
-    ...additional.filter(Boolean), // это нужно чтобы отчистить массив от falsy значений
-    Object.entries(mods)
+    ...Object.entries(modsClasses)
       .filter(([_, value]) => Boolean(value))
       .map(([className, _]) => className),
-  ].join(" ");
+    ...addClasses, // это нужно чтобы отчистить массив от falsy значений
+  ]
+    .join(" ")
+    .trim();
 }
