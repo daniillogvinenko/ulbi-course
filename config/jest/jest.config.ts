@@ -3,6 +3,8 @@
  * https://jestjs.io/docs/configuration
  */
 
+import path from "path";
+
 export default {
     // All imported modules in your tests should be mocked automatically
     // automock: false,
@@ -16,7 +18,24 @@ export default {
     // Automatically clear mock calls, instances and results before every test
     clearMocks: true,
     coveragePathIgnorePatterns: ["\\\\node_modules\\\\"],
-    moduleDirectories: ["node_modules"],
+    moduleDirectories: ["node_modules", "src"],
+    // !!! modulePaths я добавил только потому-что у Ульби выскакивала ошибка и чтобы код
+    // !!! был идентичным я добавил это и к себе, у меня изначально никакой ошибки не было
+    modulePaths: ["<rootDir>src"],
+    // !!! тоже самое с этим параметром, у меня ошибки не было (ошибка связана с тем, что не было метода ToBeInTheDocument)
+    setupFilesAfterEnv: ["<rootDir>/config/jest/setupTests.ts"],
+    // следующие два свойства фиксят импорт scss модулей
+    moduleNameMapper: {
+        "^.+\\.(css|less|scss)$": "identity-obj-proxy",
+        "\\.svg": path.resolve(__dirname, "jestEmptyComponent.tsx"),
+        "@/(.*)": "<rootDir>/src/$1",
+    },
+    globals: {
+        "ts-jest": {
+            tsConfig: "<rootDir>/tsconfig.json",
+            diagnostics: false,
+        },
+    },
     testMatch: ["<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)"],
     rootDir: "../../",
     // The test environment that will be used for testing

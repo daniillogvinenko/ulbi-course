@@ -1,22 +1,25 @@
 {
-  "compilerOptions": {
-    "outDir": "./dist/",
-    "noImplicitAny": true,
-    "module": "ESNext",
-    "target": "es5",
-    "jsx": "react-jsx",
-    "allowJs": true,
-    "moduleResolution": "node",
-    "baseUrl": ".",
-    "paths": {
-      "*": ["./src/*"] //это чтобы все абсолютные импорты шли из папки src
-    },
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
-  },
-  "ts-node": {
     "compilerOptions": {
-      "module": "CommonJS"
+        "outDir": "./dist/",
+        "noImplicitAny": true,
+        "module": "ESNext",
+        "target": "es5",
+        "jsx": "react-jsx",
+        "allowJs": true,
+        "moduleResolution": "node",
+        "baseUrl": ".",
+        "paths": {
+            "*": ["./src/*"] //это чтобы все абсолютные импорты шли из папки src
+        },
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true
+    },
+    "ts-node": {
+        "compilerOptions": {
+            "module": "CommonJS"
+        }
     }
-  }
+    // у Ульби не было toBeInTheDocument метода при тестировании, у меня он был и этот параметр я добавил только для того, чтобы код был идентичным
+    // но из-за этой строки появляется проблема с абсолютными импортами, поэтому пока что закомментировал
+    // "include": ["./config/jest/setupTests.ts"]
 }

@@ -8,13 +8,13 @@ interface useThemeResult {
 
 // кастомный хук для работы с темой
 export function useTheme(): useThemeResult {
-  const { setTheme, theme } = useContext(ThemeContext);
+    const { setTheme, theme } = useContext(ThemeContext);
 
-  const toggleTheme = () => {
-    const newTheme = theme === Theme.DARK ? Theme.LIGHT : Theme.DARK;
-    setTheme(newTheme);
-    localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
-  };
+    const toggleTheme = () => {
+        const newTheme = theme === Theme.DARK ? Theme.LIGHT : Theme.DARK;
+        setTheme(newTheme);
+        localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
+    };
 
-  return { theme, toggleTheme };
+    return { theme, toggleTheme };
 }

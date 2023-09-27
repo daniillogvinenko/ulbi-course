@@ -1,20 +1,20 @@
 import { classNames } from "./classNames";
 
 describe("classNames", () => {
-    test("test", () => {
+    test("basic", () => {
         expect(classNames("someClass")).toBe("someClass");
     });
-    test("test", () => {
+    test("mods", () => {
         expect(classNames("someClass", { a: true, b: false })).toBe(
             "someClass a"
         );
     });
-    test("test", () => {
+    test("mods and additional", () => {
         expect(classNames("someClass", { a: true, b: false }, ["add"])).toBe(
             "someClass a add"
         );
     });
-    test("test", () => {
+    test("mods and multiple additional", () => {
         expect(
             classNames("someClass", { a: true, b: false, c: true }, [
                 "add",
@@ -22,7 +22,7 @@ describe("classNames", () => {
             ])
         ).toBe("someClass a c add add2");
     });
-    test("test", () => {
+    test("multiple additional only", () => {
         expect(classNames("someClass", {}, ["add", "add2"])).toBe(
             "someClass add add2"
         );

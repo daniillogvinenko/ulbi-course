@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { classNames } from "shared/lib/classNames/classNames";
 import Button from "shared/ui/Button/Button";
@@ -21,13 +21,18 @@ export const Sidebar = ({ className }: SidebarProps) => {
 
     return (
         <div
+            data-testid="sidebar"
             className={classNames(
                 classes.Sidebar,
                 { [classes.collapsed]: collapsed },
                 [className]
             )}
         >
-            <Button type="button" onClick={onToggle}>
+            <Button
+                data-testid="sidebar-toggle"
+                type="button"
+                onClick={onToggle}
+            >
                 {collapsed ? t("Развернуть") : t("Свернуть")}
             </Button>
             <div className={classes.switchers}>
