@@ -6,14 +6,17 @@ import LightIcon from "shared/assets/icons/LightTheme.svg";
 import Button from "shared/ui/Button/Button";
 
 interface ThemeSwitcherProps {
-  className?: string;
+    className?: string;
 }
 
 export const ThemeSwitcher = ({ className }: ThemeSwitcherProps) => {
-  const { theme, toggleTheme } = useTheme();
-  return (
-    <Button className={classNames("", {}, [className])} onClick={toggleTheme}>
-      {theme === Theme.LIGHT ? <LightIcon /> : <DarkIcon />}
-    </Button>
-  );
+    const { theme, toggleTheme } = useTheme();
+    return (
+        <Button
+            className={classNames("", {}, [className])}
+            onClick={toggleTheme}
+        >
+            {theme === Theme.LIGHT ? <LightIcon /> : <DarkIcon />}
+        </Button>
+    );
 };
