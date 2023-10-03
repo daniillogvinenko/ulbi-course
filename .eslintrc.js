@@ -17,7 +17,7 @@ module.exports = {
         ecmaVersion: "latest",
         sourceType: "module",
     },
-    plugins: ["react", "@typescript-eslint", "i18next"],
+    plugins: ["react", "@typescript-eslint", "i18next", "react-hooks"],
     rules: {
         quotes: "off",
         "linebreak-style": "off",
@@ -48,6 +48,10 @@ module.exports = {
         "max-len": ["error", { ignoreComments: true }],
         "implicit-arrow-linebreak": "off",
         "no-console": "off",
+        "jsx-a11y/no-static-element-interactions": "off",
+        "jsx-a11y/click-events-have-key-events": "off",
+        "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+        "react-hooks/exhaustive-deps": "error", // Checks effect dependencies
     },
     globals: {
         __IS_DEV__: true,
