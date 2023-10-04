@@ -35,6 +35,7 @@ export default {
             tsConfig: "<rootDir>/tsconfig.json",
             diagnostics: false,
         },
+        __IS_DEV__: true,
     },
     testMatch: ["<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)"],
     rootDir: "../../",

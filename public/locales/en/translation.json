@@ -10,5 +10,7 @@
     "Произошла ошибка": "Something went wrong",
     "Обновить страницу": "Refresh the page",
     "Язык коротко": "En",
-    "Войти": "Sign in"
+    "Войти": "Sign in",
+    "Инкремент": "Increment",
+    "Декремент": "Decrement"
 }
