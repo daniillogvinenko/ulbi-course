@@ -1,4 +1,5 @@
-import React, { FC, useMemo, useState } from "react";
+// eslint-disable-next-line object-curly-newline
+import React, { FC, useEffect, useMemo, useState } from "react";
 import {
     LOCAL_STORAGE_THEME_KEY,
     Theme,
@@ -26,6 +27,11 @@ const ThemeProvider: FC<ThemeProviderProps> = (props) => {
         }),
         [theme]
     );
+
+    // чел в комментах из 31 урока сказал, что он так сделал
+    useEffect(() => {
+        document.body.className = defaultTheme;
+    }, [defaultTheme]);
 
     return (
         <ThemeContext.Provider value={defaultProps}>

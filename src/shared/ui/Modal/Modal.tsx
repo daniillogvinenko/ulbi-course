@@ -1,4 +1,3 @@
-import { useTheme } from "app/providers/ThemeProvider";
 // eslint-disable-next-line object-curly-newline
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { classNames } from "shared/lib/classNames/classNames";
@@ -10,23 +9,30 @@ interface ModalProps {
     children?: React.ReactNode;
     isOpen?: boolean;
     onClose?: () => void;
+    lazy?: boolean;
 }
 
 const ANIMATION_DELAY = 150;
 
 export const Modal = (props: ModalProps) => {
     // eslint-disable-next-line object-curly-newline
-    const { children, className, isOpen, onClose } = props;
+    const { children, className, isOpen, onClose, lazy } = props;
 
     const [isClosing, setIsClosing] = useState<boolean>(false);
+    const [isMounted, setIsMounted] = useState<boolean>(false);
     const timerRef = useRef<ReturnType<typeof setTimeout>>();
-    const { theme } = useTheme();
 
     const mods: Record<string, boolean> = {
         [classes.opened]: isOpen,
         [classes.isClosing]: isClosing,
-        [classes[theme]]: true,
     };
+
+    // при самом первом открытии компонента isMounted устанавливается true
+    useEffect(() => {
+        if (isOpen) {
+            setIsMounted(true);
+        }
+    }, [isOpen]);
 
     const closeHandler = useCallback(() => {
         setIsClosing(true);
@@ -65,6 +71,12 @@ export const Modal = (props: ModalProps) => {
             window.removeEventListener("keydown", onKeyDown);
         };
     }, [isOpen, onKeyDown]);
+
+    // если у нас ленивая подгрузка и компонент не вмонтирован, то мы будем возвращать null
+    // при первом открытии компонента установится isMounted = true и компонент отрисуется как надо и уже останется в DOM дереве, даже после "закрытия" компонента
+    if (lazy && !isMounted) {
+        return null;
+    }
 
     return (
         // Портал рендерит children в любом другом месте DOM (по умолчанию мы указали - body)
