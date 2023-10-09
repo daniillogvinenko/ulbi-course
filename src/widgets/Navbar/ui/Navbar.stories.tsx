@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 // eslint-disable-next-line max-len
 import { ThemeDecorator } from "shared/config/storybook/ThemeDecorator/ThemeDecorator";
 import { Theme } from "app/providers/ThemeProvider";
+import { StoreDecorator } from "shared/config/storybook/StoreDecorator/StoreDecorator";
 import { Navbar } from "./Navbar";
 
 export default {
@@ -14,7 +15,26 @@ const Template: ComponentStory<typeof Navbar> = (args) => <Navbar {...args} />;
 
 export const Light = Template.bind({});
 Light.args = {};
+Light.decorators = [
+    StoreDecorator({
+        login: {},
+    }),
+];
 
 export const Dark = Template.bind({});
 Dark.args = {};
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [
+    StoreDecorator({
+        login: {},
+    }),
+    ThemeDecorator(Theme.DARK),
+];
+
+export const Auth = Template.bind({});
+Auth.args = {};
+Auth.decorators = [
+    StoreDecorator({
+        user: { authData: { username: "admin", id: "1" } },
+    }),
+    ThemeDecorator(Theme.DARK),
+];

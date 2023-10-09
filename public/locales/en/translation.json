@@ -14,5 +14,8 @@
     "Инкремент": "Increment",
     "Декремент": "Decrement",
     "Логин": "Login",
-    "Пароль": "Password"
+    "Пароль": "Password",
+    "Авторизация": "Authorization",
+    "Неверный логин или пароль": "Wrong login or password",
+    "Выйти": "Log out"
 }

@@ -1,4 +1,3 @@
-// eslint-disable-next-line object-curly-newline
 import React, { FC, useEffect, useMemo, useState } from "react";
 import {
     LOCAL_STORAGE_THEME_KEY,

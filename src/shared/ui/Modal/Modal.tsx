@@ -1,4 +1,3 @@
-// eslint-disable-next-line object-curly-newline
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { classNames } from "shared/lib/classNames/classNames";
 import { Portal } from "../Portal/Portal";
@@ -15,7 +14,6 @@ interface ModalProps {
 const ANIMATION_DELAY = 150;
 
 export const Modal = (props: ModalProps) => {
-    // eslint-disable-next-line object-curly-newline
     const { children, className, isOpen, onClose, lazy } = props;
 
     const [isClosing, setIsClosing] = useState<boolean>(false);

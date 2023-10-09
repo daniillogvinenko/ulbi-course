@@ -15,7 +15,6 @@ interface InputProps extends HTMLInputProps {
 }
 
 export const Input = memo((props: InputProps) => {
-    // eslint-disable-next-line object-curly-newline
     const { value, className, onChange, type, placeholder, ...otherProps } =
         props;
 
