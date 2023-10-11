@@ -12,6 +12,7 @@ export const loginByUsername = createAsyncThunk<
     User,
     LoginByUsernameProps,
     { rejectValue: string }
+    // когда мы вызываем dispatch(loginByUsername(someData)), someData это и есть authData, которую принимает функция в следующией строчке
 >("login/loginByUsername", async (authData, thunkAPI) => {
     try {
         const response = await axios.post<User>(
@@ -30,6 +31,7 @@ export const loginByUsername = createAsyncThunk<
         );
         thunkAPI.dispatch(userActions.setAuthData(response.data));
 
+        // Эта дата, превращается в action.payload (это не точно) в слайсе
         return response.data;
     } catch (error) {
         console.log(error);
