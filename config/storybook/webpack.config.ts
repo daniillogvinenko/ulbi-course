@@ -31,6 +31,8 @@ export default ({ config }: { config: webpack.Configuration }) => {
     config.plugins?.push(
         new webpack.DefinePlugin({
             __IS_DEV__: true,
+            // пустая строка, потому что в сторибуке нам никуда не надо передавать запросы
+            __API__: JSON.stringify(""),
         })
     );
 

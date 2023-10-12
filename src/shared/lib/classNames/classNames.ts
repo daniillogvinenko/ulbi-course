@@ -4,9 +4,9 @@ type Mods = Record<string, string | boolean>;
 export function classNames(
     cls: string,
     mods?: Mods,
-    additional?: string[]
+    additional?: Array<string | undefined>
 ): string {
-    let addClasses: string[] = [];
+    let addClasses: Array<string | undefined> = [];
     let modsClasses: Mods = {};
     if (additional) {
         addClasses = [...additional.filter(Boolean)];

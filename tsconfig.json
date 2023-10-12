@@ -12,7 +12,8 @@
             "*": ["./src/*"] //это чтобы все абсолютные импорты шли из папки src
         },
         "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true
+        "allowSyntheticDefaultImports": true,
+        "strict": true
     },
     "ts-node": {
         "compilerOptions": {

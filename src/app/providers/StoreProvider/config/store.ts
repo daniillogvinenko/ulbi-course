@@ -1,12 +1,15 @@
 import { configureStore, ReducersMapObject } from "@reduxjs/toolkit";
 import { counterReducer } from "entities/Counter";
 import { userReducer } from "entities/User";
+import { NavigateOptions, To } from "react-router-dom";
+import { $api } from "shared/api/api";
 import { createReducerManager } from "./reducerManager";
 import { StateSchema } from "./StateSchema";
 
 export function createReduxStore(
     initialState?: StateSchema,
-    asyncReducers?: ReducersMapObject<StateSchema>
+    asyncReducers?: ReducersMapObject<StateSchema>,
+    navigate?: (to: To, options?: NavigateOptions) => void
 ) {
     const RootReducer: ReducersMapObject<StateSchema> = {
         // не понял зачем мы разворачиваем асинхронные редюсеры в начальное состояние стора 35 - 40:00
@@ -17,10 +20,19 @@ export function createReduxStore(
 
     const reducerManager = createReducerManager(RootReducer);
 
-    const store = configureStore<StateSchema>({
+    const store = configureStore({
         reducer: reducerManager.reduce,
         devTools: __IS_DEV__,
         preloadedState: initialState,
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware({
+                thunk: {
+                    extraArgument: {
+                        api: $api,
+                        navigate,
+                    },
+                },
+            }),
     });
 
     // @ts-ignore
