@@ -6,10 +6,6 @@ import { loginByUsername } from "./loginByUsername";
 
 // 36 урок, ничего не понял
 
-jest.mock("axios");
-
-const mockedAxios = jest.mocked(axios, true);
-
 describe("loginByUsername", () => {
     let dispatch: Dispatch;
     let getState: () => StateSchema;
@@ -21,27 +17,27 @@ describe("loginByUsername", () => {
 
     test("success", async () => {
         const userValue = { username: "123", id: "1" };
-        mockedAxios.post.mockReturnValue(Promise.resolve({ data: userValue }));
 
         const thunk = new TestAsyncThunk(loginByUsername);
+        thunk.api.post.mockReturnValue(Promise.resolve({ data: userValue }));
         const result = await thunk.callThunk({
             username: "123",
             password: "123",
         });
 
-        expect(mockedAxios.post).toBeCalled();
+        expect(thunk.api.post).toBeCalled();
         expect(result.meta.requestStatus).toEqual("fulfilled");
         expect((await result).payload).toEqual(userValue);
     });
     test("error", async () => {
-        mockedAxios.post.mockReturnValue(Promise.resolve({ status: 403 }));
         const thunk = new TestAsyncThunk(loginByUsername);
+        thunk.api.post.mockReturnValue(Promise.resolve({ status: 403 }));
         const result = await thunk.callThunk({
             username: "123",
             password: "123",
         });
 
-        expect(mockedAxios.post).toBeCalled();
+        expect(thunk.api.post).toBeCalled();
         expect(result.meta.requestStatus).toEqual("rejected");
     });
 });

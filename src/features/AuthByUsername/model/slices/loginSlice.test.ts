@@ -1,4 +1,3 @@
-import { DeepPartial } from "@reduxjs/toolkit";
 import { LoginSchema } from "../types/loginSchema";
 import { loginActions, loginReducer } from "./loginSlice";
 
@@ -10,6 +9,6 @@ describe("loginSlice", () => {
                 state as LoginSchema,
                 loginActions.setUsername("1234546")
             )
-        ).toBe({ username: "1234546" });
+        ).toEqual({ username: "1234546" });
     });
 });

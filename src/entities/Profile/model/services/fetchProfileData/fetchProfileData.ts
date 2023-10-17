@@ -6,12 +6,15 @@ export const fetchProfileData = createAsyncThunk<
     Profile,
     void,
     ThunkConfig<string>
-    // когда мы вызываем dispatch(loginByUsername(someData)), someData это и есть authData, которую принимает функция в следующией строчке
 >("profile/fetchProfileData", async (_, thunkApi) => {
     const { extra, rejectWithValue } = thunkApi;
 
     try {
         const response = await extra.api.get<Profile>("/profile");
+
+        if (!response.data) {
+            throw new Error();
+        }
 
         // Эта дата, превращается в action.payload (это не точно) в слайсе
         return response.data;

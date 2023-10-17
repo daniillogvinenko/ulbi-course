@@ -18,3 +18,11 @@ declare module "*.svg" {
 
 declare const __IS_DEV__: boolean;
 declare const __API__: string;
+declare const __PROJECT__: "storybook" | "frontend" | "jest";
+
+// хз что это (по моему из тридцать какого-то урока, где фиксили типы после strict mode)
+type DeepPartial<T> = T extends object
+    ? {
+          [P in keyof T]?: DeepPartial<T[P]>;
+      }
+    : T;

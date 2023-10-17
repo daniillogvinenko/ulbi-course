@@ -17,5 +17,12 @@
     "Пароль": "Password",
     "Авторизация": "Authorization",
     "Неверный логин или пароль": "Wrong login or password",
-    "Выйти": "Log out"
+    "Выйти": "Log out",
+    "Произошла ошибка при загрузке пользователя": "Error while loading profile",
+    "Попробуйте обновить страницу": "Try to refresh the page",
+    "Отменить": "Cancel",
+    "Сохранить": "Save",
+    "Редактировать": "Edit",
+    "Профиль пользователя": "User profile",
+    "Укажите валюту": "Choose currency"
 }

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 // eslint-disable-next-line max-len
@@ -16,26 +17,20 @@ const Template: ComponentStory<typeof LoginForm> = (args) => (
 );
 
 export const Light = Template.bind({});
-Light.args = {
-    value: "Text",
-};
+Light.args = {};
 Light.decorators = [
     StoreDecorator({ login: { username: "MyUserName", password: "123" } }),
 ];
 
 export const Dark = Template.bind({});
-Dark.args = {
-    value: "Text",
-};
+Dark.args = {};
 Dark.decorators = [
     StoreDecorator({ login: { username: "MyUserName", password: "123" } }),
     ThemeDecorator(Theme.DARK),
 ];
 
 export const LightError = Template.bind({});
-LightError.args = {
-    value: "Text",
-};
+LightError.args = {};
 LightError.decorators = [
     StoreDecorator({
         login: {
@@ -47,9 +42,7 @@ LightError.decorators = [
 ];
 
 export const DarkError = Template.bind({});
-DarkError.args = {
-    value: "Text",
-};
+DarkError.args = {};
 DarkError.decorators = [
     StoreDecorator({
         login: {

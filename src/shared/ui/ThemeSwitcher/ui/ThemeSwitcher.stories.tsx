@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from "react";
 import { ComponentStory, ComponentMeta, addDecorator } from "@storybook/react";
 // eslint-disable-next-line max-len

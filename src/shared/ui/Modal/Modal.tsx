@@ -1,5 +1,11 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { classNames } from "shared/lib/classNames/classNames";
+import React, {
+    MutableRefObject,
+    useCallback,
+    useEffect,
+    useRef,
+    useState,
+} from "react";
+import { classNames, Mods } from "shared/lib/classNames/classNames";
 import { Portal } from "../Portal/Portal";
 import classes from "./Modal.module.scss";
 
@@ -18,9 +24,11 @@ export const Modal = (props: ModalProps) => {
 
     const [isClosing, setIsClosing] = useState<boolean>(false);
     const [isMounted, setIsMounted] = useState<boolean>(false);
-    const timerRef = useRef<ReturnType<typeof setTimeout>>();
+    const timerRef = useRef() as MutableRefObject<
+        ReturnType<typeof setTimeout>
+    >;
 
-    const mods: Record<string, boolean> = {
+    const mods: Mods = {
         [classes.opened]: isOpen,
         [classes.isClosing]: isClosing,
     };

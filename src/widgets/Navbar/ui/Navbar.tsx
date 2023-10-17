@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { classNames } from "shared/lib/classNames/classNames";
 import Button, { ButtonTheme } from "shared/ui/Button/Button";
+import { Text } from "shared/ui/Text/Text";
 import classes from "./Navbar.module.scss";
 
 interface NavbarProps {
@@ -32,7 +33,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     if (authData) {
         return (
             <div className={classNames(classes.Navbar, {}, [className])}>
-                {authData.username}
+                <Text text={authData.username} />
                 <Button
                     theme={ButtonTheme.CLEAR_INVERTED}
                     className={classes.links}

@@ -23,22 +23,18 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
 
     useEffect(() => {
         // добавляется каждый редюсер
-        Object.entries(reducers).forEach(
-            ([name, reducer]: ReducersListEntry) => {
-                store.reducerManager.add(name, reducer);
-                dispatch({ type: "add reducer" });
-            }
-        );
+        Object.entries(reducers).forEach(([name, reducer]) => {
+            store.reducerManager.add(name as StateSchemaKey, reducer);
+            dispatch({ type: "add reducer" });
+        });
 
         return () => {
             // removeAfterUnmount - флаг, который отвечает за то, будет ли удален редюсер, после демонтирования элемента из ДОМ дерева
             if (removeReducersAfterUnmount) {
-                Object.entries(reducers).forEach(
-                    ([name, _]: ReducersListEntry) => {
-                        store.reducerManager.remove(name);
-                        dispatch({ type: "remove reducer" });
-                    }
-                );
+                Object.entries(reducers).forEach(([name, _]) => {
+                    store.reducerManager.remove(name as StateSchemaKey);
+                    dispatch({ type: "remove reducer" });
+                });
             }
         };
         // eslint-disable-next-line

@@ -1,4 +1,4 @@
-type Mods = Record<string, string | boolean>;
+export type Mods = Record<string, string | boolean | undefined>;
 
 // эта функция нужна чтобы вешать какие-то классы, особенно если они идут по какому-либо условию
 export function classNames(
