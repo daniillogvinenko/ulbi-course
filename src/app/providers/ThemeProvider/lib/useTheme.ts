@@ -1,3 +1,4 @@
+/* eslint indent: 0 */ // --> OFF
 import { useContext } from "react";
 import { LOCAL_STORAGE_THEME_KEY, Theme, ThemeContext } from "./ThemeContext";
 
@@ -11,7 +12,22 @@ export function useTheme(): useThemeResult {
     const { setTheme, theme } = useContext(ThemeContext);
 
     const toggleTheme = () => {
-        const newTheme = theme === Theme.DARK ? Theme.LIGHT : Theme.DARK;
+        let newTheme: Theme;
+        switch (theme) {
+            case Theme.DARK:
+                newTheme = Theme.LIGHT;
+                break;
+            case Theme.LIGHT:
+                newTheme = Theme.ORANGE;
+                break;
+            case Theme.ORANGE:
+                newTheme = Theme.DARK;
+                break;
+
+            default:
+                newTheme = Theme.LIGHT;
+                break;
+        }
         document.body.className = newTheme;
         // chaining оператор для функции
         setTheme?.(newTheme);
