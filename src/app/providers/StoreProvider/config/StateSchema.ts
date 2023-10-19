@@ -4,13 +4,14 @@ import {
     Reducer,
     ReducersMapObject,
 } from "@reduxjs/toolkit";
-import { CombinedState, Dispatch } from "redux";
+import { CombinedState } from "redux";
 import { AxiosInstance } from "axios";
 import { CounterSchema } from "entities/Counter";
 import { ProfileSchema } from "entities/Profile";
 import { UserSchema } from "entities/User";
 import { LoginSchema } from "features/AuthByUsername";
 import { NavigateOptions, To } from "react-router-dom";
+import { ArticleDetailsSchema } from "entities/Article";
 
 export interface StateSchema {
     counter: CounterSchema;
@@ -19,6 +20,7 @@ export interface StateSchema {
     // асинхронный редюсер
     login?: LoginSchema;
     profile?: ProfileSchema;
+    articleDetails?: ArticleDetailsSchema;
 }
 
 // ключи StateSchem'ы (например counter, user, login)
