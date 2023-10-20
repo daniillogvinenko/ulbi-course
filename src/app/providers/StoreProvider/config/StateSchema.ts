@@ -12,6 +12,7 @@ import { UserSchema } from "entities/User";
 import { LoginSchema } from "features/AuthByUsername";
 import { NavigateOptions, To } from "react-router-dom";
 import { ArticleDetailsSchema } from "entities/Article";
+import { ArticlesDetailsCommentsSchema } from "pages/ArticlesDetailsPage";
 
 export interface StateSchema {
     counter: CounterSchema;
@@ -21,6 +22,7 @@ export interface StateSchema {
     login?: LoginSchema;
     profile?: ProfileSchema;
     articleDetails?: ArticleDetailsSchema;
+    articleDetailsComments?: ArticlesDetailsCommentsSchema;
 }
 
 // ключи StateSchem'ы (например counter, user, login)

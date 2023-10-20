@@ -1,7 +1,7 @@
 export enum ArticleBlockType {
     CODE = "CODE",
     IMAGE = "IMAGE",
-    TEXT = "IMAGE",
+    TEXT = "TEXT",
 }
 
 // базовый тип, общие поля для всех типов блоков (code, image, text)
