@@ -1,24 +1,25 @@
 import { ArticleDetails } from "entities/Article";
 import { CommentList } from "entities/Comment";
-import {
-    getArticleCommentsError,
-    getArticleCommentsIsLoading,
-} from "pages/ArticlesDetailsPage/model/selectors/comments";
+import { AddCommentForm } from "features/addCommentForm";
+import { getArticleCommentsIsLoading } from "pages/ArticlesDetailsPage/model/selectors/comments";
+// eslint-disable-next-line max-len
+import { addCommentForArticle } from "pages/ArticlesDetailsPage/model/services/fetchCommentForArticle/addCommentForArticle";
 // eslint-disable-next-line max-len
 import { fetchCommentsByArticleId } from "pages/ArticlesDetailsPage/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId";
 import {
     articleDetailsCommentsReducer,
     getArticleComments,
 } from "pages/ArticlesDetailsPage/model/slice/articleDetailsCommentsSlice";
-import { memo, useEffect } from "react";
+import { memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { classNames } from "shared/lib/classNames/classNames";
 import {
     DynamicModuleLoader,
     ReducerList,
 } from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { useInitialEffect } from "shared/lib/hooks/useInitialEffect/useInitialEffect";
 import { Text } from "shared/ui/Text/Text";
 import classes from "./ArticlesDetailsPage.module.scss";
@@ -37,7 +38,14 @@ const ArticlesDetailsPage = (props: ArticlesDetailsPageProps) => {
     const { id } = useParams<{ id: string }>();
     const comments = useSelector(getArticleComments.selectAll);
     const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
+
+    const onSendComment = useCallback(
+        (text: string) => {
+            dispatch(addCommentForArticle(text));
+        },
+        [dispatch]
+    );
 
     useInitialEffect(() => {
         dispatch(fetchCommentsByArticleId(id));
@@ -67,6 +75,7 @@ const ArticlesDetailsPage = (props: ArticlesDetailsPageProps) => {
                     className={classes.commentTitle}
                     title={t("Комментарии")}
                 />
+                <AddCommentForm onSendComment={onSendComment} />
                 <CommentList
                     isLoading={commentsIsLoading}
                     comments={comments}

@@ -12,6 +12,7 @@ const data = {
     fisrt: "Daniil",
     city: "asdgas",
     currency: Currency.RUB,
+    id: "1",
 };
 
 describe("fetchProfileData", () => {

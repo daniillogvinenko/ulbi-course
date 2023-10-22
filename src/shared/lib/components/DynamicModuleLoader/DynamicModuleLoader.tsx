@@ -2,7 +2,8 @@ import { Reducer } from "@reduxjs/toolkit";
 import { ReduxStoreWithManager } from "app/providers/StoreProvider";
 import { StateSchemaKey } from "app/providers/StoreProvider/config/StateSchema";
 import { FC, useEffect } from "react";
-import { useDispatch, useStore } from "react-redux";
+import { useStore } from "react-redux";
+import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 
 // это для того, чтобы можно было передавать много редюсеров
 export type ReducerList = {
@@ -17,9 +18,9 @@ interface DynamicModuleLoaderProps {
 }
 
 export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
-    const { children, reducers, removeReducersAfterUnmount } = props;
+    const { children, reducers, removeReducersAfterUnmount = true } = props;
     const store = useStore() as ReduxStoreWithManager;
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         // добавляется каждый редюсер
