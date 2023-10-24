@@ -1,1 +1,1 @@
-export { MainPageAsync } from './ui/MainPage.async'; // public API
+export { MainPageAsync as MainPage } from "./ui/MainPage.async"; // public API

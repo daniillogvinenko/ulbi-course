@@ -14,6 +14,7 @@ import { NavigateOptions, To } from "react-router-dom";
 import { ArticleDetailsSchema } from "entities/Article";
 import { ArticlesDetailsCommentsSchema } from "pages/ArticlesDetailsPage";
 import { AddCommmentFormSchema } from "features/addCommentForm";
+import { ArticlePageSchema } from "pages/ArticlesPage";
 
 export interface StateSchema {
     counter: CounterSchema;
@@ -25,6 +26,7 @@ export interface StateSchema {
     articleDetails?: ArticleDetailsSchema;
     articleDetailsComments?: ArticlesDetailsCommentsSchema;
     addCommentForm?: AddCommmentFormSchema;
+    articlesPage?: ArticlePageSchema;
 }
 
 // ключи StateSchem'ы (например counter, user, login)

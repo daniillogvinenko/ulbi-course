@@ -1,7 +1,7 @@
-import { AboutPageAsync } from "pages/AboutPage";
+import { AboutPage } from "pages/AboutPage";
 import { ArticlesDetailsPage } from "pages/ArticlesDetailsPage";
 import { ArticlesPage } from "pages/ArticlesPage";
-import { MainPageAsync } from "pages/MainPage";
+import { MainPage } from "pages/MainPage";
 import { NotFoundPage } from "pages/NotFoundPage";
 import { ProfilePage } from "pages/ProfilePage";
 import { RouteProps } from "react-router-dom";
@@ -23,15 +23,15 @@ export enum AppRoutes {
 export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.MAIN]: "/",
     [AppRoutes.ABOUT]: "/about",
-    [AppRoutes.PROFILE]: "/profile/",
+    [AppRoutes.PROFILE]: "/profile/", // + :id
     [AppRoutes.NOT_FOUND]: "*",
     [AppRoutes.ARTICLES]: "/articles",
     [AppRoutes.ARTICLE_DETAILS]: "/articles/", // + :id
 };
 
 export const RouteElements: Record<AppRoutes, React.ReactNode> = {
-    [AppRoutes.MAIN]: <MainPageAsync />,
-    [AppRoutes.ABOUT]: <AboutPageAsync />,
+    [AppRoutes.MAIN]: <MainPage />,
+    [AppRoutes.ABOUT]: <AboutPage />,
     [AppRoutes.PROFILE]: <ProfilePage />,
     [AppRoutes.NOT_FOUND]: <NotFoundPage />,
     [AppRoutes.ARTICLES]: <ArticlesPage />,

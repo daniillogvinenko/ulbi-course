@@ -1,1 +1,1 @@
-export { AboutPageAsync } from "./ui/AboutPage.async"; // public API
+export { AboutPageAsync as AboutPage } from "./ui/AboutPage.async"; // public API
