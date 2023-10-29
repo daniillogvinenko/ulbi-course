@@ -26,16 +26,25 @@ const articlesPageSlice = createSlice({
         ids: [],
         entities: {},
         view: ArticleView.SMALL,
+        hasMore: true,
+        page: 1,
+        _inited: false,
     }),
     reducers: {
         setView: (state, action: PayloadAction<ArticleView>) => {
             state.view = action.payload;
             localStorage.setItem(ARTICLE_VIEW_LOCALSTORAGE_KEY, action.payload);
         },
+        setPage: (state, action: PayloadAction<number>) => {
+            state.page = action.payload;
+        },
         initState: (state) => {
-            state.view = localStorage.getItem(
+            const view = localStorage.getItem(
                 ARTICLE_VIEW_LOCALSTORAGE_KEY
             ) as ArticleView;
+            state.view = view;
+            state.limit = view === ArticleView.BIG ? 4 : 9;
+            state._inited = true;
         },
     },
     extraReducers(builder) {
@@ -48,7 +57,9 @@ const articlesPageSlice = createSlice({
                 fetchArticlesList.fulfilled,
                 (state, action: PayloadAction<Article[]>) => {
                     state.isLoading = false;
-                    articlesAdapter.setAll(state, action.payload);
+                    articlesAdapter.addMany(state, action.payload);
+                    // action.payload.length > 0 ? true : false   если в массиве есть хотя бы один элемент, то это значит что данные на сервере еще есть
+                    state.hasMore = action.payload.length > 0;
                 }
             )
             .addCase(fetchArticlesList.rejected, (state, action) => {

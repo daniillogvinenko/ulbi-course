@@ -32,6 +32,8 @@ export interface StateSchema {
 // ключи StateSchem'ы (например counter, user, login)
 export type StateSchemaKey = keyof StateSchema;
 
+export type MountedReducers = OptionalRecord<StateSchemaKey, boolean>;
+
 export interface ReducerManager {
     getReducerMap: () => ReducersMapObject<StateSchema>;
     reduce: (
@@ -40,6 +42,8 @@ export interface ReducerManager {
     ) => CombinedState<StateSchema>;
     add: (key: StateSchemaKey, reducer: Reducer) => void;
     remove: (key: StateSchemaKey) => void;
+    // true - вмонтирован, false - демонтирован (или еще не был вмонтирован)
+    getMountedReducers: () => MountedReducers;
 }
 
 // EnhancedStore - это обычный тип стора, мы расширяем его, чтобы использовать менеджер редюсеров
@@ -49,7 +53,6 @@ export interface ReduxStoreWithManager extends EnhancedStore {
 
 export interface ThunkExtraArg {
     api: AxiosInstance;
-    navigate?: (to: To, options?: NavigateOptions) => void;
 }
 
 export interface ThunkConfig<T> {

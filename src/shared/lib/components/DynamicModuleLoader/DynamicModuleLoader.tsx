@@ -23,10 +23,15 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
+        const mountedReducers = store.reducerManager.getMountedReducers();
         // добавляется каждый редюсер
         Object.entries(reducers).forEach(([name, reducer]) => {
-            store.reducerManager.add(name as StateSchemaKey, reducer);
-            dispatch({ type: "add reducer" });
+            const mounted = mountedReducers[name as StateSchemaKey];
+            // Добавляем новый редюсер только если его нету
+            if (!mounted) {
+                store.reducerManager.add(name as StateSchemaKey, reducer);
+                dispatch({ type: "add reducer" });
+            }
         });
 
         return () => {
@@ -41,5 +46,6 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
         // eslint-disable-next-line
     }, []);
 
-    return <div>{children}</div>;
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    return <>{children}</>;
 };

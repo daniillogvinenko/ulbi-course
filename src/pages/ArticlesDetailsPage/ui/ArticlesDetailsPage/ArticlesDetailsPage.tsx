@@ -24,6 +24,7 @@ import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { useInitialEffect } from "shared/lib/hooks/useInitialEffect/useInitialEffect";
 import Button, { ButtonTheme } from "shared/ui/Button/Button";
 import { Text } from "shared/ui/Text/Text";
+import { Page } from "shared/ui/Page/Page";
 import classes from "./ArticlesDetailsPage.module.scss";
 
 export interface ArticlesDetailsPageProps {
@@ -72,7 +73,7 @@ const ArticlesDetailsPage = (props: ArticlesDetailsPageProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers} removeReducersAfterUnmount>
-            <div
+            <Page
                 className={classNames(classes.ArticlesDetailsPage, {}, [
                     className,
                 ])}
@@ -90,7 +91,7 @@ const ArticlesDetailsPage = (props: ArticlesDetailsPageProps) => {
                     isLoading={commentsIsLoading}
                     comments={comments}
                 />
-            </div>
+            </Page>
         </DynamicModuleLoader>
     );
 };

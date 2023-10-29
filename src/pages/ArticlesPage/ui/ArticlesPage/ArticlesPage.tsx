@@ -3,12 +3,9 @@ import {
     ArticleView,
     ArticleViewSwitcher,
 } from "entities/Article";
-import {
-    articlesPageActions,
-    articlesPageReducer,
-    getArticles,
-} from "pages/ArticlesPage/model/slices/ArticlesPageSlice";
+
 import { memo, useCallback } from "react";
+import { Page } from "shared/ui/Page/Page";
 import { useSelector } from "react-redux";
 import { classNames } from "shared/lib/classNames/classNames";
 import {
@@ -17,9 +14,15 @@ import {
 } from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { useInitialEffect } from "shared/lib/hooks/useInitialEffect/useInitialEffect";
-import { fetchArticlesList } from "../../model/services/fetchArticlesList/fetchArticlesList";
+import { fetchNextArticlesPage } from "../../model/services/fetchNextArticlesPage/fetchNextArticlesPage";
+import { initArticlesPage } from "../../model/services/initArticlesPage/initArticlesPage";
 import {
-    getArticlesPageError,
+    articlesPageActions,
+    articlesPageReducer,
+    getArticles,
+} from "../../model/slices/ArticlesPageSlice";
+import {
+    getArticlesPageInited,
     getArticlesPageIsLoading,
     getArticlesPageView,
 } from "../../model/selectors/articlesPageSelectors";
@@ -38,8 +41,8 @@ const ArticlesPage = (props: ArticlesPageProps) => {
     const dispatch = useAppDispatch();
     const articles = useSelector(getArticles.selectAll);
     const isLoading = useSelector(getArticlesPageIsLoading);
-    const error = useSelector(getArticlesPageError);
     const view = useSelector(getArticlesPageView);
+    const inited = useSelector(getArticlesPageInited);
 
     const onChangeView = useCallback(
         (view: ArticleView) => {
@@ -48,21 +51,31 @@ const ArticlesPage = (props: ArticlesPageProps) => {
         [dispatch]
     );
 
+    const onLoadNextPart = useCallback(() => {
+        // !isLoading чтобы запрос не отправлялся в момент загрузки данных
+        dispatch(fetchNextArticlesPage());
+    }, [dispatch]);
+
     useInitialEffect(() => {
-        dispatch(fetchArticlesList());
-        dispatch(articlesPageActions.initState());
+        dispatch(initArticlesPage());
     });
 
     return (
-        <DynamicModuleLoader reducers={reducers}>
-            <div className={classNames(classes.ArticlesPage, {}, [className])}>
+        <DynamicModuleLoader
+            reducers={reducers}
+            removeReducersAfterUnmount={false}
+        >
+            <Page
+                onScrollEnd={onLoadNextPart}
+                className={classNames(classes.ArticlesPage, {}, [className])}
+            >
                 <ArticleViewSwitcher view={view} onViewClick={onChangeView} />
                 <ArticleList
                     articles={articles}
                     isLoading={isLoading}
                     view={view}
                 />
-            </div>
+            </Page>
         </DynamicModuleLoader>
     );
 };

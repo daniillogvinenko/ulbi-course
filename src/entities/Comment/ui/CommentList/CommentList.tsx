@@ -38,6 +38,7 @@ export const CommentList = (props: CommentListProps) => {
                         isLoading={isLoading}
                         className={classes.comment}
                         comment={comment}
+                        key={comment.id}
                     />
                 ))
             ) : (

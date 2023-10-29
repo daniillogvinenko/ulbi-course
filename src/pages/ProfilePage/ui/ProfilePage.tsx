@@ -12,8 +12,9 @@ import {
     profileReducer,
 } from "entities/Profile";
 import { ValidateProfileError } from "entities/Profile/model/types/profile";
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
+import { Page } from "shared/ui/Page/Page";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { classNames } from "shared/lib/classNames/classNames";
@@ -131,7 +132,7 @@ const ProfilePage = (props: ProfilePageProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers} removeReducersAfterUnmount>
-            <div className={classNames(classes.ProfilePage, {}, [className])}>
+            <Page className={classNames(classes.ProfilePage, {}, [className])}>
                 <ProfilePageHeader />
                 {validateErrors?.length &&
                     validateErrors.map((err) => (
@@ -155,7 +156,7 @@ const ProfilePage = (props: ProfilePageProps) => {
                     error={error}
                     readonly={readonly}
                 />
-            </div>
+            </Page>
         </DynamicModuleLoader>
     );
 };

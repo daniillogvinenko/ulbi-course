@@ -41,6 +41,7 @@ export const ArticleViewSwitcher = memo((props: ArticleViewSwitcherProps) => {
                     theme={ButtonTheme.CLEAR}
                     // урок 55 16:00
                     onClick={onClickHandler(viewType.view)}
+                    key={viewType.view}
                 >
                     <Icon
                         Svg={viewType.icon}
