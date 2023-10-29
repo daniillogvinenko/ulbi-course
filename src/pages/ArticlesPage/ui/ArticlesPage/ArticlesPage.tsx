@@ -5,7 +5,7 @@ import {
 } from "entities/Article";
 
 import { memo, useCallback } from "react";
-import { Page } from "shared/ui/Page/Page";
+import { Page } from "widgets/Page/Page";
 import { useSelector } from "react-redux";
 import { classNames } from "shared/lib/classNames/classNames";
 import {

@@ -10,16 +10,16 @@ import { CounterSchema } from "entities/Counter";
 import { ProfileSchema } from "entities/Profile";
 import { UserSchema } from "entities/User";
 import { LoginSchema } from "features/AuthByUsername";
-import { NavigateOptions, To } from "react-router-dom";
 import { ArticleDetailsSchema } from "entities/Article";
 import { ArticlesDetailsCommentsSchema } from "pages/ArticlesDetailsPage";
 import { AddCommmentFormSchema } from "features/addCommentForm";
 import { ArticlePageSchema } from "pages/ArticlesPage";
+import { UISchema } from "features/UI/model/types/UISchema";
 
 export interface StateSchema {
     counter: CounterSchema;
     user: UserSchema;
-
+    ui: UISchema;
     // асинхронный редюсер
     login?: LoginSchema;
     profile?: ProfileSchema;
