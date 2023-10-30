@@ -11,6 +11,7 @@ import {
     DynamicModuleLoader,
     ReducerList,
 } from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+import { Card } from "shared/ui/Card/Card";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import Button, { ButtonTheme } from "shared/ui/Button/Button";
 import { Input } from "shared/ui/Input/Input";
@@ -71,20 +72,26 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                         theme={TextTheme.ERROR}
                     />
                 )}
-                <Input
-                    placeholder={t("Логин")}
-                    className={classes.input}
-                    type="text"
-                    onChange={onChangeUserName}
-                    value={username}
-                />
-                <Input
-                    placeholder={t("Пароль")}
-                    className={classes.input}
-                    type="text"
-                    onChange={onChangePassword}
-                    value={password}
-                />
+                <Card className={classes.inputWrapper}>
+                    <Input
+                        placeholder={t("Логин")}
+                        className={classes.input}
+                        type="text"
+                        onChange={onChangeUserName}
+                        value={username}
+                    />
+                </Card>
+
+                <Card className={classes.inputWrapper}>
+                    <Input
+                        placeholder={t("Пароль")}
+                        className={classes.input}
+                        type="text"
+                        onChange={onChangePassword}
+                        value={password}
+                    />
+                </Card>
+
                 <Button
                     onClick={onLoginClick}
                     theme={ButtonTheme.OUTLINE}

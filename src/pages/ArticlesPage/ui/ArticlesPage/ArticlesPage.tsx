@@ -1,8 +1,4 @@
-import {
-    ArticleList,
-    ArticleView,
-    ArticleViewSwitcher,
-} from "entities/Article";
+import { ArticleList } from "entities/Article";
 
 import { memo, useCallback } from "react";
 import { Page } from "widgets/Page/Page";
@@ -17,16 +13,15 @@ import { useInitialEffect } from "shared/lib/hooks/useInitialEffect/useInitialEf
 import { fetchNextArticlesPage } from "../../model/services/fetchNextArticlesPage/fetchNextArticlesPage";
 import { initArticlesPage } from "../../model/services/initArticlesPage/initArticlesPage";
 import {
-    articlesPageActions,
     articlesPageReducer,
     getArticles,
 } from "../../model/slices/ArticlesPageSlice";
 import {
-    getArticlesPageInited,
     getArticlesPageIsLoading,
     getArticlesPageView,
 } from "../../model/selectors/articlesPageSelectors";
 import classes from "./ArticlesPage.module.scss";
+import { ArticlesPageFilters } from "../ArticlesPageFilters/ArticlesPageFilters";
 
 interface ArticlesPageProps {
     className?: string;
@@ -42,17 +37,8 @@ const ArticlesPage = (props: ArticlesPageProps) => {
     const articles = useSelector(getArticles.selectAll);
     const isLoading = useSelector(getArticlesPageIsLoading);
     const view = useSelector(getArticlesPageView);
-    const inited = useSelector(getArticlesPageInited);
-
-    const onChangeView = useCallback(
-        (view: ArticleView) => {
-            dispatch(articlesPageActions.setView(view));
-        },
-        [dispatch]
-    );
 
     const onLoadNextPart = useCallback(() => {
-        // !isLoading чтобы запрос не отправлялся в момент загрузки данных
         dispatch(fetchNextArticlesPage());
     }, [dispatch]);
 
@@ -69,11 +55,12 @@ const ArticlesPage = (props: ArticlesPageProps) => {
                 onScrollEnd={onLoadNextPart}
                 className={classNames(classes.ArticlesPage, {}, [className])}
             >
-                <ArticleViewSwitcher view={view} onViewClick={onChangeView} />
+                <ArticlesPageFilters />
                 <ArticleList
                     articles={articles}
                     isLoading={isLoading}
                     view={view}
+                    className={classes.list}
                 />
             </Page>
         </DynamicModuleLoader>
