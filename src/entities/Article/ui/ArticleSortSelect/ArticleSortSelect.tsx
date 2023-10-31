@@ -1,7 +1,7 @@
 import { classNames } from "shared/lib/classNames/classNames";
 import { Select, SelectOption } from "shared/ui/Select/Select";
 import { useTranslation } from "react-i18next";
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { ArticleSortField } from "entities/Article/model/types/article";
 import { SortOrder } from "shared/types";
 import classes from "./ArticleSortSelect.module.scss";
@@ -50,10 +50,37 @@ export const ArticleSortSelect = (props: ArticleSortSelectProps) => {
         [t]
     );
 
+    // используем такой костыль, т.к. в onChange надо передать (value: string) => void
+    const changeSortHandler = useCallback(
+        (newSort: string) => {
+            onChangeSort(newSort as ArticleSortField);
+        },
+        [onChangeSort]
+    );
+
+    // используем такой костыль, т.к. в onChange надо передать (value: string) => void
+    const changeOrderHandler = useCallback(
+        (newOrder: string) => {
+            onChangeOrder(newOrder as SortOrder);
+        },
+        [onChangeOrder]
+    );
+
     return (
         <div className={classNames(classes.ArticleSortSelect, {}, [className])}>
-            <Select options={sortFieldOptions} label={t("Сортировать по")} />
-            <Select options={orderOptions} label={t("по")} />
+            <Select
+                onChange={changeSortHandler}
+                value={sort}
+                options={sortFieldOptions}
+                label={t("Сортировать по")}
+            />
+            <Select
+                onChange={changeOrderHandler}
+                value={order}
+                options={orderOptions}
+                label={t("по")}
+                className={classes.order}
+            />
         </div>
     );
 };
