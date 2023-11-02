@@ -1,4 +1,5 @@
 import { Article, ArticleView } from "entities/Article/model/types/article";
+import { HTMLAttributeAnchorTarget } from "react";
 import { classNames } from "shared/lib/classNames/classNames";
 import { Text } from "shared/ui/Text/Text";
 import { useTranslation } from "react-i18next";
@@ -11,6 +12,7 @@ interface ArticleListProps {
     articles: Article[];
     isLoading?: boolean;
     view?: ArticleView;
+    target?: HTMLAttributeAnchorTarget;
 }
 
 // eslint-disable-next-line
@@ -27,11 +29,18 @@ const getSkeletons = (view: ArticleView) => {
 };
 
 export const ArticleList = (props: ArticleListProps) => {
-    const { className, articles, view = ArticleView.SMALL, isLoading } = props;
+    const {
+        className,
+        articles,
+        view = ArticleView.SMALL,
+        isLoading,
+        target,
+    } = props;
     const { t } = useTranslation();
 
     const renderArticles = (article: Article) => (
         <ArticleListItem
+            target={target}
             className={classes.card}
             article={article}
             view={view}

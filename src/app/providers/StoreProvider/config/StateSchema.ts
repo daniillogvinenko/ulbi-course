@@ -11,7 +11,7 @@ import { ProfileSchema } from "entities/Profile";
 import { UserSchema } from "entities/User";
 import { LoginSchema } from "features/AuthByUsername";
 import { ArticleDetailsSchema } from "entities/Article";
-import { ArticlesDetailsCommentsSchema } from "pages/ArticlesDetailsPage";
+import { ArticleDetailsPageSchema } from "pages/ArticlesDetailsPage";
 import { AddCommmentFormSchema } from "features/addCommentForm";
 import { ArticlePageSchema } from "pages/ArticlesPage";
 import { UISchema } from "features/UI/model/types/UISchema";
@@ -24,9 +24,9 @@ export interface StateSchema {
     login?: LoginSchema;
     profile?: ProfileSchema;
     articleDetails?: ArticleDetailsSchema;
-    articleDetailsComments?: ArticlesDetailsCommentsSchema;
     addCommentForm?: AddCommmentFormSchema;
     articlesPage?: ArticlePageSchema;
+    articleDetailsPage?: ArticleDetailsPageSchema;
 }
 
 // ключи StateSchem'ы (например counter, user, login)

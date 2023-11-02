@@ -1,15 +1,9 @@
-import { ArticleDetails } from "entities/Article";
+import { ArticleDetails, ArticleList, ArticleView } from "entities/Article";
 import { CommentList } from "entities/Comment";
 import { AddCommentForm } from "features/addCommentForm";
-import { getArticleCommentsIsLoading } from "pages/ArticlesDetailsPage/model/selectors/comments";
 // eslint-disable-next-line max-len
-import { addCommentForArticle } from "pages/ArticlesDetailsPage/model/services/fetchCommentForArticle/addCommentForArticle";
 // eslint-disable-next-line max-len
-import { fetchCommentsByArticleId } from "pages/ArticlesDetailsPage/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId";
-import {
-    articleDetailsCommentsReducer,
-    getArticleComments,
-} from "pages/ArticlesDetailsPage/model/slice/articleDetailsCommentsSlice";
+
 import { memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
@@ -23,8 +17,18 @@ import {
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { useInitialEffect } from "shared/lib/hooks/useInitialEffect/useInitialEffect";
 import Button, { ButtonTheme } from "shared/ui/Button/Button";
-import { Text } from "shared/ui/Text/Text";
 import { Page } from "widgets/Page/Page";
+import { articleDetailsPageReducer } from "pages/ArticlesDetailsPage/model/slice";
+import { Text } from "shared/ui/Text/Text";
+import { fetchCommentsByArticleId } from "../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId";
+import { getArticleCommentsIsLoading } from "../../model/selectors/comments";
+import { addCommentForArticle } from "../../model/services/fetchCommentForArticle/addCommentForArticle";
+import { getArticleComments } from "../../model/slice/ArticleDetailsCommentsSlice";
+// eslint-disable-next-line max-len
+import { getArticleRecommendations } from "../../model/slice/ArticleDetailsPageRecommendationsSlice";
+import { getArticleRecommendationsIsLoading } from "../../model/selectors/recommendations";
+// eslint-disable-next-line max-len
+import { fetchArticleRecommendations } from "../../model/services/fetchArticleRecommendations/fetchArticleRecommendations";
 import classes from "./ArticlesDetailsPage.module.scss";
 
 export interface ArticlesDetailsPageProps {
@@ -32,7 +36,7 @@ export interface ArticlesDetailsPageProps {
 }
 
 const reducers: ReducerList = {
-    articleDetailsComments: articleDetailsCommentsReducer,
+    articleDetailsPage: articleDetailsPageReducer,
 };
 
 const ArticlesDetailsPage = (props: ArticlesDetailsPageProps) => {
@@ -41,6 +45,10 @@ const ArticlesDetailsPage = (props: ArticlesDetailsPageProps) => {
     const { id } = useParams<{ id: string }>();
     const comments = useSelector(getArticleComments.selectAll);
     const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
+    const recommendations = useSelector(getArticleRecommendations.selectAll);
+    const recommendationsIsLoading = useSelector(
+        getArticleRecommendationsIsLoading
+    );
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -57,6 +65,7 @@ const ArticlesDetailsPage = (props: ArticlesDetailsPageProps) => {
 
     useInitialEffect(() => {
         dispatch(fetchCommentsByArticleId(id));
+        dispatch(fetchArticleRecommendations());
     });
 
     if (!id) {
@@ -82,6 +91,18 @@ const ArticlesDetailsPage = (props: ArticlesDetailsPageProps) => {
                     {t("Назад к списку")}
                 </Button>
                 <ArticleDetails id={id} />
+                <Text
+                    className={classes.commentTitle}
+                    title={t("Рекомендуем")}
+                />
+                <ArticleList
+                    // eslint-disable-next-line i18next/no-literal-string
+                    target="_blank"
+                    articles={recommendations}
+                    isLoading={recommendationsIsLoading}
+                    view={ArticleView.SMALL}
+                    className={classes.recommendations}
+                />
                 <Text
                     className={classes.commentTitle}
                     title={t("Комментарии")}
