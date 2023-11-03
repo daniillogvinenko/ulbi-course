@@ -6,7 +6,9 @@ import { useSelector } from "react-redux";
 import { classNames } from "shared/lib/classNames/classNames";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import Button, { ButtonTheme } from "shared/ui/Button/Button";
-import { Text } from "shared/ui/Text/Text";
+import { Text, TextTheme } from "shared/ui/Text/Text";
+import { AppLink, AppLinkTheme } from "shared/ui/AppLink/AppLink";
+import { RoutePath } from "shared/config/routeConfig/routeConfig";
 import classes from "./Navbar.module.scss";
 
 interface NavbarProps {
@@ -34,7 +36,18 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     if (authData) {
         return (
             <div className={classNames(classes.Navbar, {}, [className])}>
-                <Text text={authData.username} />
+                <Text
+                    className={classes.appName}
+                    title={t("ULBI TV APP")}
+                    theme={TextTheme.INVERTED}
+                />
+                <AppLink
+                    theme={AppLinkTheme.SECONDARY}
+                    to={RoutePath.article_create}
+                    className={classes.createBtn}
+                >
+                    {t("Создать статью")}
+                </AppLink>
                 <Button
                     theme={ButtonTheme.CLEAR_INVERTED}
                     className={classes.links}

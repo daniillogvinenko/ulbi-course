@@ -1,4 +1,5 @@
 import { AboutPage } from "pages/AboutPage";
+import { ArticleEditPage } from "pages/ArticleEditPage";
 import { ArticlesDetailsPage } from "pages/ArticlesDetailsPage";
 import { ArticlesPage } from "pages/ArticlesPage";
 import { MainPage } from "pages/MainPage";
@@ -16,6 +17,8 @@ export enum AppRoutes {
     PROFILE = "profile",
     ARTICLES = "articles",
     ARTICLE_DETAILS = "article_details",
+    ARTICLE_CREATE = "article_create",
+    ARTICLE_EDIT = "article_edit",
     // last
     NOT_FOUND = "not_found",
 }
@@ -27,43 +30,47 @@ export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.NOT_FOUND]: "*",
     [AppRoutes.ARTICLES]: "/articles",
     [AppRoutes.ARTICLE_DETAILS]: "/articles/", // + :id
-};
-
-export const RouteElements: Record<AppRoutes, React.ReactNode> = {
-    [AppRoutes.MAIN]: <MainPage />,
-    [AppRoutes.ABOUT]: <AboutPage />,
-    [AppRoutes.PROFILE]: <ProfilePage />,
-    [AppRoutes.NOT_FOUND]: <NotFoundPage />,
-    [AppRoutes.ARTICLES]: <ArticlesPage />,
-    [AppRoutes.ARTICLE_DETAILS]: <ArticlesDetailsPage />,
+    [AppRoutes.ARTICLE_EDIT]: "/articles/:id/edit",
+    [AppRoutes.ARTICLE_CREATE]: "/articles/new",
 };
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.ABOUT]: {
         path: RoutePath.about,
-        element: RouteElements.about,
+        element: <AboutPage />,
     },
     [AppRoutes.MAIN]: {
         path: RoutePath.main,
-        element: RouteElements.main,
+        element: <MainPage />,
     },
     [AppRoutes.PROFILE]: {
         path: `${RoutePath.profile}:id`,
-        element: RouteElements.profile,
+        element: <ProfilePage />,
         authOnly: true,
-    },
-    [AppRoutes.NOT_FOUND]: {
-        path: RoutePath.not_found,
-        element: RouteElements.not_found,
     },
     [AppRoutes.ARTICLES]: {
         path: RoutePath.articles,
-        element: RouteElements.articles,
+        element: <ArticlesPage />,
         authOnly: true,
     },
     [AppRoutes.ARTICLE_DETAILS]: {
         path: `${RoutePath.article_details}:id`,
-        element: RouteElements.article_details,
+        element: <ArticlesDetailsPage />,
         authOnly: true,
+    },
+    [AppRoutes.ARTICLE_EDIT]: {
+        path: RoutePath.article_edit,
+        element: <ArticleEditPage />,
+        authOnly: true,
+    },
+    [AppRoutes.ARTICLE_CREATE]: {
+        path: RoutePath.article_create,
+        element: <ArticleEditPage />,
+        authOnly: true,
+    },
+    // last
+    [AppRoutes.NOT_FOUND]: {
+        path: RoutePath.not_found,
+        element: <NotFoundPage />,
     },
 };
