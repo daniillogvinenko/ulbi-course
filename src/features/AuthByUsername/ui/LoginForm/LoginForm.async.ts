@@ -5,11 +5,5 @@ import { LoginFormProps } from "./LoginForm";
 // автоматически начинает разделять код вашего приложения
 
 export const LoginFormAsync = lazy<FC<LoginFormProps>>(
-    () =>
-        new Promise((res) => {
-            setTimeout(() => {
-                // @ts-ignore
-                res(import("./LoginForm"));
-            }, 1000);
-        })
+    () => import("./LoginForm")
 );
