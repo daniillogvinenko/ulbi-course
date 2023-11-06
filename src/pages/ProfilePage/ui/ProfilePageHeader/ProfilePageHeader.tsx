@@ -11,8 +11,8 @@ import { useSelector } from "react-redux";
 import { classNames } from "shared/lib/classNames/classNames";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import Button, { ButtonTheme } from "shared/ui/Button/Button";
+import { HStack } from "shared/ui/Stack/HStack/HStack";
 import { Text } from "shared/ui/Text/Text";
-import classes from "./ProfilePageHeader.module.scss";
 
 interface ProfilePageHeaderProps {
     className?: string;
@@ -41,38 +41,37 @@ export const ProfilePageHeader = (props: ProfilePageHeaderProps) => {
     }, [dispatch]);
 
     return (
-        <div className={classNames(classes.ProfilePageHeader, {}, [className])}>
+        <HStack
+            max
+            justify="between"
+            className={classNames("", {}, [className])}
+        >
             <Text title={t("Профиль пользователя")} />
             {canEdit && (
-                <div className={classes.btnsWrapper}>
+                // eslint-disable-next-line react/jsx-no-useless-fragment
+                <div>
                     {readonly ? (
-                        <Button
-                            onClick={onEdit}
-                            className={classes.editBtn}
-                            theme={ButtonTheme.OUTLINE}
-                        >
+                        <Button onClick={onEdit} theme={ButtonTheme.OUTLINE}>
                             {t("Редактировать")}
                         </Button>
                     ) : (
-                        <>
+                        <HStack gap="8">
                             <Button
                                 onClick={onSave}
-                                className={classes.saveBtn}
                                 theme={ButtonTheme.OUTLINE}
                             >
                                 {t("Сохранить")}
                             </Button>
                             <Button
                                 onClick={onCancelEdit}
-                                className={classes.cancelBtn}
                                 theme={ButtonTheme.OUTLINE_RED}
                             >
                                 {t("Отменить")}
                             </Button>
-                        </>
+                        </HStack>
                     )}
                 </div>
             )}
-        </div>
+        </HStack>
     );
 };

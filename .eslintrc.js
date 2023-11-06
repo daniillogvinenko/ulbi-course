@@ -17,7 +17,13 @@ module.exports = {
         ecmaVersion: "latest",
         sourceType: "module",
     },
-    plugins: ["react", "@typescript-eslint", "i18next", "react-hooks"],
+    plugins: [
+        "react",
+        "@typescript-eslint",
+        "i18next",
+        "react-hooks",
+        "ulbi-tv-plugin",
+    ],
     rules: {
         quotes: "off",
         "linebreak-style": "off",
@@ -31,7 +37,7 @@ module.exports = {
         ],
         "import/no-unresolved": "off",
         "import/prefer-default-export": "off",
-        "no-unused-vars": "warn",
+        "no-unused-vars": "off",
         "react/require-default-props": "off",
         "react/react-in-jsx-scope": "off",
         "react/jsx-props-no-spreading": "warn",
@@ -43,7 +49,17 @@ module.exports = {
         "no-underscore-dangle": "off",
         "i18next/no-literal-string": [
             "error",
-            { markupOnly: true, ignoreAttribute: ["data-testid", "to"] },
+            {
+                markupOnly: true,
+                ignoreAttribute: [
+                    "data-testid",
+                    "to",
+                    "justify",
+                    "align",
+                    "direction",
+                    "gap",
+                ],
+            },
         ],
         "max-len": ["error", { ignoreComments: true, code: 120 }],
         "implicit-arrow-linebreak": "off",
@@ -56,6 +72,7 @@ module.exports = {
         "object-curly-newline": "off",
         "no-undef": "off",
         "react/no-array-index-key": "off",
+        "ulbi-tv-plugin/path-checker": "error",
     },
     globals: {
         __IS_DEV__: true,

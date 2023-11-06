@@ -1,11 +1,3 @@
-import {
-    getAddCommentFormError,
-    getAddCommentFormText,
-} from "features/addCommentForm/model/selectors/addCommentFormSelectors";
-import {
-    addCommentFormActions,
-    addCommentFormReducer,
-} from "features/addCommentForm/model/slices/addCommentFormSlice";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,6 +8,15 @@ import {
 } from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import Button, { ButtonTheme } from "shared/ui/Button/Button";
 import { Input } from "shared/ui/Input/Input";
+import { HStack } from "shared/ui/Stack";
+import {
+    getAddCommentFormError,
+    getAddCommentFormText,
+} from "../../model/selectors/addCommentFormSelectors";
+import {
+    addCommentFormActions,
+    addCommentFormReducer,
+} from "../../model/slices/addCommentFormSlice";
 import classes from "./addCommentForm.module.scss";
 
 export interface addCommentFormProps {
@@ -49,7 +50,8 @@ const AddCommentForm = (props: addCommentFormProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <div
+            <HStack
+                justify="between"
                 className={classNames(classes.AddCommentForm, {}, [className])}
             >
                 <Input
@@ -61,7 +63,7 @@ const AddCommentForm = (props: addCommentFormProps) => {
                 <Button onClick={onSendHandler} theme={ButtonTheme.OUTLINE}>
                     {t("Отправить")}
                 </Button>
-            </div>
+            </HStack>
         </DynamicModuleLoader>
     );
 };

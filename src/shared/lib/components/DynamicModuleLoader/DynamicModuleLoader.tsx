@@ -6,7 +6,7 @@ import {
 } from "app/providers/StoreProvider/config/StateSchema";
 import { FC, useEffect } from "react";
 import { useStore } from "react-redux";
-import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import { useAppDispatch } from "../../hooks/useAppDispatch/useAppDispatch";
 
 // это для того, чтобы можно было передавать много редюсеров
 export type ReducerList = {

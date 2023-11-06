@@ -1,10 +1,11 @@
-import { Comment } from "entities/Comment/model/types/comment";
 import { RoutePath } from "shared/config/routeConfig/routeConfig";
 import { classNames } from "shared/lib/classNames/classNames";
 import { AppLink } from "shared/ui/AppLink/AppLink";
 import { Avatar } from "shared/ui/Avatar/Avatar";
 import { Skeleton } from "shared/ui/Skeleton/Skeleton";
 import { Text } from "shared/ui/Text/Text";
+import { VStack } from "shared/ui/Stack";
+import { Comment } from "../../model/types/comment";
 import classes from "./CommentCard.module.scss";
 
 interface CommentCardProps {
@@ -35,7 +36,11 @@ export const CommentCard = (props: CommentCardProps) => {
     if (!comment) return null;
 
     return (
-        <div className={classNames(classes.CommentCard, {}, [className])}>
+        <VStack
+            max
+            gap="8"
+            className={classNames(classes.CommentCard, {}, [className])}
+        >
             <AppLink
                 className={classes.header}
                 to={`${RoutePath.profile}${comment?.user.id}`}
@@ -49,6 +54,6 @@ export const CommentCard = (props: CommentCardProps) => {
                 />
             </AppLink>
             <Text className={classes.text} text={comment?.text} />
-        </div>
+        </VStack>
     );
 };

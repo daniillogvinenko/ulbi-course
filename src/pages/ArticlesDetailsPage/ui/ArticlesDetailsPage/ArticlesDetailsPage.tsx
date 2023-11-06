@@ -7,6 +7,7 @@ import { AddCommentForm } from "features/addCommentForm";
 import { memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import { VStack } from "shared/ui/Stack";
 import { useParams } from "react-router-dom";
 import { classNames } from "shared/lib/classNames/classNames";
 import {
@@ -15,9 +16,9 @@ import {
 } from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { useInitialEffect } from "shared/lib/hooks/useInitialEffect/useInitialEffect";
-import { Page } from "widgets/Page/Page";
-import { articleDetailsPageReducer } from "pages/ArticlesDetailsPage/model/slice";
 import { Text } from "shared/ui/Text/Text";
+import { Page } from "widgets/Page/Page";
+import { articleDetailsPageReducer } from "../../model/slice";
 import { fetchCommentsByArticleId } from "../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId";
 import { getArticleCommentsIsLoading } from "../../model/selectors/comments";
 import { addCommentForArticle } from "../../model/services/fetchCommentForArticle/addCommentForArticle";
@@ -76,35 +77,37 @@ const ArticlesDetailsPage = (props: ArticlesDetailsPageProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers} removeReducersAfterUnmount>
-            <Page
-                className={classNames(classes.ArticlesDetailsPage, {}, [
-                    className,
-                ])}
-            >
-                <ArticlesDetailsPageHeader />
-                <ArticleDetails id={id} />
-                <Text
-                    className={classes.commentTitle}
-                    title={t("Рекомендуем")}
-                />
-                <ArticleList
-                    // eslint-disable-next-line i18next/no-literal-string
-                    target="_blank"
-                    articles={recommendations}
-                    isLoading={recommendationsIsLoading}
-                    view={ArticleView.SMALL}
-                    className={classes.recommendations}
-                />
-                <Text
-                    className={classes.commentTitle}
-                    title={t("Комментарии")}
-                />
-                <AddCommentForm onSendComment={onSendComment} />
-                <CommentList
-                    isLoading={commentsIsLoading}
-                    comments={comments}
-                />
-            </Page>
+            <VStack gap="16" max>
+                <Page
+                    className={classNames(classes.ArticlesDetailsPage, {}, [
+                        className,
+                    ])}
+                >
+                    <ArticlesDetailsPageHeader />
+                    <ArticleDetails id={id} />
+                    <Text
+                        className={classes.commentTitle}
+                        title={t("Рекомендуем")}
+                    />
+                    <ArticleList
+                        // eslint-disable-next-line i18next/no-literal-string
+                        target="_blank"
+                        articles={recommendations}
+                        isLoading={recommendationsIsLoading}
+                        view={ArticleView.SMALL}
+                        className={classes.recommendations}
+                    />
+                    <Text
+                        className={classes.commentTitle}
+                        title={t("Комментарии")}
+                    />
+                    <AddCommentForm onSendComment={onSendComment} />
+                    <CommentList
+                        isLoading={commentsIsLoading}
+                        comments={comments}
+                    />
+                </Page>
+            </VStack>
         </DynamicModuleLoader>
     );
 };

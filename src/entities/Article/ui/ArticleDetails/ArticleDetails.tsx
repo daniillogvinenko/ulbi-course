@@ -1,14 +1,9 @@
 /* eslint indent: 0 */ // --> OFF
-import {
-    getArticleDetailsData,
-    getArticleDetailsError,
-    getArticleDetailsIsLoading,
-} from "entities/Article/model/selectors/articleDetails";
-import { fetchArticleById } from "entities/Article/model/services/fetchArticleById/fetchArticleById";
-import { articleDetailsReducer } from "entities/Article/model/slice/articleDetailsSlice";
+
 import { memo, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import { HStack, VStack } from "shared/ui/Stack";
 import { classNames } from "shared/lib/classNames/classNames";
 import {
     DynamicModuleLoader,
@@ -18,13 +13,18 @@ import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { Avatar } from "shared/ui/Avatar/Avatar";
 import { Skeleton } from "shared/ui/Skeleton/Skeleton";
 import { Text, TextAlign, TextSize } from "shared/ui/Text/Text";
+
 import EyeIcon from "shared/assets/icons/articleItem.svg";
 import CalendarIcon from "shared/assets/icons/profileItem.svg";
 import { Icon } from "shared/ui/Icon/Icon";
+import { fetchArticleById } from "../../model/services/fetchArticleById/fetchArticleById";
+import { articleDetailsReducer } from "../../model/slice/articleDetailsSlice";
 import {
-    ArticleBlock,
-    ArticleBlockType,
-} from "entities/Article/model/types/article";
+    getArticleDetailsData,
+    getArticleDetailsError,
+    getArticleDetailsIsLoading,
+} from "../../model/selectors/articleDetails";
+import { ArticleBlock, ArticleBlockType } from "../../model/types/article";
 import classes from "./ArticleDetails.module.scss";
 import { ArticleCodeBlockComponent } from "../ArticleCodeBlockComponent/ArticleCodeBlockComponent";
 import { ArticleImageBlockComponent } from "../ArticleImageBlockComponent/ArticleImageBlockComponent";
@@ -123,30 +123,30 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
     } else {
         content = (
             <>
-                <div className={classes.avatarWrapper}>
+                <HStack justify="center" max className={classes.avatarWrapper}>
                     <Avatar
                         src={article?.img}
                         size={200}
                         className={classes.avatar}
                     />
-                </div>
-                <Text
-                    size={TextSize.L}
-                    className={classes.title}
-                    title={article?.title}
-                    text={article?.subtitle}
-                />
-                <div className={classes.articleInfo}>
-                    <Icon className={classes.icon} Svg={EyeIcon} />
-                    <Text text={String(article?.views)} />
-                </div>
-                <div className={classes.articleInfo}>
-                    <Icon className={classes.icon} Svg={CalendarIcon} />
-                    <Text text={article?.createdAt} />
-                </div>
-                {/* вместо этого (так написал я) */}
-                {/* {article?.blocks.map((block) => renderBlock(block))}
-                {/* можно писать вот так */}
+                </HStack>
+                <VStack gap="4" max>
+                    <Text
+                        size={TextSize.L}
+                        className={classes.title}
+                        title={article?.title}
+                        text={article?.subtitle}
+                    />
+                    <HStack gap="8" className={classes.articleInfo}>
+                        <Icon className={classes.icon} Svg={EyeIcon} />
+                        <Text text={String(article?.views)} />
+                    </HStack>
+                    <HStack gap="8" className={classes.articleInfo}>
+                        <Icon className={classes.icon} Svg={CalendarIcon} />
+                        <Text text={article?.createdAt} />
+                    </HStack>
+                </VStack>
+
                 {article?.blocks.map(renderBlock)}
             </>
         );
@@ -154,11 +154,12 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers} removeReducersAfterUnmount>
-            <div
+            <VStack
+                gap="16"
                 className={classNames(classes.ArticleDetails, {}, [className])}
             >
                 {content}
-            </div>
+            </VStack>
         </DynamicModuleLoader>
     );
 });
