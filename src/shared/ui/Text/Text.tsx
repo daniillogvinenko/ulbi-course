@@ -14,6 +14,7 @@ export enum TextAlign {
 }
 
 export enum TextSize {
+    S = "size_s",
     M = "size_m",
     L = "size_l",
 }
@@ -27,6 +28,14 @@ interface TextProps {
     size?: TextSize;
 }
 
+type HeaderTagType = "h1" | "h2" | "h3";
+
+const mapSizeToHeaderTag: Record<TextSize, HeaderTagType> = {
+    [TextSize.S]: "h3",
+    [TextSize.M]: "h2",
+    [TextSize.L]: "h3",
+};
+
 export const Text = (props: TextProps) => {
     const {
         className,
@@ -37,6 +46,8 @@ export const Text = (props: TextProps) => {
         size = TextSize.M,
     } = props;
 
+    const HeaderTag = mapSizeToHeaderTag[size];
+
     return (
         <div
             className={classNames(classes.Text, {}, [
@@ -46,7 +57,7 @@ export const Text = (props: TextProps) => {
                 classes[size],
             ])}
         >
-            {title && <p className={classes.title}>{title}</p>}
+            {title && <HeaderTag className={classes.title}>{title}</HeaderTag>}
             {text && <p className={classes.text}>{text}</p>}
         </div>
     );
