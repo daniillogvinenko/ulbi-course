@@ -1,37 +1,13 @@
-import { Country } from "entities/Country";
-import { Currency } from "entities/Currency";
-import {
-    fetchProfileData,
-    getProfileError,
-    getProfileForm,
-    getProfileIsLoading,
-    getProfileReadonly,
-    getProfileValidateErrors,
-    profileActions,
-    ProfileCard,
-    profileReducer,
-} from "entities/Profile";
-import { ValidateProfileError } from "entities/Profile/model/types/profile";
-import { useCallback } from "react";
-import { useTranslation } from "react-i18next";
-import { Page } from "widgets/Page/Page";
-import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { Page } from "widgets/Page/Page";
+import { EditableProfileCard } from "features/editableProfileCard";
 import { classNames } from "shared/lib/classNames/classNames";
-import {
-    DynamicModuleLoader,
-    ReducerList,
-} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
-import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { useInitialEffect } from "shared/lib/hooks/useInitialEffect/useInitialEffect";
 import { VStack } from "shared/ui/Stack/VStack/VStack";
-import { Text, TextTheme } from "shared/ui/Text/Text";
+// eslint-disable-next-line max-len
+import { EditableProfileCardHeader } from "features/editableProfileCard/ui/EditableProfileCardHeader/EditableProfileCardHeader";
+import { Text } from "shared/ui/Text/Text";
+import { useTranslation } from "react-i18next";
 import classes from "./ProfilePage.module.scss";
-import { ProfilePageHeader } from "./ProfilePageHeader/ProfilePageHeader";
-
-const reducers: ReducerList = {
-    profile: profileReducer,
-};
 
 interface ProfilePageProps {
     className?: string;
@@ -39,128 +15,18 @@ interface ProfilePageProps {
 
 const ProfilePage = (props: ProfilePageProps) => {
     const { className } = props;
-    const { t } = useTranslation();
-    const dispatch = useAppDispatch();
-
-    const isLoading = useSelector(getProfileIsLoading);
-    const error = useSelector(getProfileError);
-    const readonly = useSelector(getProfileReadonly);
-    const formData = useSelector(getProfileForm);
-    const validateErrors = useSelector(getProfileValidateErrors);
     const { id } = useParams<{ id: string }>();
+    const { t } = useTranslation();
 
-    const validateErrorTranslates = {
-        [ValidateProfileError.SERVER_ERROR]: t("Ошибка сервера"),
-        [ValidateProfileError.INCORRECT_AGE]: t("Неправильно введен возраст"),
-        [ValidateProfileError.INCORRECT_COUNTRY]: t(
-            "Неправильно введена страна"
-        ),
-        [ValidateProfileError.INCORRECT_USER_DATA]: t(
-            "Неправильные имя/фамилия"
-        ),
-        [ValidateProfileError.NO_DATA]: t("Данные не указаны"),
-    };
-
-    useInitialEffect(() => {
-        if (id) {
-            dispatch(fetchProfileData(id));
-        }
-    });
-
-    const onChangeFirstname = useCallback(
-        (value?: string) => {
-            dispatch(profileActions.updateProfile({ fisrt: value || "" }));
-        },
-        [dispatch]
-    );
-
-    const onChangeLastname = useCallback(
-        (value?: string) => {
-            dispatch(profileActions.updateProfile({ lastname: value || "" }));
-        },
-        [dispatch]
-    );
-
-    const onChangeCity = useCallback(
-        (value?: string) => {
-            dispatch(profileActions.updateProfile({ city: value || "" }));
-        },
-        [dispatch]
-    );
-
-    const onChangeAge = useCallback(
-        (value?: string) => {
-            dispatch(profileActions.updateProfile({ age: Number(value || 0) }));
-        },
-        [dispatch]
-    );
-
-    const onChangeAvatar = useCallback(
-        (value?: string) => {
-            dispatch(profileActions.updateProfile({ avatar: value || "" }));
-        },
-        [dispatch]
-    );
-
-    const onChangeUsername = useCallback(
-        (value?: string) => {
-            dispatch(profileActions.updateProfile({ username: value || "" }));
-        },
-        [dispatch]
-    );
-
-    const onChangeCurrency = useCallback(
-        (currency?: Currency) => {
-            dispatch(
-                profileActions.updateProfile({
-                    currency,
-                })
-            );
-        },
-        [dispatch]
-    );
-
-    const onChangeCountry = useCallback(
-        (country?: Country) => {
-            dispatch(
-                profileActions.updateProfile({
-                    country,
-                })
-            );
-        },
-        [dispatch]
-    );
+    if (!id) return <Text text={t("Профиль не найден")} />;
 
     return (
-        <DynamicModuleLoader reducers={reducers} removeReducersAfterUnmount>
-            <Page className={classNames(classes.ProfilePage, {}, [className])}>
-                <VStack max gap="16">
-                    <ProfilePageHeader />
-                    {validateErrors?.length &&
-                        validateErrors.map((err) => (
-                            <Text
-                                text={validateErrorTranslates[err]}
-                                theme={TextTheme.ERROR}
-                                key={err}
-                            />
-                        ))}
-                    <ProfileCard
-                        onChangeFirstname={onChangeFirstname}
-                        onChangeLastname={onChangeLastname}
-                        onChangeAge={onChangeAge}
-                        onChangeCity={onChangeCity}
-                        onChangeAvatar={onChangeAvatar}
-                        onChangeUsername={onChangeUsername}
-                        onChangeCurrency={onChangeCurrency}
-                        onChangeCountry={onChangeCountry}
-                        data={formData}
-                        isLoading={isLoading}
-                        error={error}
-                        readonly={readonly}
-                    />
-                </VStack>
-            </Page>
-        </DynamicModuleLoader>
+        <Page className={classNames(classes.ProfilePage, {}, [className])}>
+            <VStack max gap="16">
+                <EditableProfileCardHeader />
+                <EditableProfileCard id={id} />
+            </VStack>
+        </Page>
     );
 };
 

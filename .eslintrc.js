@@ -52,6 +52,7 @@ module.exports = {
             {
                 markupOnly: true,
                 ignoreAttribute: [
+                    "target",
                     "as",
                     "role",
                     "data-testid",

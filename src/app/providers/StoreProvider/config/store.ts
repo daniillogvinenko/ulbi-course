@@ -6,6 +6,7 @@ import {
 } from "@reduxjs/toolkit";
 import { counterReducer } from "entities/Counter";
 import { uiReducer } from "features/UI";
+import { rtkApi } from "shared/api/rtkApi";
 import { userReducer } from "entities/User";
 import { $api } from "shared/api/api";
 import { createReducerManager } from "./reducerManager";
@@ -21,6 +22,7 @@ export function createReduxStore(
         counter: counterReducer,
         user: userReducer,
         ui: uiReducer,
+        [rtkApi.reducerPath]: rtkApi.reducer,
     };
 
     const reducerManager = createReducerManager(RootReducer);
@@ -38,7 +40,7 @@ export function createReduxStore(
                 thunk: {
                     extraArgument: extraArg,
                 },
-            }),
+            }).concat(rtkApi.middleware),
     });
 
     // @ts-ignore
