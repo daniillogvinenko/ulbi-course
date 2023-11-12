@@ -52,7 +52,18 @@ export default {
     coverageProvider: "v8",
     // Indicates whether the coverage information should be collected while executing the test
     // collectCoverage: false,
-
+    reporters: [
+        "default",
+        [
+            "jest-html-reporters",
+            {
+                publicPath: "<rootDir>/reports/unit",
+                filename: "report.html",
+                openReport: true,
+                inlineSource: true,
+            },
+        ],
+    ],
     // An array of glob patterns indicating a set of files for which
     // coverage information should be collected
     // collectCoverageFrom: undefined,
