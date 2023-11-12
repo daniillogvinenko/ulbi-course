@@ -1,4 +1,10 @@
-import { getUserAuthData, userActions } from "entities/User";
+/* eslint-disable indent */
+import {
+    getUserAuthData,
+    isUserAdmin,
+    isUserManager,
+    userActions,
+} from "entities/User";
 import { LoginModal } from "features/AuthByUsername";
 import React, { memo, useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -22,6 +28,8 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     const [isAuthModal, setIsAuthModal] = useState<boolean>(false);
     const authData = useSelector(getUserAuthData);
     const dispatch = useAppDispatch();
+    const isAdmin = useSelector(isUserAdmin);
+    const isManager = useSelector(isUserManager);
 
     const onCLoseModal = useCallback(() => {
         setIsAuthModal(false);
@@ -34,6 +42,8 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     const onLogout = useCallback(() => {
         dispatch(userActions.logout());
     }, [dispatch]);
+
+    const isAdminPanelAvailable = isAdmin || isManager;
 
     if (authData) {
         return (
@@ -53,7 +63,16 @@ export const Navbar = memo(({ className }: NavbarProps) => {
                 <Dropdown
                     direction="bottom left"
                     className={classes.dropdown}
+                    // по условию добавляем в dropdown ссылку на админку
                     items={[
+                        ...(isAdminPanelAvailable
+                            ? [
+                                  {
+                                      content: t("Админка"),
+                                      href: RoutePath.admin_panel,
+                                  },
+                              ]
+                            : []),
                         {
                             content: t("Профиль"),
                             href: RoutePath.profile + authData.id,
@@ -63,7 +82,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
                             onClick: onLogout,
                         },
                     ]}
-                    trigger={<Avatar src={authData.avatar} size={40} />}
+                    trigger={<Avatar src={authData.avatar} size={30} />}
                 />
             </div>
         );

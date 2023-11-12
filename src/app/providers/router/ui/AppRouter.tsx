@@ -20,7 +20,7 @@ const AppRouter = () => {
                 // если элемент (маршрут) authOnly -> оборачиваем его в RequireAuth, иначе, просто возвращаем элемент
                 element={
                     route.authOnly ? (
-                        <RequireAuth>{element}</RequireAuth>
+                        <RequireAuth roles={route.roles}>{element}</RequireAuth>
                     ) : (
                         element
                     )
