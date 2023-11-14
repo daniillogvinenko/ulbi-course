@@ -26,7 +26,7 @@ import classes from "./EditableProfileCard.module.scss";
 
 interface EditableProfileCardProps {
     className?: string;
-    id: string;
+    id?: string;
 }
 
 const reducers: ReducerList = {

@@ -3,7 +3,7 @@ import { AddCommentForm } from "features/addCommentForm";
 import { Text } from "shared/ui/Text/Text";
 import { useTranslation } from "react-i18next";
 import { CommentList } from "entities/Comment";
-import { useCallback } from "react";
+import { Suspense, useCallback } from "react";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { useInitialEffect } from "shared/lib/hooks/useInitialEffect/useInitialEffect";
 import { VStack } from "shared/ui/Stack";
@@ -15,7 +15,7 @@ import { fetchCommentsByArticleId } from "../../model/services/fetchCommentsByAr
 
 interface ArticleDetailsCommentsProps {
     className?: string;
-    id: string;
+    id?: string;
 }
 
 export const ArticleDetailsComments = (props: ArticleDetailsCommentsProps) => {
@@ -36,9 +36,11 @@ export const ArticleDetailsComments = (props: ArticleDetailsCommentsProps) => {
         [dispatch]
     );
     return (
-        <VStack gap="16" className={classNames("", {}, [className])}>
+        <VStack gap="16" max className={classNames("", {}, [className])}>
             <Text title={t("Комментарии")} />
-            <AddCommentForm onSendComment={onSendComment} />
+            <Suspense fallback="Загрузка">
+                <AddCommentForm onSendComment={onSendComment} />
+            </Suspense>
             <CommentList isLoading={commentsIsLoading} comments={comments} />
         </VStack>
     );

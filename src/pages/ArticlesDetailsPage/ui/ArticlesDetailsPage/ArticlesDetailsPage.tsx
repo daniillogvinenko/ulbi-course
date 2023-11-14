@@ -29,17 +29,17 @@ const ArticlesDetailsPage = (props: ArticlesDetailsPageProps) => {
     const { t } = useTranslation();
     const { id } = useParams<{ id: string }>();
 
-    if (!id) {
-        return (
-            <div
-                className={classNames(classes.ArticlesDetailsPage, {}, [
-                    className,
-                ])}
-            >
-                {t("Статья не найдена")}
-            </div>
-        );
-    }
+    // if (!id) {
+    //     return (
+    //         <div
+    //             className={classNames(classes.ArticlesDetailsPage, {}, [
+    //                 className,
+    //             ])}
+    //         >
+    //             {t("Статья не найдена")}
+    //         </div>
+    //     );
+    // }
 
     return (
         <DynamicModuleLoader reducers={reducers} removeReducersAfterUnmount>
