@@ -4,8 +4,8 @@ import ListIcon from "shared/assets/icons/bigIcon.svg";
 import TilesIcon from "shared/assets/icons/smallIcon.svg";
 import Button, { ButtonTheme } from "shared/ui/Button/Button";
 import { Icon } from "shared/ui/Icon/Icon";
-import { ArticleView } from "../../model/types/article";
 import classes from "./ArticleViewSwitcher.module.scss";
+import { ArticleView } from "../../model/consts/consts";
 
 interface ArticleViewSwitcherProps {
     className?: string;

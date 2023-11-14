@@ -24,11 +24,12 @@ import {
     getArticleDetailsError,
     getArticleDetailsIsLoading,
 } from "../../model/selectors/articleDetails";
-import { ArticleBlock, ArticleBlockType } from "../../model/types/article";
+import { ArticleBlock } from "../../model/types/article";
 import classes from "./ArticleDetails.module.scss";
 import { ArticleCodeBlockComponent } from "../ArticleCodeBlockComponent/ArticleCodeBlockComponent";
 import { ArticleImageBlockComponent } from "../ArticleImageBlockComponent/ArticleImageBlockComponent";
 import { ArticleTextBlockComponent } from "../ArticleTextBlockComponent/ArticleTextBlockComponent";
+import { ArticleBlockType } from "../../model/consts/consts";
 
 interface ArticleDetailsProps {
     className?: string;

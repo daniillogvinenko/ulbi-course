@@ -38,7 +38,7 @@ export const ArticleDetailsComments = (props: ArticleDetailsCommentsProps) => {
     return (
         <VStack gap="16" max className={classNames("", {}, [className])}>
             <Text title={t("Комментарии")} />
-            <Suspense fallback="Загрузка">
+            <Suspense fallback={t("Загрузка")}>
                 <AddCommentForm onSendComment={onSendComment} />
             </Suspense>
             <CommentList isLoading={commentsIsLoading} comments={comments} />

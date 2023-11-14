@@ -1,11 +1,9 @@
 export { ArticleDetails } from "./ui/ArticleDetails/ArticleDetails";
+export { ArticleType, ArticleView, ArticleSortField } from "./model/consts/consts";
 export {
-    Article,
-    ArticleView,
-    ArticleSortField,
-    ArticleType,
+    type Article
 } from "./model/types/article";
-export { ArticleDetailsSchema } from "./model/types/articleDetailsSchema";
+export { type ArticleDetailsSchema } from "./model/types/articleDetailsSchema";
 export { ArticleList } from "./ui/ArticleList/ArticleList";
 export { ArticleViewSwitcher } from "./ui/ArticleViewSwitcher/ArticleViewSwitcher";
 export { ArticleSortSelect } from "./ui/ArticleSortSelect/ArticleSortSelect";

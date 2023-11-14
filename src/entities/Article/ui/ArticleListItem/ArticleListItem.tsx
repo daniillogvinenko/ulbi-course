@@ -9,14 +9,10 @@ import { HTMLAttributeAnchorTarget } from "react";
 import { useTranslation } from "react-i18next";
 import { AppLink } from "shared/ui/AppLink/AppLink";
 import { RoutePath } from "shared/config/routeConfig/routeConfig";
-import {
-    Article,
-    ArticleBlockType,
-    ArticleTextBlock,
-    ArticleView,
-} from "../../model/types/article";
+import { Article, ArticleTextBlock } from "../../model/types/article";
 import classes from "./ArticleListItem.module.scss";
 import { ArticleTextBlockComponent } from "../ArticleTextBlockComponent/ArticleTextBlockComponent";
+import { ArticleBlockType, ArticleView } from "../../model/consts/consts";
 
 interface ArticleListItemProps {
     className?: string;

@@ -4,8 +4,9 @@ import { Text } from "shared/ui/Text/Text";
 import { useTranslation } from "react-i18next";
 import { ArticleListItem } from "../ArticleListItem/ArticleListItem";
 import { ArticleListItemSkeleton } from "../ArticleListItem/ArticleListItemSkeleton";
-import { Article, ArticleView } from "../../model/types/article";
+import { Article } from "../../model/types/article";
 import classes from "./ArticleList.module.scss";
+import { ArticleView } from "../../model/consts/consts";
 
 interface ArticleListProps {
     className?: string;
