@@ -8,6 +8,7 @@ import React, {
 import { classNames, Mods } from "shared/lib/classNames/classNames";
 import { Portal } from "../Portal/Portal";
 import classes from "./Modal.module.scss";
+import { Overlay } from "../Overlay/Overlay";
 
 interface ModalProps {
     className?: string;
@@ -62,11 +63,6 @@ export const Modal = (props: ModalProps) => {
         [closeHandler]
     );
 
-    const onContentClick = (e: React.MouseEvent) => {
-        // предотвращаем закрытие модалки по клику на сам контент
-        e.stopPropagation();
-    };
-
     useEffect(() => {
         if (isOpen) {
             window.addEventListener("keydown", onKeyDown);
@@ -88,11 +84,8 @@ export const Modal = (props: ModalProps) => {
         // Портал рендерит children в любом другом месте DOM (по умолчанию мы указали - body)
         <Portal>
             <div className={classNames(classes.Modal, mods, [className])}>
-                <div className={classes.overlay} onClick={closeHandler}>
-                    <div className={classes.content} onClick={onContentClick}>
-                        {children}
-                    </div>
-                </div>
+                <Overlay onClick={closeHandler} />
+                <div className={classes.content}>{children}</div>
             </div>
         </Portal>
     );
