@@ -52,6 +52,7 @@ module.exports = {
             {
                 markupOnly: true,
                 ignoreAttribute: [
+                    "border",
                     "target",
                     "as",
                     "role",

@@ -8,7 +8,7 @@ import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { useInitialEffect } from "shared/lib/hooks/useInitialEffect/useInitialEffect";
 import { VStack } from "shared/ui/Stack";
 import { useSelector } from "react-redux";
-import { getArticleComments } from "../../model/slice/ArticleDetailsCommentsSlice";
+import { getArticleComments } from "../../model/slice/articleDetailsCommentsSlice";
 import { getArticleCommentsIsLoading } from "../../model/selectors/comments";
 import { addCommentForArticle } from "../../model/services/fetchCommentForArticle/addCommentForArticle";
 import { fetchCommentsByArticleId } from "../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId";

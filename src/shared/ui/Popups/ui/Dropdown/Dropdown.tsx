@@ -4,7 +4,9 @@ import { Fragment, ReactNode } from "react";
 import { DropdownDirection } from "shared/types/ui";
 import { Menu } from "@headlessui/react";
 import classes from "./Dropdown.module.scss";
-import { AppLink } from "../AppLink/AppLink";
+import { AppLink } from "../../../AppLink/AppLink";
+import { mapDirectionClass } from "../../styles/consts";
+import popupClasses from "../../styles/popup.module.scss";
 
 export interface DropdownItem {
     disabled?: boolean;
@@ -20,13 +22,6 @@ interface DropdownProps {
     direction?: DropdownDirection;
 }
 
-const mapDirectionClass: Record<DropdownDirection, string> = {
-    "bottom left": classes.optionsBottomLeft,
-    "bottom right": classes.optionsBottomRight,
-    "top left": classes.optionsTopLeft,
-    "top right": classes.optionsTopRight,
-};
-
 export function Dropdown(props: DropdownProps) {
     const { className, items, trigger, direction = "bottom left" } = props;
 
@@ -35,9 +30,14 @@ export function Dropdown(props: DropdownProps) {
     return (
         <Menu
             as="div"
-            className={classNames(classes.Dropdown, {}, [className])}
+            className={classNames(classes.Dropdown, {}, [
+                className,
+                popupClasses.popup,
+            ])}
         >
-            <Menu.Button className={classes.button}>{trigger}</Menu.Button>
+            <Menu.Button className={popupClasses.trigger}>
+                {trigger}
+            </Menu.Button>
             <Menu.Items className={classNames(classes.menu, {}, menuClasses)}>
                 {items.map((item) => {
                     const content = ({ active }: { active: boolean }) => (
@@ -47,7 +47,7 @@ export function Dropdown(props: DropdownProps) {
                             onClick={item.onClick}
                             className={classNames(
                                 classes.item,
-                                { [classes.active]: active },
+                                { [popupClasses.active]: active },
                                 []
                             )}
                         >

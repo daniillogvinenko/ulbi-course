@@ -3,6 +3,7 @@ import webpack from "webpack";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CopyPlugin from "copy-webpack-plugin";
 import CircularDependencyPlugin from "circular-dependency-plugin";
+import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import { BuildOptions } from "./types/config";
 
@@ -33,6 +34,7 @@ export function buildPlugins({
             exclude: /node_modules/,
             failOnError: true,
         }),
+        new ForkTsCheckerWebpackPlugin({}),
     ];
 
     // чтобы при продакшн сборке этих плагинов не было
