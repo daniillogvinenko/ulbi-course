@@ -4,6 +4,7 @@ import Button, { ButtonTheme } from "shared/ui/Button/Button";
 import { Icon } from "shared/ui/Icon/Icon";
 import { NotificationList } from "entities/Notification";
 import NotificationIcon from "shared/assets/icons/Notifications.svg";
+import { AnimationProvider } from "shared/lib/components/AnimationProvider";
 import { Drawer } from "shared/ui/Drawer/Drawer";
 import { useCallback, useState } from "react";
 import { BrowserView, MobileView } from "react-device-detect";
@@ -46,9 +47,11 @@ export const NotificationButton = (props: NotificationButtonProps) => {
             </BrowserView>
             <MobileView>
                 {trigger}
-                <Drawer isOpen={isOpen} onClose={onCloseDrawer}>
-                    <NotificationList />
-                </Drawer>
+                <AnimationProvider>
+                    <Drawer isOpen={isOpen} onClose={onCloseDrawer}>
+                        <NotificationList />
+                    </Drawer>
+                </AnimationProvider>
             </MobileView>
         </div>
     );
