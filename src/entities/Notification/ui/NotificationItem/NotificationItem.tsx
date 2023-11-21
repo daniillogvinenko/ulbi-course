@@ -1,6 +1,6 @@
-import { Card, CardTheme } from "shared/ui/Card/Card";
-import { Text } from "shared/ui/Text/Text";
-import { classNames } from "shared/lib/classNames/classNames";
+import { Card, CardTheme } from "@/shared/ui/Card/Card";
+import { Text } from "@/shared/ui/Text/Text";
+import { classNames } from "@/shared/lib/classNames/classNames";
 import { Notification } from "../../../Notification/model/types/notifications";
 import classes from "./NotificationItem.module.scss";
 

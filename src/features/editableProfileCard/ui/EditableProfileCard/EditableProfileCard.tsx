@@ -1,19 +1,19 @@
-import { classNames } from "shared/lib/classNames/classNames";
 import { useTranslation } from "react-i18next";
 import { memo, useCallback } from "react";
-import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { useSelector } from "react-redux";
-import { ProfileCard } from "entities/Profile";
 import { useParams } from "react-router-dom";
-import { useInitialEffect } from "shared/lib/hooks/useInitialEffect/useInitialEffect";
-import { Country } from "entities/Country";
-import { Currency } from "entities/Currency";
+import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
+import { ProfileCard } from "@/entities/Profile";
+import { classNames } from "@/shared/lib/classNames/classNames";
+import { useInitialEffect } from "@/shared/lib/hooks/useInitialEffect/useInitialEffect";
+import { Country } from "@/entities/Country";
+import { Currency } from "@/entities/Currency";
 import {
     DynamicModuleLoader,
     ReducerList,
-} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
-import { VStack } from "shared/ui/Stack";
-import { Text, TextTheme } from "shared/ui/Text/Text";
+} from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+import { VStack } from "@/shared/ui/Stack";
+import { Text, TextTheme } from "@/shared/ui/Text/Text";
 import { getProfileIsLoading } from "../../model/selectors/getProfileIsLoading/getProfileIsLoading";
 import { getProfileError } from "../../model/selectors/getProfileError/getProfileError";
 import { getProfileReadonly } from "../../model/selectors/getProfileReadonly/getProfileReadonly";

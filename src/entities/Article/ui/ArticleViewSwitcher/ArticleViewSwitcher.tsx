@@ -1,9 +1,9 @@
 import { memo } from "react";
-import { classNames } from "shared/lib/classNames/classNames";
-import ListIcon from "shared/assets/icons/bigIcon.svg";
-import TilesIcon from "shared/assets/icons/smallIcon.svg";
-import Button, { ButtonTheme } from "shared/ui/Button/Button";
-import { Icon } from "shared/ui/Icon/Icon";
+import { classNames } from "@/shared/lib/classNames/classNames";
+import ListIcon from "@/shared/assets/icons/bigIcon.svg";
+import TilesIcon from "@/shared/assets/icons/smallIcon.svg";
+import Button, { ButtonTheme } from "@/shared/ui/Button/Button";
+import { Icon } from "@/shared/ui/Icon/Icon";
 import classes from "./ArticleViewSwitcher.module.scss";
 import { ArticleView } from "../../model/consts/consts";
 

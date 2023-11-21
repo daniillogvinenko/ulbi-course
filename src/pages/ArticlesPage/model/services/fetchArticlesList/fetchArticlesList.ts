@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { ThunkConfig } from "app/providers/StoreProvider";
-import { Article, ArticleType } from "entities/Article";
-import { addQueryParams } from "shared/lib/url/addQueryParams/addQueryParams";
+import { ThunkConfig } from "@/app/providers/StoreProvider";
+import { Article, ArticleType } from "@/entities/Article";
+import { addQueryParams } from "@/shared/lib/url/addQueryParams/addQueryParams";
 import {
     getArticlePageOrder,
     getArticlePageSearch,
@@ -53,7 +53,7 @@ export const fetchArticlesList = createAsyncThunk<
         if (!response.data) {
             throw new Error();
         }
-        console.log(response.data);
+
         // Эта дата, превращается в action.payload (это не точно) в слайсе
         return response.data;
     } catch (error) {

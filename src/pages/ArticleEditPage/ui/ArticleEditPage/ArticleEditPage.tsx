@@ -1,6 +1,6 @@
-import { classNames } from "shared/lib/classNames/classNames";
-import { Page } from "widgets/Page/Page";
 import { useParams } from "react-router-dom";
+import { classNames } from "@/shared/lib/classNames/classNames";
+import { Page } from "@/widgets/Page/Page";
 import classes from "./ArticleEditPage.module.scss";
 
 interface ArticleEditPageProps {

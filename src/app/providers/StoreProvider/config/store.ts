@@ -4,11 +4,11 @@ import {
     Reducer,
     ReducersMapObject,
 } from "@reduxjs/toolkit";
-import { counterReducer } from "entities/Counter";
-import { uiReducer } from "features/UI";
-import { rtkApi } from "shared/api/rtkApi";
-import { userReducer } from "entities/User";
-import { $api } from "shared/api/api";
+import { counterReducer } from "@/entities/Counter";
+import { uiReducer } from "@/features/UI";
+import { rtkApi } from "@/shared/api/rtkApi";
+import { userReducer } from "@/entities/User";
+import { $api } from "@/shared/api/api";
 import { createReducerManager } from "./reducerManager";
 import { StateSchema, ThunkExtraArg } from "./StateSchema";
 

@@ -9,7 +9,7 @@
         "moduleResolution": "node",
         "baseUrl": ".",
         "paths": {
-            "*": ["./src/*"] //это чтобы все абсолютные импорты шли из папки src
+            "@/*": ["./src/*"] //это чтобы все абсолютные импорты шли из папки src
         },
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,

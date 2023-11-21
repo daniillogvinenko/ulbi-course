@@ -1,5 +1,5 @@
 import React, { InputHTMLAttributes, memo } from "react";
-import { classNames, Mods } from "shared/lib/classNames/classNames";
+import { classNames, Mods } from "@/shared/lib/classNames/classNames";
 import classes from "./Input.module.scss";
 
 // удаляем свойства value, onChange из типа InputHTMLAttributes<HTMLInputElement>, чтобы потом добавить свои

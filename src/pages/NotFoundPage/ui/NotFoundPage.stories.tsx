@@ -2,8 +2,8 @@
 import React from "react";
 import { ComponentStory, ComponentMeta, addDecorator } from "@storybook/react";
 // eslint-disable-next-line max-len
-import { ThemeDecorator } from "shared/config/storybook/ThemeDecorator/ThemeDecorator";
-import { Theme } from "app/providers/ThemeProvider";
+import { ThemeDecorator } from "@/shared/config/storybook/ThemeDecorator/ThemeDecorator";
+import { Theme } from "@/app/providers/ThemeProvider";
 import { NotFoundPage } from "./NotFoundPage";
 
 export default {

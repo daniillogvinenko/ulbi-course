@@ -5,7 +5,7 @@ import React, {
     useRef,
     useState,
 } from "react";
-import { classNames, Mods } from "shared/lib/classNames/classNames";
+import { classNames, Mods } from "@/shared/lib/classNames/classNames";
 import { Portal } from "../Portal/Portal";
 import classes from "./Modal.module.scss";
 import { Overlay } from "../Overlay/Overlay";
