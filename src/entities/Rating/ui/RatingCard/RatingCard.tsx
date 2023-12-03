@@ -19,16 +19,15 @@ interface RatingCardProps {
     hasFeedback?: boolean;
     onCancel?: (starsCount: number) => void;
     onAccept?: (starsCount: number, feedback: string) => void;
+    rate?: number;
 }
 
 export const RatingCard = (props: RatingCardProps) => {
+    const { className, feedbackTitle, hasFeedback, onAccept, onCancel, title, rate = 0 } = props;
     const { t } = useTranslation();
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-    const [starsCount, setStarsCount] = useState<number>(0);
+    const [starsCount, setStarsCount] = useState<number>(rate);
     const [feedback, setFeedback] = useState<string>("");
-
-    const { className, feedbackTitle, hasFeedback, onAccept, onCancel, title } =
-        props;
 
     const onSelectStars = useCallback(
         (selectedStarsCount: number) => {
@@ -55,35 +54,25 @@ export const RatingCard = (props: RatingCardProps) => {
     const modalContent = (
         <>
             <Text title={feedbackTitle} />
-            <Input
-                value={feedback}
-                onChange={setFeedback}
-                placeholder={t("Ваш отзыв")}
-            />
+            <Input value={feedback} onChange={setFeedback} placeholder={t("Ваш отзыв")} />
         </>
     );
 
     return (
-        <Card className={classNames(classes.RatingCard, {}, [className])}>
+        <Card className={className} max>
             <VStack align="center" gap="8">
-                <Text title={title} />
-                <StarRating size={40} onSelect={onSelectStars} />
+                <Text title={starsCount ? t("Спасибо за оценку!") : title} />
+                <StarRating size={30} onSelect={onSelectStars} selectedStars={starsCount} />
             </VStack>
             <BrowserView>
                 <Modal isOpen={isModalOpen} lazy>
                     <VStack max gap="32">
                         {modalContent}
                         <HStack max gap="16" justify="end">
-                            <Button
-                                onClick={cancelHandler}
-                                theme={ButtonTheme.OUTLINE_RED}
-                            >
+                            <Button onClick={cancelHandler} theme={ButtonTheme.OUTLINE_RED}>
                                 {t("Закрыть")}
                             </Button>
-                            <Button
-                                onClick={acceptHandler}
-                                theme={ButtonTheme.OUTLINE}
-                            >
+                            <Button onClick={acceptHandler} theme={ButtonTheme.OUTLINE}>
                                 {t("Отправить")}
                             </Button>
                         </HStack>
@@ -94,11 +83,7 @@ export const RatingCard = (props: RatingCardProps) => {
                 <Drawer onClose={cancelHandler} lazy isOpen={isModalOpen}>
                     <VStack gap="32">
                         {modalContent}
-                        <Button
-                            fullWidth
-                            onClick={acceptHandler}
-                            theme={ButtonTheme.OUTLINE}
-                        >
+                        <Button fullWidth onClick={acceptHandler} theme={ButtonTheme.OUTLINE}>
                             {t("Отправить")}
                         </Button>
                     </VStack>

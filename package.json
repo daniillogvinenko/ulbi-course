@@ -100,7 +100,7 @@
         "@use-gesture/react": "^10.2.19",
         "concurrently": "^7.0.0",
         "copy-webpack-plugin": "^10.2.4",
-        "eslint-plugin-ulbi-tv-plugin": "^0.0.1",
+        "eslint-plugin-ulbi-tv-plugin": "^0.0.5",
         "i18next": "^21.9.0",
         "i18next-browser-languagedetector": "^6.1.3",
         "i18next-http-backend": "^1.3.2",

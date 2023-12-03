@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { Page } from "@/widgets/Page/Page";
 import classes from "./ArticleEditPage.module.scss";
+import { Page } from "@/widgets/Page";
 
 interface ArticleEditPageProps {
     className?: string;
@@ -16,9 +16,7 @@ const ArticleEditPage = (props: ArticleEditPageProps) => {
     return (
         // eslint-disable-next-line i18next/no-literal-string
         <Page className={classNames(classes.ArticleEditPage, {}, [className])}>
-            {isEdit
-                ? `Редактирование статьи с ID = ${id}`
-                : "Создание новой статьи"}
+            {isEdit ? `Редактирование статьи с ID = ${id}` : "Создание новой статьи"}
         </Page>
     );
 };

@@ -4,11 +4,7 @@ module.exports = {
         es2021: true,
         jest: true,
     },
-    extends: [
-        "plugin:react/recommended",
-        "airbnb",
-        "plugin:i18next/recommended",
-    ],
+    extends: ["plugin:react/recommended", "airbnb", "plugin:i18next/recommended"],
     parser: "@typescript-eslint/parser",
     parserOptions: {
         ecmaFeatures: {
@@ -17,13 +13,7 @@ module.exports = {
         ecmaVersion: "latest",
         sourceType: "module",
     },
-    plugins: [
-        "react",
-        "@typescript-eslint",
-        "i18next",
-        "react-hooks",
-        "ulbi-tv-plugin",
-    ],
+    plugins: ["react", "@typescript-eslint", "i18next", "react-hooks", "ulbi-tv-plugin"],
     rules: {
         quotes: "off",
         "linebreak-style": "off",
@@ -31,10 +21,7 @@ module.exports = {
         "react/jsx-indent": [2, 4],
         "react/jsx-indent-props": [2, 4],
         indent: [2, 4],
-        "react/jsx-filename-extension": [
-            2,
-            { extensions: [".js", ".jsx", ".tsx"] },
-        ],
+        "react/jsx-filename-extension": [2, { extensions: [".js", ".jsx", ".tsx"] }],
         "import/no-unresolved": "off",
         "import/prefer-default-export": "off",
         "no-unused-vars": "off",
@@ -76,7 +63,11 @@ module.exports = {
         "object-curly-newline": "off",
         "no-undef": "off",
         "react/no-array-index-key": "off",
-        "ulbi-tv-plugin/path-checker": "error",
+        "ulbi-tv-plugin/path-checker": [
+            "error",
+            { alias: "@", testFiles: ["**/*.test.*", "**/*.story.*", "**/StoreDecorator.tsx"] },
+        ],
+        "ulbi-tv-plugin/public-api-imports": "off",
         "function-paren-newline": "off",
     },
     globals: {

@@ -2,21 +2,12 @@ import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { classNames } from "@/shared/lib/classNames/classNames";
-import {
-    DynamicModuleLoader,
-    ReducerList,
-} from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+import { DynamicModuleLoader, ReducerList } from "@/shared/lib/components/DynamicModuleLoader/ui/DynamicModuleLoader";
 import Button, { ButtonTheme } from "@/shared/ui/Button/Button";
 import { Input } from "@/shared/ui/Input/Input";
 import { HStack } from "@/shared/ui/Stack";
-import {
-    getAddCommentFormError,
-    getAddCommentFormText,
-} from "../../model/selectors/addCommentFormSelectors";
-import {
-    addCommentFormActions,
-    addCommentFormReducer,
-} from "../../model/slices/addCommentFormSlice";
+import { getAddCommentFormError, getAddCommentFormText } from "../../model/selectors/addCommentFormSelectors";
+import { addCommentFormActions, addCommentFormReducer } from "../../model/slices/addCommentFormSlice";
 import classes from "./addCommentForm.module.scss";
 
 export interface addCommentFormProps {
@@ -50,10 +41,7 @@ const AddCommentForm = (props: addCommentFormProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <HStack
-                justify="between"
-                className={classNames(classes.AddCommentForm, {}, [className])}
-            >
+            <HStack justify="between" className={classNames(classes.AddCommentForm, {}, [className])}>
                 <Input
                     className={classes.input}
                     value={text}

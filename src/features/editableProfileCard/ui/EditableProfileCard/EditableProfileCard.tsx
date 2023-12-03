@@ -8,10 +8,7 @@ import { classNames } from "@/shared/lib/classNames/classNames";
 import { useInitialEffect } from "@/shared/lib/hooks/useInitialEffect/useInitialEffect";
 import { Country } from "@/entities/Country";
 import { Currency } from "@/entities/Currency";
-import {
-    DynamicModuleLoader,
-    ReducerList,
-} from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+import { DynamicModuleLoader, ReducerList } from "@/shared/lib/components/DynamicModuleLoader/ui/DynamicModuleLoader";
 import { VStack } from "@/shared/ui/Stack";
 import { Text, TextTheme } from "@/shared/ui/Text/Text";
 import { getProfileIsLoading } from "../../model/selectors/getProfileIsLoading/getProfileIsLoading";
@@ -48,12 +45,8 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
     const validateErrorTranslates = {
         [ValidateProfileError.SERVER_ERROR]: t("Ошибка сервера"),
         [ValidateProfileError.INCORRECT_AGE]: t("Неправильно введен возраст"),
-        [ValidateProfileError.INCORRECT_COUNTRY]: t(
-            "Неправильно введена страна"
-        ),
-        [ValidateProfileError.INCORRECT_USER_DATA]: t(
-            "Неправильные имя/фамилия"
-        ),
+        [ValidateProfileError.INCORRECT_COUNTRY]: t("Неправильно введена страна"),
+        [ValidateProfileError.INCORRECT_USER_DATA]: t("Неправильные имя/фамилия"),
         [ValidateProfileError.NO_DATA]: t("Данные не указаны"),
     };
 
@@ -129,20 +122,10 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <VStack
-                gap="8"
-                max
-                className={classNames(classes.EditableProfileCard, {}, [
-                    className,
-                ])}
-            >
+            <VStack gap="8" max className={classNames(classes.EditableProfileCard, {}, [className])}>
                 {validateErrors?.length &&
                     validateErrors.map((err) => (
-                        <Text
-                            text={validateErrorTranslates[err]}
-                            theme={TextTheme.ERROR}
-                            key={err}
-                        />
+                        <Text text={validateErrorTranslates[err]} theme={TextTheme.ERROR} key={err} />
                     ))}
                 <ProfileCard
                     onChangeFirstname={onChangeFirstname}

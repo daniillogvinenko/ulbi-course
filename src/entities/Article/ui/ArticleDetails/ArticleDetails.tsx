@@ -5,10 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { HStack, VStack } from "@/shared/ui/Stack";
 import { classNames } from "@/shared/lib/classNames/classNames";
-import {
-    DynamicModuleLoader,
-    ReducerList,
-} from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+import { DynamicModuleLoader, ReducerList } from "@/shared/lib/components/DynamicModuleLoader/ui/DynamicModuleLoader";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { Avatar } from "@/shared/ui/Avatar/Avatar";
 import { Skeleton } from "@/shared/ui/Skeleton/Skeleton";
@@ -43,29 +40,11 @@ const reducers: ReducerList = {
 const renderBlock = (block: ArticleBlock) => {
     switch (block.type) {
         case ArticleBlockType.CODE:
-            return (
-                <ArticleCodeBlockComponent
-                    key={block.id}
-                    className={classes.block}
-                    block={block}
-                />
-            );
+            return <ArticleCodeBlockComponent key={block.id} className={classes.block} block={block} />;
         case ArticleBlockType.IMAGE:
-            return (
-                <ArticleImageBlockComponent
-                    key={block.id}
-                    className={classes.block}
-                    block={block}
-                />
-            );
+            return <ArticleImageBlockComponent key={block.id} className={classes.block} block={block} />;
         case ArticleBlockType.TEXT:
-            return (
-                <ArticleTextBlockComponent
-                    key={block.id}
-                    className={classes.block}
-                    block={block}
-                />
-            );
+            return <ArticleTextBlockComponent key={block.id} className={classes.block} block={block} />;
         default:
             return null;
     }
@@ -90,54 +69,23 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
     if (isLoading) {
         content = (
             <>
-                <Skeleton
-                    className={classes.avatar}
-                    width={200}
-                    height={200}
-                    border="50%"
-                />
+                <Skeleton className={classes.avatar} width={200} height={200} border="50%" />
                 <Skeleton className={classes.title} width={300} height={32} />
-                <Skeleton
-                    className={classes.skeleton}
-                    width={600}
-                    height={24}
-                />
-                <Skeleton
-                    className={classes.skeleton}
-                    width="100%"
-                    height={200}
-                />
-                <Skeleton
-                    className={classes.skeleton}
-                    width="100%"
-                    height={200}
-                />
+                <Skeleton className={classes.skeleton} width={600} height={24} />
+                <Skeleton className={classes.skeleton} width="100%" height={200} />
+                <Skeleton className={classes.skeleton} width="100%" height={200} />
             </>
         );
     } else if (error) {
-        content = (
-            <Text
-                align={TextAlign.CENTER}
-                title={t("Произошла ошибка при загрузке статьи")}
-            />
-        );
+        content = <Text align={TextAlign.CENTER} title={t("Произошла ошибка при загрузке статьи")} />;
     } else {
         content = (
             <>
                 <HStack justify="center" max className={classes.avatarWrapper}>
-                    <Avatar
-                        src={article?.img}
-                        size={200}
-                        className={classes.avatar}
-                    />
+                    <Avatar src={article?.img} size={200} className={classes.avatar} />
                 </HStack>
                 <VStack gap="4" max>
-                    <Text
-                        size={TextSize.L}
-                        className={classes.title}
-                        title={article?.title}
-                        text={article?.subtitle}
-                    />
+                    <Text size={TextSize.L} className={classes.title} title={article?.title} text={article?.subtitle} />
                     <HStack gap="8" className={classes.articleInfo}>
                         <Icon className={classes.icon} Svg={EyeIcon} />
                         <Text text={String(article?.views)} />
@@ -155,11 +103,7 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers} removeReducersAfterUnmount>
-            <VStack
-                gap="16"
-                max
-                className={classNames(classes.ArticleDetails, {}, [className])}
-            >
+            <VStack gap="16" max className={classNames(classes.ArticleDetails, {}, [className])}>
                 {content}
             </VStack>
         </DynamicModuleLoader>

@@ -11,15 +11,12 @@ import { getProfileData } from "../../model/selectors/getProfileData/getProfileD
 import { getProfileReadonly } from "../../model/selectors/getProfileReadonly/getProfileReadonly";
 import { profileActions } from "../../model/slice/profileSlice";
 import { updateProfileData } from "../../model/services/updateProfileData/updateProfileData";
-import classes from "./EditableProfileCardHeader.module.scss";
 
 interface EditableProfileCardHeaderProps {
     className?: string;
 }
 
-export const EditableProfileCardHeader = (
-    props: EditableProfileCardHeaderProps
-) => {
+export const EditableProfileCardHeader = (props: EditableProfileCardHeaderProps) => {
     const { className } = props;
     const { t } = useTranslation();
     const authData = useSelector(getUserAuthData);
@@ -42,11 +39,7 @@ export const EditableProfileCardHeader = (
     }, [dispatch]);
 
     return (
-        <HStack
-            max
-            justify="between"
-            className={classNames("", {}, [className])}
-        >
+        <HStack max justify="between" className={classNames("", {}, [className])}>
             <Text title={t("Профиль пользователя")} />
             {canEdit && (
                 // eslint-disable-next-line react/jsx-no-useless-fragment
@@ -57,16 +50,10 @@ export const EditableProfileCardHeader = (
                         </Button>
                     ) : (
                         <HStack gap="8">
-                            <Button
-                                onClick={onSave}
-                                theme={ButtonTheme.OUTLINE}
-                            >
+                            <Button onClick={onSave} theme={ButtonTheme.OUTLINE}>
                                 {t("Сохранить")}
                             </Button>
-                            <Button
-                                onClick={onCancelEdit}
-                                theme={ButtonTheme.OUTLINE_RED}
-                            >
+                            <Button onClick={onCancelEdit} theme={ButtonTheme.OUTLINE_RED}>
                                 {t("Отменить")}
                             </Button>
                         </HStack>

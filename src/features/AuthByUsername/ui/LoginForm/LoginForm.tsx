@@ -2,10 +2,7 @@ import { memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { classNames } from "@/shared/lib/classNames/classNames";
-import {
-    DynamicModuleLoader,
-    ReducerList,
-} from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+import { DynamicModuleLoader, ReducerList } from "@/shared/lib/components/DynamicModuleLoader/ui/DynamicModuleLoader";
 import { Card } from "@/shared/ui/Card/Card";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import Button, { ButtonTheme } from "@/shared/ui/Button/Button";
@@ -60,18 +57,10 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
 
     return (
         // eslint-disable-next-line i18next/no-literal-string
-        <DynamicModuleLoader
-            removeReducersAfterUnmount
-            reducers={initialReducers}
-        >
+        <DynamicModuleLoader removeReducersAfterUnmount reducers={initialReducers}>
             <div className={classNames(classes.LoginForm, {}, [className])}>
                 <Text title={t("Авторизация")} />
-                {error && (
-                    <Text
-                        text={t("Неверный логин или пароль")}
-                        theme={TextTheme.ERROR}
-                    />
-                )}
+                {error && <Text text={t("Неверный логин или пароль")} theme={TextTheme.ERROR} />}
                 <Card className={classes.inputWrapper}>
                     <Input
                         placeholder={t("Логин")}

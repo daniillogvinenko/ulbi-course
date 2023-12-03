@@ -16,10 +16,8 @@ const stars = [1, 2, 3, 4, 5];
 export const StarRating = (props: StarRatingProps) => {
     const { className, size = 30, onSelect, selectedStars = 0 } = props;
 
-    const [currentStarsCount, setCurrentStarsCount] = useState<number>(0);
-    const [isSelected, setIsSelected] = useState<boolean>(
-        Boolean(selectedStars)
-    );
+    const [currentStarsCount, setCurrentStarsCount] = useState<number>(selectedStars);
+    const [isSelected, setIsSelected] = useState<boolean>(Boolean(selectedStars));
 
     const onHover = (starsCount: number) => () => {
         if (!isSelected) {
@@ -45,15 +43,9 @@ export const StarRating = (props: StarRatingProps) => {
         <div className={classNames(classes.StarRating, {}, [className])}>
             {stars.map((starNumber) => (
                 <Icon
-                    className={classNames(
-                        classes.starIcon,
-                        { [classes.isSelected]: isSelected },
-                        [
-                            currentStarsCount >= starNumber
-                                ? classes.hovered
-                                : classes.normal,
-                        ]
-                    )}
+                    className={classNames(classes.starIcon, { [classes.isSelected]: isSelected }, [
+                        currentStarsCount >= starNumber ? classes.hovered : classes.normal,
+                    ])}
                     Svg={StarIcon}
                     key={starNumber}
                     width={size}

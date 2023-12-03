@@ -20,12 +20,5 @@ export const Avatar = (props: AvatarProps) => {
         [size]
     );
 
-    return (
-        <img
-            alt={alt}
-            src={src}
-            style={styles}
-            className={classNames(classes.Avatar, {}, [className])}
-        />
-    );
+    return <img alt={alt} src={src} style={styles} className={classNames(classes.Avatar, {}, [className])} />;
 };
