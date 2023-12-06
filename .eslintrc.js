@@ -63,11 +63,21 @@ module.exports = {
         "object-curly-newline": "off",
         "no-undef": "off",
         "react/no-array-index-key": "off",
-        "ulbi-tv-plugin/path-checker": [
+        "ulbi-tv-plugin/path-checker": ["error", { alias: "@" }],
+        "ulbi-tv-plugin/layer-imports": [
             "error",
-            { alias: "@", testFiles: ["**/*.test.*", "**/*.story.*", "**/StoreDecorator.tsx"] },
+            {
+                alias: "@",
+                ignoreImportPatterns: ["**/StoreProvider", "**/testing"],
+            },
         ],
-        "ulbi-tv-plugin/public-api-imports": "off",
+        "ulbi-tv-plugin/public-api-imports": [
+            "error",
+            {
+                alias: "@",
+                testFilesPatterns: ["**/*.test.*", "**/*.story.*", "**/StoreDecorator.tsx"],
+            },
+        ],
         "function-paren-newline": "off",
     },
     globals: {

@@ -1,7 +1,7 @@
 /* eslint-disable indent */
 import { Story } from "@storybook/react";
 import { StateSchema, StoreProvider } from "@/app/providers/StoreProvider";
-import "@/app/styles/index.scss";
+// eslint-disable-next-line ulbi-tv-plugin/layer-imports, ulbi-tv-plugin/public-api-imports
 import { articleDetailsPageReducer } from "@/pages/ArticlesDetailsPage/model/slice";
 import { ReducerList } from "@/shared/lib/components/DynamicModuleLoader";
 import { articleDetailsReducer } from "@/entities/Article/testing";

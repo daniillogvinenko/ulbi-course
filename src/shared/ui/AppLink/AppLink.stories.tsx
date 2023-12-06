@@ -3,8 +3,8 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 // eslint-disable-next-line max-len
 import { ThemeDecorator } from "@/shared/config/storybook/ThemeDecorator/ThemeDecorator";
-import { Theme } from "@/app/providers/ThemeProvider";
 import { AppLink, AppLinkTheme } from "./AppLink";
+import { Theme } from "@/shared/const/theme";
 
 export default {
     title: "shared/AppLink",
@@ -16,9 +16,7 @@ export default {
     },
 } as ComponentMeta<typeof AppLink>;
 
-const Template: ComponentStory<typeof AppLink> = (args) => (
-    <AppLink {...args} />
-);
+const Template: ComponentStory<typeof AppLink> = (args) => <AppLink {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {

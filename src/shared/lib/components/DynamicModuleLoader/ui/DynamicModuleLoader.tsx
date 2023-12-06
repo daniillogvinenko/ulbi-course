@@ -1,8 +1,7 @@
 import { Reducer } from "@reduxjs/toolkit";
 import { FC, ReactNode, useEffect } from "react";
 import { useStore } from "react-redux";
-import { ReduxStoreWithManager } from "@/app/providers/StoreProvider";
-import { StateSchema, StateSchemaKey } from "@/app/providers/StoreProvider/config/StateSchema";
+import { StateSchema, StateSchemaKey, ReduxStoreWithManager } from "@/app/providers/StoreProvider";
 import { useAppDispatch } from "../../../hooks/useAppDispatch/useAppDispatch";
 
 // это для того, чтобы можно было передавать много редюсеров
