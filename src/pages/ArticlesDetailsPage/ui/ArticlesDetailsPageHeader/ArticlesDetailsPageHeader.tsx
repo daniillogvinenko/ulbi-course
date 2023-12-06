@@ -4,18 +4,16 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { classNames } from "@/shared/lib/classNames/classNames";
 import Button, { ButtonTheme } from "@/shared/ui/Button/Button";
-import { RoutePath } from "@/shared/config/routeConfig/routeConfig";
 import { HStack } from "@/shared/ui/Stack";
 import { getArticleDetailsData } from "@/entities/Article";
 import { getCanEditArticle } from "../../model/selectors/article";
+import { RoutePath } from "@/shared/const/router";
 
 interface ArticlesDetailsPageHeaderProps {
     className?: string;
 }
 
-export const ArticlesDetailsPageHeader = (
-    props: ArticlesDetailsPageHeaderProps
-) => {
+export const ArticlesDetailsPageHeader = (props: ArticlesDetailsPageHeaderProps) => {
     const { className } = props;
     const navigate = useNavigate();
     const { t } = useTranslation();
@@ -31,11 +29,7 @@ export const ArticlesDetailsPageHeader = (
     }, [navigate, article?.id]);
 
     return (
-        <HStack
-            max
-            justify="between"
-            className={classNames("", {}, [className])}
-        >
+        <HStack max justify="between" className={classNames("", {}, [className])}>
             <Button onClick={onBackToList} theme={ButtonTheme.OUTLINE}>
                 {t("Назад к списку")}
             </Button>

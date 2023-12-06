@@ -8,11 +8,11 @@ import { Card } from "@/shared/ui/Card/Card";
 import { Avatar } from "@/shared/ui/Avatar/Avatar";
 import Button, { ButtonTheme } from "@/shared/ui/Button/Button";
 import { AppLink } from "@/shared/ui/AppLink/AppLink";
-import { RoutePath } from "@/shared/config/routeConfig/routeConfig";
 import { Article, ArticleTextBlock } from "../../model/types/article";
 import classes from "./ArticleListItem.module.scss";
 import { ArticleTextBlockComponent } from "../ArticleTextBlockComponent/ArticleTextBlockComponent";
 import { ArticleBlockType, ArticleView } from "../../model/consts/consts";
+import { RoutePath } from "@/shared/const/router";
 
 interface ArticleListItemProps {
     className?: string;
@@ -25,9 +25,7 @@ export const ArticleListItem = (props: ArticleListItemProps) => {
     const { className, article, view, target } = props;
     const { t } = useTranslation();
 
-    const types = (
-        <Text text={article.type.join(", ")} className={classes.types} />
-    );
+    const types = <Text text={article.type.join(", ")} className={classes.types} />;
     const views = (
         <>
             <Text text={String(article.views)} className={classes.views} />
@@ -37,49 +35,22 @@ export const ArticleListItem = (props: ArticleListItemProps) => {
 
     if (view === ArticleView.BIG) {
         // находим первый текстовый блок в статье
-        const textBlock = article.blocks.find(
-            (block) => block.type === ArticleBlockType.TEXT
-        ) as ArticleTextBlock;
+        const textBlock = article.blocks.find((block) => block.type === ArticleBlockType.TEXT) as ArticleTextBlock;
         return (
-            <div
-                className={classNames(classes.ArticleListItem, {}, [
-                    className,
-                    classes[view],
-                ])}
-            >
+            <div className={classNames(classes.ArticleListItem, {}, [className, classes[view]])}>
                 <Card className={classes.card}>
                     <div className={classes.header}>
                         <Avatar size={30} src={article.user.avatar} />
-                        <Text
-                            text={article.user.username}
-                            className={classes.username}
-                        />
-                        <Text
-                            text={article.createdAt}
-                            className={classes.date}
-                        />
+                        <Text text={article.user.username} className={classes.username} />
+                        <Text text={article.createdAt} className={classes.date} />
                     </div>
                     <Text title={article.title} className={classes.title} />
                     {types}
-                    <img
-                        src={article.img}
-                        alt={article.title}
-                        className={classes.img}
-                    />
-                    {textBlock && (
-                        <ArticleTextBlockComponent
-                            block={textBlock}
-                            className={classes.textBlock}
-                        />
-                    )}
+                    <img src={article.img} alt={article.title} className={classes.img} />
+                    {textBlock && <ArticleTextBlockComponent block={textBlock} className={classes.textBlock} />}
                     <div className={classes.footer}>
-                        <AppLink
-                            target={target}
-                            to={RoutePath.article_details + article.id}
-                        >
-                            <Button theme={ButtonTheme.OUTLINE}>
-                                {t("Читать далее...")}
-                            </Button>
+                        <AppLink target={target} to={RoutePath.article_details + article.id}>
+                            <Button theme={ButtonTheme.OUTLINE}>{t("Читать далее...")}</Button>
                         </AppLink>
                         {views}
                     </div>
@@ -93,18 +64,11 @@ export const ArticleListItem = (props: ArticleListItemProps) => {
         <AppLink
             target={target}
             to={RoutePath.article_details + article.id}
-            className={classNames(classes.ArticleListItem, {}, [
-                className,
-                classes[view],
-            ])}
+            className={classNames(classes.ArticleListItem, {}, [className, classes[view]])}
         >
             <Card className={classes.card}>
                 <div className={classes.imageWrapper}>
-                    <img
-                        src={article.img}
-                        alt={article.title}
-                        className={classes.img}
-                    />
+                    <img src={article.img} alt={article.title} className={classes.img} />
                     <Text text={article.createdAt} className={classes.date} />
                 </div>
                 <div className={classes.infoWrapper}>
