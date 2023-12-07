@@ -13,7 +13,7 @@ module.exports = {
         ecmaVersion: "latest",
         sourceType: "module",
     },
-    plugins: ["react", "@typescript-eslint", "i18next", "react-hooks", "ulbi-tv-plugin"],
+    plugins: ["react", "@typescript-eslint", "i18next", "react-hooks", "ulbi-tv-plugin", "unused-imports"],
     rules: {
         quotes: "off",
         "linebreak-style": "off",
@@ -62,6 +62,7 @@ module.exports = {
         "no-param-reassign": "off",
         "object-curly-newline": "off",
         "no-undef": "off",
+        "unused-imports/no-unused-imports": "error",
         "react/no-array-index-key": "off",
         "ulbi-tv-plugin/path-checker": ["error", { alias: "@" }],
         "ulbi-tv-plugin/layer-imports": [

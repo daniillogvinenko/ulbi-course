@@ -1,8 +1,7 @@
 import { useSelector } from "react-redux";
-import { useCallback, useMemo } from "react";
+import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { TabItem, Tabs } from "@/shared/ui/Tabs";
 import { useDebounce } from "@/shared/lib/hooks/useDebounce/useDebounce";
 import {
     ArticleSortField,
