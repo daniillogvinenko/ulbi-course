@@ -1,6 +1,6 @@
 import { FC, Suspense, lazy } from "react";
 import { ArticleRatingProps } from "./ArticleRating";
-import { Skeleton } from "@/shared/ui/Skeleton/Skeleton";
+import { Skeleton } from "@/shared/ui/Skeleton";
 
 // Когда Webpack сталкивается с таким синтаксисом, он
 // автоматически начинает разделять код вашего приложения

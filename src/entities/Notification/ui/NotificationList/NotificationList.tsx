@@ -1,5 +1,5 @@
 import { VStack } from "@/shared/ui/Stack";
-import { Skeleton } from "@/shared/ui/Skeleton/Skeleton";
+import { Skeleton } from "@/shared/ui/Skeleton";
 import { classNames } from "@/shared/lib/classNames/classNames";
 import { useNotifications } from "../../../Notification/api/notificationApi";
 import { NotificationItem } from "../NotificationItem/NotificationItem";

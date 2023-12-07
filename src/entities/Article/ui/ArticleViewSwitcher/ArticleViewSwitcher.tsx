@@ -2,8 +2,8 @@ import { memo } from "react";
 import { classNames } from "@/shared/lib/classNames/classNames";
 import ListIcon from "@/shared/assets/icons/bigIcon.svg";
 import TilesIcon from "@/shared/assets/icons/smallIcon.svg";
-import Button, { ButtonTheme } from "@/shared/ui/Button/Button";
-import { Icon } from "@/shared/ui/Icon/Icon";
+import { Button, ButtonTheme } from "@/shared/ui/Button";
+import { Icon } from "@/shared/ui/Icon";
 import classes from "./ArticleViewSwitcher.module.scss";
 import { ArticleView } from "../../model/consts/consts";
 
@@ -33,9 +33,7 @@ export const ArticleViewSwitcher = memo((props: ArticleViewSwitcherProps) => {
     };
 
     return (
-        <div
-            className={classNames(classes.ArticleViewSwitcher, {}, [className])}
-        >
+        <div className={classNames(classes.ArticleViewSwitcher, {}, [className])}>
             {viewTypes.map((viewType) => (
                 <Button
                     theme={ButtonTheme.CLEAR}
@@ -46,11 +44,7 @@ export const ArticleViewSwitcher = memo((props: ArticleViewSwitcherProps) => {
                     <Icon
                         Svg={viewType.icon}
                         // если viewType не равен тому, который мы передали пропсом, то будет вешаться notSelected
-                        className={classNames(
-                            "",
-                            { [classes.notSelected]: viewType.view !== view },
-                            []
-                        )}
+                        className={classNames("", { [classes.notSelected]: viewType.view !== view }, [])}
                     />
                 </Button>
             ))}

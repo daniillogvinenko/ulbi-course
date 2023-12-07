@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { TabItem, Tabs } from "@/shared/ui/Tabs/Tabs";
+import { TabItem, Tabs } from "@/shared/ui/Tabs";
 import { useDebounce } from "@/shared/lib/hooks/useDebounce/useDebounce";
 import {
     ArticleSortField,
@@ -14,8 +14,8 @@ import {
 } from "@/entities/Article";
 import { SortOrder } from "@/shared/types";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { Card } from "@/shared/ui/Card/Card";
-import { Input } from "@/shared/ui/Input/Input";
+import { Card } from "@/shared/ui/Card";
+import { Input } from "@/shared/ui/Input";
 import { fetchArticlesList } from "../../model/services/fetchArticlesList/fetchArticlesList";
 import {
     getArticlePageOrder,

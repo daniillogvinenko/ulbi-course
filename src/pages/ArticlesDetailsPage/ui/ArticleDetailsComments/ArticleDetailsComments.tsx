@@ -3,7 +3,7 @@ import { Suspense, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { classNames } from "@/shared/lib/classNames/classNames";
 import { AddCommentForm } from "@/features/addCommentForm";
-import { Text } from "@/shared/ui/Text/Text";
+import { Text } from "@/shared/ui/Text";
 import { CommentList } from "@/entities/Comment";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { useInitialEffect } from "@/shared/lib/hooks/useInitialEffect/useInitialEffect";
