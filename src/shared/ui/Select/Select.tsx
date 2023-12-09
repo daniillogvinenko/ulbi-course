@@ -1,36 +1,32 @@
-import { ChangeEvent, memo, useMemo } from "react";
+import { ChangeEvent, useMemo } from "react";
 import { classNames } from "@/shared/lib/classNames/classNames";
 import classes from "./Select.module.scss";
 
-export interface SelectOption {
-    value: string;
+export interface SelectOption<T extends string> {
+    value: T;
     content: string;
 }
 
-interface SelectProps {
+interface SelectProps<T extends string> {
     className?: string;
     label?: string;
-    options?: SelectOption[];
-    value?: string;
-    onChange?: (value: string) => void;
+    options?: SelectOption<T>[];
+    value?: T;
+    onChange?: (value: T) => void;
     readonly?: boolean;
 }
 
-export const Select = memo((props: SelectProps) => {
+export const Select = <T extends string>(props: SelectProps<T>) => {
     const { className, label, options, onChange, value, readonly } = props;
 
     const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-        onChange?.(e.target.value);
+        onChange?.(e.target.value as T);
     };
 
     // eslint-disable-next-line
     const optionList = useMemo(() => {
         return options?.map((opt) => (
-            <option
-                className={classes.option}
-                value={opt.value}
-                key={opt.value}
-            >
+            <option className={classes.option} value={opt.value} key={opt.value}>
                 {opt.content}
             </option>
         ));
@@ -51,4 +47,4 @@ export const Select = memo((props: SelectProps) => {
             </select>
         </div>
     );
-});
+};

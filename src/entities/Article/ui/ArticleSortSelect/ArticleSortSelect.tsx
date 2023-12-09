@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { useCallback, useMemo } from "react";
+import { useMemo } from "react";
 import { classNames } from "@/shared/lib/classNames/classNames";
 import { Select, SelectOption } from "@/shared/ui/Select";
 import { SortOrder } from "@/shared/types";
@@ -18,7 +18,7 @@ export const ArticleSortSelect = (props: ArticleSortSelectProps) => {
     const { className, order, sort, onChangeOrder, onChangeSort } = props;
     const { t } = useTranslation();
 
-    const orderOptions = useMemo<SelectOption[]>(
+    const orderOptions = useMemo<SelectOption<SortOrder>[]>(
         () => [
             {
                 value: "asc",
@@ -32,7 +32,7 @@ export const ArticleSortSelect = (props: ArticleSortSelectProps) => {
         [t]
     );
 
-    const sortFieldOptions = useMemo<SelectOption[]>(
+    const sortFieldOptions = useMemo<SelectOption<ArticleSortField>[]>(
         () => [
             {
                 value: ArticleSortField.CREATED,
@@ -50,32 +50,11 @@ export const ArticleSortSelect = (props: ArticleSortSelectProps) => {
         [t]
     );
 
-    // используем такой костыль, т.к. в onChange надо передать (value: string) => void
-    const changeSortHandler = useCallback(
-        (newSort: string) => {
-            onChangeSort(newSort as ArticleSortField);
-        },
-        [onChangeSort]
-    );
-
-    // используем такой костыль, т.к. в onChange надо передать (value: string) => void
-    const changeOrderHandler = useCallback(
-        (newOrder: string) => {
-            onChangeOrder(newOrder as SortOrder);
-        },
-        [onChangeOrder]
-    );
-
     return (
         <div className={classNames(classes.ArticleSortSelect, {}, [className])}>
+            <Select onChange={onChangeSort} value={sort} options={sortFieldOptions} label={t("Сортировать по")} />
             <Select
-                onChange={changeSortHandler}
-                value={sort}
-                options={sortFieldOptions}
-                label={t("Сортировать по")}
-            />
-            <Select
-                onChange={changeOrderHandler}
+                onChange={onChangeOrder}
                 value={order}
                 options={orderOptions}
                 label={t("по")}
