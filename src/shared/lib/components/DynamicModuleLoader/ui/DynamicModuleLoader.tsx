@@ -6,6 +6,7 @@ import { useAppDispatch } from "../../../hooks/useAppDispatch/useAppDispatch";
 
 // это для того, чтобы можно было передавать много редюсеров
 export type ReducerList = {
+    // урок 101
     [name in StateSchemaKey]?: Reducer<NonNullable<StateSchema[name]>>;
 };
 
