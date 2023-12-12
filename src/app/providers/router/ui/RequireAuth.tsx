@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 import { UserRole, getUserAuthData, getUserRoles } from "@/entities/User";
-import { RoutePath } from "@/shared/const/router";
+import { getRouteForbidden, getRouteMain } from "@/shared/const/router";
 
 interface RequireAuthProps {
     children: JSX.Element;
@@ -31,12 +31,12 @@ const RequireAuth = ({ children, roles }: RequireAuthProps) => {
 
     // если пользователь не авторизован, то делаем редирект на главную
     if (!auth) {
-        return <Navigate to={RoutePath.main} state={{ from: location }} replace />;
+        return <Navigate to={getRouteMain()} state={{ from: location }} replace />;
     }
 
     // если у пользователя нету нужных ролей, то делаем редирект на forbiddenPage
     if (!hasRequiredRoles) {
-        return <Navigate to={RoutePath.forbidden} state={{ from: location }} replace />;
+        return <Navigate to={getRouteForbidden()} state={{ from: location }} replace />;
     }
 
     return children;
