@@ -3,14 +3,7 @@ import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { classNames } from "@/shared/lib/classNames/classNames";
 import { useDebounce } from "@/shared/lib/hooks/useDebounce/useDebounce";
-import {
-    ArticleSortField,
-    ArticleSortSelect,
-    ArticleType,
-    ArticleTypeTabs,
-    ArticleView,
-    ArticleViewSwitcher,
-} from "@/entities/Article";
+import { ArticleSortField, ArticleType, ArticleView } from "@/entities/Article";
 import { SortOrder } from "@/shared/types";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { Card } from "@/shared/ui/Card";
@@ -25,6 +18,9 @@ import {
 } from "../../model/selectors/articlesPageSelectors";
 import { articlesPageActions } from "../../model/slices/ArticlesPageSlice";
 import classes from "./ArticlesPageFilters.module.scss";
+import { ArticleTypeTabs } from "@/features/ArticleTypeTabs";
+import { ArticleSortSelect } from "@/features/ArticleSortSelect";
+import { ArticleViewSwitcher } from "@/features/ArticleViewSwitcher";
 
 interface ArticlesPageFiltersProps {
     className?: string;
@@ -90,9 +86,7 @@ export const ArticlesPageFilters = (props: ArticlesPageFiltersProps) => {
     );
 
     return (
-        <div
-            className={classNames(classes.ArticlesPageFilters, {}, [className])}
-        >
+        <div className={classNames(classes.ArticlesPageFilters, {}, [className])}>
             <div className={classes.sortWrapper}>
                 <ArticleSortSelect
                     order={order}
@@ -103,17 +97,9 @@ export const ArticlesPageFilters = (props: ArticlesPageFiltersProps) => {
                 <ArticleViewSwitcher view={view} onViewClick={onChangeView} />
             </div>
             <Card className={classes.search}>
-                <Input
-                    value={search}
-                    onChange={onChangeSearch}
-                    placeholder={t("Поиск")}
-                />
+                <Input value={search} onChange={onChangeSearch} placeholder={t("Поиск")} />
             </Card>
-            <ArticleTypeTabs
-                className={classes.tabs}
-                value={type}
-                onChangeType={onChangeType}
-            />
+            <ArticleTypeTabs className={classes.tabs} value={type} onChangeType={onChangeType} />
         </div>
     );
 };
