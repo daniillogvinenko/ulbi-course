@@ -13,6 +13,8 @@ import classes from "./ArticleListItem.module.scss";
 import { ArticleTextBlockComponent } from "../ArticleTextBlockComponent/ArticleTextBlockComponent";
 import { ArticleBlockType, ArticleView } from "../../model/consts/consts";
 import { getRouteArticleDetails } from "@/shared/const/router";
+import { AppImage } from "@/shared/ui/AppImage";
+import { Skeleton } from "@/shared/ui/Skeleton";
 
 interface ArticleListItemProps {
     className?: string;
@@ -46,7 +48,14 @@ export const ArticleListItem = (props: ArticleListItemProps) => {
                     </div>
                     <Text title={article.title} className={classes.title} />
                     {types}
-                    <img src={article.img} alt={article.title} className={classes.img} />
+                    {/* @ts-ignore */}
+                    <AppImage
+                        errorFallback={<Skeleton height={250} width="100%" />}
+                        fallback={<Skeleton height={250} width="100%" />}
+                        src={article.img}
+                        alt={article.title}
+                        className={classes.img}
+                    />
                     {textBlock && <ArticleTextBlockComponent block={textBlock} className={classes.textBlock} />}
                     <div className={classes.footer}>
                         <AppLink target={target} to={getRouteArticleDetails(article.id)}>
@@ -68,7 +77,14 @@ export const ArticleListItem = (props: ArticleListItemProps) => {
         >
             <Card className={classes.card}>
                 <div className={classes.imageWrapper}>
-                    <img src={article.img} alt={article.title} className={classes.img} />
+                    {/* @ts-ignore */}
+                    <AppImage
+                        errorFallback={<Skeleton height={200} width="100%" />}
+                        fallback={<Skeleton height={200} width="100%" />}
+                        src={article.img}
+                        alt={article.title}
+                        className={classes.img}
+                    />
                     <Text text={article.createdAt} className={classes.date} />
                 </div>
                 <div className={classes.infoWrapper}>
