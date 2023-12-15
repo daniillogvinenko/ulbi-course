@@ -8,7 +8,7 @@ const MainPage = () => {
     const { t } = useTranslation();
 
     return (
-        <Page>
+        <Page data-testid="MainPage">
             {t("Главная")}
             <RatingCard title={t("Как Вам статья?")} feedbackTitle={t("Оставьте отзыв о статье")} hasFeedback />
             <Counter />

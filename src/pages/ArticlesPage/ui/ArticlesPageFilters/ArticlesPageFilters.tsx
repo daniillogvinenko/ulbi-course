@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { classNames } from "@/shared/lib/classNames/classNames";
 import { useDebounce } from "@/shared/lib/hooks/useDebounce/useDebounce";
 import { ArticleSortField, ArticleType, ArticleView } from "@/entities/Article";
-import { SortOrder } from "@/shared/types";
+import { SortOrder } from "@/shared/types/sort";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { Card } from "@/shared/ui/Card";
 import { Input } from "@/shared/ui/Input";
