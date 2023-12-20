@@ -11,6 +11,7 @@ import { ArticlesPageFilters } from "../ArticlesPageFilters/ArticlesPageFilters"
 import { ArticleInfiniteList } from "../ArticleInfiniteList/ArticleInfiniteList";
 import { initArticlesPage } from "../../model/services/initArticlesPage/initArticlesPage";
 import { Page } from "@/widgets/Page";
+import { useArticleItemByID } from "../../model/selectors/articlesPageSelectors";
 
 interface ArticlesPageProps {
     className?: string;
@@ -24,7 +25,8 @@ const ArticlesPage = (props: ArticlesPageProps) => {
     const { className } = props;
     const dispatch = useAppDispatch();
     const [searchParams] = useSearchParams();
-
+    const a = useArticleItemByID("3");
+    console.log(a);
     const onLoadNextPart = useCallback(() => {
         dispatch(fetchNextArticlesPage());
     }, [dispatch]);
