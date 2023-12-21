@@ -1,5 +1,4 @@
 import { memo } from "react";
-import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import { VStack } from "@/shared/ui/Stack";
 import { ArticleDetails } from "@/entities/Article";
@@ -12,6 +11,8 @@ import { ArticlesDetailsPageHeader } from "../ArticlesDetailsPageHeader/Articles
 import { ArticleDetailsComments } from "../ArticleDetailsComments/ArticleDetailsComments";
 import { ArticleRating } from "@/features/articleRating";
 import { Page } from "@/widgets/Page";
+import { getFeatureFlags } from "@/shared/lib/features";
+import { Counter } from "@/entities/Counter";
 
 export interface ArticlesDetailsPageProps {
     className?: string;
@@ -23,22 +24,12 @@ const reducers: ReducerList = {
 
 const ArticlesDetailsPage = (props: ArticlesDetailsPageProps) => {
     const { className } = props;
-    const { t } = useTranslation();
     const { id } = useParams<{ id: string }>();
 
-    // if (!id) {
-    //     return (
-    //         <div
-    //             className={classNames(classes.ArticlesDetailsPage, {}, [
-    //                 className,
-    //             ])}
-    //         >
-    //             {t("Статья не найдена")}
-    //         </div>
-    //     );
-    // }
-
     if (!id) return null;
+
+    const isArticleRatingEnabled = getFeatureFlags("isArticleRatingEnabled");
+    const isCounterEnabled = getFeatureFlags("isCounterEnabled");
 
     return (
         <DynamicModuleLoader reducers={reducers} removeReducersAfterUnmount>
@@ -46,7 +37,8 @@ const ArticlesDetailsPage = (props: ArticlesDetailsPageProps) => {
                 <Page className={classNames(classes.ArticlesDetailsPage, {}, [className])}>
                     <ArticlesDetailsPageHeader />
                     <ArticleDetails id={id} />
-                    <ArticleRating articleId={id} />
+                    {isArticleRatingEnabled && <ArticleRating articleId={id} />}
+                    {isCounterEnabled && <Counter />}
                     <ArticleRecommendationsList />
                     <ArticleDetailsComments id={id} />
                 </Page>
