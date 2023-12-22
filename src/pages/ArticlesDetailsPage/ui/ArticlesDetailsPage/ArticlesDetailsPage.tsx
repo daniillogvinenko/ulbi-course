@@ -1,3 +1,5 @@
+/* eslint-disable i18next/no-literal-string */
+/* eslint-disable react/no-unstable-nested-components */
 import { memo } from "react";
 import { useParams } from "react-router-dom";
 import { VStack } from "@/shared/ui/Stack";
@@ -9,10 +11,8 @@ import { articleDetailsPageReducer } from "../../model/slice";
 import classes from "./ArticlesDetailsPage.module.scss";
 import { ArticlesDetailsPageHeader } from "../ArticlesDetailsPageHeader/ArticlesDetailsPageHeader";
 import { ArticleDetailsComments } from "../ArticleDetailsComments/ArticleDetailsComments";
-import { ArticleRating } from "@/features/articleRating";
 import { Page } from "@/widgets/Page";
-import { getFeatureFlags } from "@/shared/lib/features";
-import { Counter } from "@/entities/Counter";
+import { getFeatureFlags, toggleFeatures } from "@/shared/lib/features";
 
 export interface ArticlesDetailsPageProps {
     className?: string;
@@ -21,6 +21,9 @@ export interface ArticlesDetailsPageProps {
 const reducers: ReducerList = {
     articleDetailsPage: articleDetailsPageReducer,
 };
+
+const Counter = () => <div>Old counter</div>;
+const CounterRedesigned = () => <div>New counter</div>;
 
 const ArticlesDetailsPage = (props: ArticlesDetailsPageProps) => {
     const { className } = props;
@@ -31,14 +34,19 @@ const ArticlesDetailsPage = (props: ArticlesDetailsPageProps) => {
     const isArticleRatingEnabled = getFeatureFlags("isArticleRatingEnabled");
     const isCounterEnabled = getFeatureFlags("isCounterEnabled");
 
+    const counter = toggleFeatures({
+        name: "isCounterEnabled",
+        on: () => <CounterRedesigned />,
+        off: () => <Counter />,
+    });
+
     return (
         <DynamicModuleLoader reducers={reducers} removeReducersAfterUnmount>
             <VStack gap="16" max>
                 <Page className={classNames(classes.ArticlesDetailsPage, {}, [className])}>
                     <ArticlesDetailsPageHeader />
                     <ArticleDetails id={id} />
-                    {isArticleRatingEnabled && <ArticleRating articleId={id} />}
-                    {isCounterEnabled && <Counter />}
+                    {counter}
                     <ArticleRecommendationsList />
                     <ArticleDetailsComments id={id} />
                 </Page>
