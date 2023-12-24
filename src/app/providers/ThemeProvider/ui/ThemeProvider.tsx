@@ -1,7 +1,7 @@
 import React, { ReactNode, useEffect, useMemo, useState } from "react";
 import { ThemeContext } from "../../../../shared/lib/context/ThemeContext";
 import { Theme } from "@/shared/const/theme";
-import { LOCAL_STORAGE_THEME_KEY } from "@/shared/const/localstorage";
+import { useJsonSettings } from "@/entities/User";
 
 interface ThemeProviderProps {
     initialTheme?: Theme;
@@ -10,12 +10,20 @@ interface ThemeProviderProps {
 
 const ThemeProvider = (props: ThemeProviderProps) => {
     const { initialTheme, children } = props;
-    // берем дефолтное значение из локал сторейджа, если локал сторейдж пустой - устанавливаем
-    // светлую тему
-    const defaultTheme = (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) || Theme.LIGHT;
+
+    const { theme: defaultTheme = Theme.DARK } = useJsonSettings();
+    const [isThemeInited, setIsThemeInited] = useState(false);
 
     // либо достаем initialState из пропсов, если он есть, либо из defaultTheme выше
     const [theme, setTheme] = useState<Theme>(initialTheme || defaultTheme);
+
+    // 127 22:30
+    useEffect(() => {
+        if (!isThemeInited) {
+            setTheme(defaultTheme);
+            setIsThemeInited(true);
+        }
+    }, [defaultTheme, isThemeInited]);
 
     const defaultProps = useMemo(
         () => ({

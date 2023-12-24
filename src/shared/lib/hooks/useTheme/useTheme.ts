@@ -2,10 +2,11 @@
 import { useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import { Theme } from "@/shared/const/theme";
-import { LOCAL_STORAGE_THEME_KEY } from "@/shared/const/localstorage";
 
 interface useThemeResult {
-    toggleTheme: () => void;
+    // в toggleTheme передаем действие которое будет происходить при переключении темы.
+    // То есть мы передаем функцию, которая будет сохранять новую тему в стейт/локал сторейдж и т.д.
+    toggleTheme: (saveAction: (theme: Theme) => void) => void;
     theme: Theme;
 }
 
@@ -13,7 +14,7 @@ interface useThemeResult {
 export function useTheme(): useThemeResult {
     const { setTheme, theme } = useContext(ThemeContext);
 
-    const toggleTheme = () => {
+    const toggleTheme = (saveAction: (theme: Theme) => void) => {
         let newTheme: Theme;
         switch (theme) {
             case Theme.DARK:
@@ -33,7 +34,8 @@ export function useTheme(): useThemeResult {
         document.body.className = newTheme;
         // chaining оператор для функции
         setTheme?.(newTheme);
-        localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
+
+        saveAction?.(newTheme);
     };
 
     return { theme: theme || Theme.LIGHT, toggleTheme };
