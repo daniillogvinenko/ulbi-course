@@ -14,3 +14,4 @@ export {
     useJsonSettings,
 } from "./model/selector/jsonSettings";
 export { saveJsonSettings } from './model/services/saveJsonSettings/saveJsonSettings';
+export { initAuthData } from './model/services/initAuthData/initAuthData';
