@@ -687,9 +687,10 @@
         "isCounterEnabled": true
       },
       "jsonSettings": {
-        "theme": "app_light_theme",
+        "theme": "app_dark_theme",
         "isFirstVisit": false,
-        "settingsPageHasBeenOpened": true
+        "settingsPageHasBeenOpened": true,
+        "isArticlesPageWasVisited": true
       }
     },
     {
@@ -707,7 +708,8 @@
       "jsonSettings": {
         "theme": "app_dark_theme",
         "isFirstVisit": false,
-        "settingsPageHasBeenOpened": true
+        "settingsPageHasBeenOpened": true,
+        "isArticlesPageWasVisited": true
       }
     },
     {
@@ -725,7 +727,8 @@
       "jsonSettings": {
         "theme": "app_dark_theme",
         "isFirstVisit": false,
-        "settingsPageHasBeenOpened": true
+        "settingsPageHasBeenOpened": true,
+        "isArticlesPageWasVisited": true
       }
     },
     {
