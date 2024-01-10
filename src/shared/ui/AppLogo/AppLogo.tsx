@@ -11,6 +11,6 @@ export const AppLogo = ({ className }: AppLogoProps) => (
     <HStack max justify="center" className={classNames(cls.appLogoWrapper, {}, [className])}>
         <div className={cls.gradientBig} />
         <div className={cls.gradientSmall} />
-        <AppSvg className={cls.appLogo} />
+        <AppSvg width={50} height={50} className={cls.appLogo} />
     </HStack>
 );

@@ -38,12 +38,7 @@ const App = () => {
             on={
                 <div className={classNames("app_redesigned", {}, [])}>
                     <Suspense fallback="">
-                        <MainLayout
-                            header={<Navbar />}
-                            content={<AppRouter />}
-                            sidebar={<Sidebar />}
-                            toolbar={<div>TOOLBAR</div>}
-                        />
+                        <MainLayout header={<Navbar />} content={<AppRouter />} sidebar={<Sidebar />} />
                     </Suspense>
                 </div>
             }

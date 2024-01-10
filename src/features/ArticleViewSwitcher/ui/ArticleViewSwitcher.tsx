@@ -42,6 +42,8 @@ export const ArticleViewSwitcher = memo((props: ArticleViewSwitcherProps) => {
                     key={viewType.view}
                 >
                     <Icon
+                        width={24}
+                        height={24}
                         Svg={viewType.icon}
                         // если viewType не равен тому, который мы передали пропсом, то будет вешаться notSelected
                         className={classNames("", { [classes.notSelected]: viewType.view !== view }, [])}
