@@ -9,6 +9,8 @@ import classes from "./Sidebar.module.scss";
 import { SidebarItem } from "../SidebarItem/SidebarItem";
 import { LangSwitcher } from "@/features/LangSwitcher";
 import { ThemeSwitcher } from "@/features/ThemeSwitcher";
+import { ToggleFeatures } from "@/shared/lib/features";
+import { AppLogo } from "@/shared/ui/AppLogo";
 
 interface SidebarProps {
     className?: string;
@@ -24,30 +26,44 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
     };
 
     return (
-        <aside
-            data-testid="sidebar"
-            className={classNames(classes.Sidebar, { [classes.collapsed]: collapsed }, [className])}
-        >
-            <Button
-                square
-                size={ButtonSize.XL}
-                theme={ButtonTheme.BACKGROUND_INVERTED}
-                data-testid="sidebar-toggle"
-                type="button"
-                onClick={onToggle}
-                className={classes.collapseBtn}
-            >
-                {collapsed ? t(">") : t("<")}
-            </Button>
-            <VStack role="navigation" gap="8" className={classes.items}>
-                {sidebarItemList.map((item) => (
-                    <SidebarItem key={item.path} item={item} collapsed={collapsed} />
-                ))}
-            </VStack>
-            <div className={classes.switchers}>
-                <ThemeSwitcher />
-                <LangSwitcher short={collapsed} className={classes.lang} />
-            </div>
-        </aside>
+        <ToggleFeatures
+            feature="isAppRedesigned"
+            off={
+                <aside
+                    data-testid="sidebar"
+                    className={classNames(classes.Sidebar, { [classes.collapsed]: collapsed }, [className])}
+                >
+                    <Button
+                        square
+                        size={ButtonSize.XL}
+                        theme={ButtonTheme.BACKGROUND_INVERTED}
+                        data-testid="sidebar-toggle"
+                        type="button"
+                        onClick={onToggle}
+                        className={classes.collapseBtn}
+                    >
+                        {collapsed ? t(">") : t("<")}
+                    </Button>
+                    <VStack role="navigation" gap="8" className={classes.items}>
+                        {sidebarItemList.map((item) => (
+                            <SidebarItem key={item.path} item={item} collapsed={collapsed} />
+                        ))}
+                    </VStack>
+                    <div className={classes.switchers}>
+                        <ThemeSwitcher />
+                        <LangSwitcher short={collapsed} className={classes.lang} />
+                    </div>
+                </aside>
+            }
+            on={
+                <aside
+                    data-testid="sidebar"
+                    className={classNames(classes.SidebarRedesigned, { [classes.collapsed]: collapsed }, [className])}
+                    // eslint-disable-next-line i18next/no-literal-string
+                >
+                    <AppLogo className={classes.appLogo} />
+                </aside>
+            }
+        />
     );
 });

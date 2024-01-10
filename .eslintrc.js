@@ -50,6 +50,7 @@ module.exports = {
                     "align",
                     "direction",
                     "gap",
+                    "feature",
                 ],
             },
         ],
@@ -81,6 +82,7 @@ module.exports = {
             },
         ],
         "function-paren-newline": "off",
+        "react/jsx-wrap-multilines": "off",
     },
     globals: {
         __IS_DEV__: true,
