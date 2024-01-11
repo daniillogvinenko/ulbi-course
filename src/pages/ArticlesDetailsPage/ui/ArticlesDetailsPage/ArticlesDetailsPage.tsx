@@ -2,7 +2,7 @@
 /* eslint-disable react/no-unstable-nested-components */
 import { memo } from "react";
 import { useParams } from "react-router-dom";
-import { VStack } from "@/shared/ui/Stack";
+import { VStack } from "@/shared/ui/deprecated/Stack";
 import { ArticleDetails } from "@/entities/Article";
 import { classNames } from "@/shared/lib/classNames/classNames";
 import { DynamicModuleLoader, ReducerList } from "@/shared/lib/components/DynamicModuleLoader/ui/DynamicModuleLoader";
@@ -14,7 +14,7 @@ import { ArticleDetailsComments } from "../ArticleDetailsComments/ArticleDetails
 import { Page } from "@/widgets/Page";
 import { ToggleFeatures } from "@/shared/lib/features";
 import { ArticleRating } from "@/features/articleRating";
-import { Card } from "@/shared/ui/Card";
+import { Card } from "@/shared/ui/deprecated/Card";
 
 export interface ArticlesDetailsPageProps {
     className?: string;

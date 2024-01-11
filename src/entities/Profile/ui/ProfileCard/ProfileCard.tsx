@@ -2,11 +2,11 @@ import { useTranslation } from "react-i18next";
 import { Country, CountrySelect } from "@/entities/Country";
 import { Currency, CurrencySelect } from "@/entities/Currency";
 import { classNames, Mods } from "@/shared/lib/classNames/classNames";
-import { Avatar } from "@/shared/ui/Avatar";
-import { Input } from "@/shared/ui/Input";
-import { Loader } from "@/shared/ui/Loader";
-import { Text, TextAlign, TextTheme } from "@/shared/ui/Text";
-import { HStack, VStack } from "@/shared/ui/Stack";
+import { Avatar } from "@/shared/ui/deprecated/Avatar";
+import { Input } from "@/shared/ui/deprecated/Input";
+import { Loader } from "@/shared/ui/deprecated/Loader";
+import { Text, TextAlign, TextTheme } from "@/shared/ui/deprecated/Text";
+import { HStack, VStack } from "@/shared/ui/deprecated/Stack";
 import { Profile } from "../../model/types/profile";
 import classes from "./ProfileCard.module.scss";
 
@@ -46,13 +46,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
 
     if (isLoading) {
         return (
-            <HStack
-                max
-                className={classNames(classes.ProfileCard, {}, [
-                    className,
-                    classes.loading,
-                ])}
-            >
+            <HStack max className={classNames(classes.ProfileCard, {}, [className, classes.loading])}>
                 <Loader className={classes.loader} />
             </HStack>
         );
@@ -60,14 +54,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
 
     if (error) {
         return (
-            <HStack
-                max
-                justify="center"
-                className={classNames(classes.ProfileCard, {}, [
-                    className,
-                    classes.error,
-                ])}
-            >
+            <HStack max justify="center" className={classNames(classes.ProfileCard, {}, [className, classes.error])}>
                 <Text
                     align={TextAlign.CENTER}
                     theme={TextTheme.ERROR}
@@ -83,11 +70,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
     };
 
     return (
-        <VStack
-            gap="8"
-            max
-            className={classNames(classes.ProfileCard, mods, [className])}
-        >
+        <VStack gap="8" max className={classNames(classes.ProfileCard, mods, [className])}>
             {data?.avatar && (
                 <HStack justify="center" max className={classes.avatarWrapper}>
                     <Avatar alt="" src={data.avatar} />

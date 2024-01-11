@@ -3,17 +3,17 @@
 import { memo, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { HStack, VStack } from "@/shared/ui/Stack";
+import { HStack, VStack } from "@/shared/ui/deprecated/Stack";
 import { classNames } from "@/shared/lib/classNames/classNames";
 import { DynamicModuleLoader, ReducerList } from "@/shared/lib/components/DynamicModuleLoader/ui/DynamicModuleLoader";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { Avatar } from "@/shared/ui/Avatar";
-import { Skeleton } from "@/shared/ui/Skeleton";
-import { Text, TextAlign, TextSize } from "@/shared/ui/Text";
+import { Avatar } from "@/shared/ui/deprecated/Avatar";
+import { Skeleton } from "@/shared/ui/deprecated/Skeleton";
+import { Text, TextAlign, TextSize } from "@/shared/ui/deprecated/Text";
 
 import EyeIcon from "@/shared/assets/icons/articleItem.svg";
 import CalendarIcon from "@/shared/assets/icons/profileItem.svg";
-import { Icon } from "@/shared/ui/Icon";
+import { Icon } from "@/shared/ui/deprecated/Icon";
 import { fetchArticleById } from "../../model/services/fetchArticleById/fetchArticleById";
 import { articleDetailsReducer } from "../../model/slice/articleDetailsSlice";
 import {

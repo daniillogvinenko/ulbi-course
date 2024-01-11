@@ -2,9 +2,9 @@
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useCallback } from "react";
-import { Dropdown } from "@/shared/ui/Popups";
+import { Dropdown } from "@/shared/ui/deprecated/Popups";
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { Avatar } from "@/shared/ui/Avatar";
+import { Avatar } from "@/shared/ui/deprecated/Avatar";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { getUserAuthData, isUserAdmin, isUserManager, userActions } from "@/entities/User";
 import classes from "./avatarDropdown.module.scss";

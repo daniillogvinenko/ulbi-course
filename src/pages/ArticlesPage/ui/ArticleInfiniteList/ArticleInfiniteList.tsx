@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { ArticleList } from "@/entities/Article";
-import { Text } from "@/shared/ui/Text";
+import { Text } from "@/shared/ui/deprecated/Text";
 import { getArticles } from "../../model/slices/ArticlesPageSlice";
 import {
     getArticlesPageError,
@@ -25,12 +25,5 @@ export const ArticleInfiniteList = (props: ArticleInfiniteListProps) => {
         return <Text text={t("Ошибка")} />;
     }
 
-    return (
-        <ArticleList
-            articles={articles}
-            isLoading={isLoading}
-            view={view}
-            className={className}
-        />
-    );
+    return <ArticleList articles={articles} isLoading={isLoading} view={view} className={className} />;
 };

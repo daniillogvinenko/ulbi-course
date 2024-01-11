@@ -1,7 +1,7 @@
 import { HTMLAttributeAnchorTarget } from "react";
 import { useTranslation } from "react-i18next";
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { Text } from "@/shared/ui/Text";
+import { Text } from "@/shared/ui/deprecated/Text";
 import { ArticleListItem } from "../ArticleListItem/ArticleListItem";
 import { ArticleListItemSkeleton } from "../ArticleListItem/ArticleListItemSkeleton";
 import { Article } from "../../model/types/article";
@@ -20,55 +20,27 @@ interface ArticleListProps {
 const getSkeletons = (view: ArticleView) => {
     return new Array(view === ArticleView.SMALL ? 9 : 3)
         .fill(0)
-        .map((item, index) => (
-            <ArticleListItemSkeleton
-                className={classes.card}
-                key={index}
-                view={view}
-            />
-        ));
+        .map((item, index) => <ArticleListItemSkeleton className={classes.card} key={index} view={view} />);
 };
 
 export const ArticleList = (props: ArticleListProps) => {
-    const {
-        className,
-        articles,
-        view = ArticleView.SMALL,
-        isLoading,
-        target,
-    } = props;
+    const { className, articles, view = ArticleView.SMALL, isLoading, target } = props;
     const { t } = useTranslation();
 
     const renderArticles = (article: Article) => (
-        <ArticleListItem
-            target={target}
-            className={classes.card}
-            article={article}
-            view={view}
-            key={article.id}
-        />
+        <ArticleListItem target={target} className={classes.card} article={article} view={view} key={article.id} />
     );
 
     if (!isLoading && !articles.length) {
         return (
-            <div
-                className={classNames(classes.ArticleList, {}, [
-                    className,
-                    classes[view],
-                ])}
-            >
+            <div className={classNames(classes.ArticleList, {}, [className, classes[view]])}>
                 <Text title={t("Статьи не найдены")} />
             </div>
         );
     }
 
     return (
-        <div
-            className={classNames(classes.ArticleList, {}, [
-                className,
-                classes[view],
-            ])}
-        >
+        <div className={classNames(classes.ArticleList, {}, [className, classes[view]])}>
             {articles.length > 0 ? articles.map(renderArticles) : null}
             {isLoading && getSkeletons(view)}
         </div>

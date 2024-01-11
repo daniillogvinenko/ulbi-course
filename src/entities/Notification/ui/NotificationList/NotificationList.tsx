@@ -1,5 +1,5 @@
-import { VStack } from "@/shared/ui/Stack";
-import { Skeleton } from "@/shared/ui/Skeleton";
+import { VStack } from "@/shared/ui/deprecated/Stack";
+import { Skeleton } from "@/shared/ui/deprecated/Skeleton";
 import { classNames } from "@/shared/lib/classNames/classNames";
 import { useNotifications } from "../../../Notification/api/notificationApi";
 import { NotificationItem } from "../NotificationItem/NotificationItem";
@@ -17,13 +17,7 @@ export const NotificationList = (props: NotificationListProps) => {
 
     if (isLoading) {
         return (
-            <VStack
-                gap="16"
-                max
-                className={classNames(classes.NotificationList, {}, [
-                    className,
-                ])}
-            >
+            <VStack gap="16" max className={classNames(classes.NotificationList, {}, [className])}>
                 <Skeleton width="100%" border="8px" height="80px" />
                 <Skeleton width="100%" border="8px" height="80px" />
                 <Skeleton width="100%" border="8px" height="80px" />
@@ -32,11 +26,7 @@ export const NotificationList = (props: NotificationListProps) => {
     }
 
     return (
-        <VStack
-            gap="16"
-            max
-            className={classNames(classes.NotificationList, {}, [className])}
-        >
+        <VStack gap="16" max className={classNames(classes.NotificationList, {}, [className])}>
             {data?.map((item) => (
                 <NotificationItem key={item.id} item={item} />
             ))}

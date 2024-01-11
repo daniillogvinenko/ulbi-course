@@ -6,8 +6,8 @@ import { useDebounce } from "@/shared/lib/hooks/useDebounce/useDebounce";
 import { ArticleSortField, ArticleType, ArticleView } from "@/entities/Article";
 import { SortOrder } from "@/shared/types/sort";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { Card } from "@/shared/ui/Card";
-import { Input } from "@/shared/ui/Input";
+import { Card } from "@/shared/ui/deprecated/Card";
+import { Input } from "@/shared/ui/deprecated/Input";
 import { fetchArticlesList } from "../../model/services/fetchArticlesList/fetchArticlesList";
 import {
     getArticlePageOrder,
