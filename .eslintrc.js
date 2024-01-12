@@ -14,6 +14,9 @@ module.exports = {
         sourceType: "module",
     },
     plugins: ["react", "@typescript-eslint", "i18next", "react-hooks", "ulbi-tv-plugin", "unused-imports"],
+
+    // !!!!!!!!!!!!!!!
+    ignorePatterns: ["**.cy.ts", "common.ts"],
     rules: {
         quotes: "off",
         "linebreak-style": "off",

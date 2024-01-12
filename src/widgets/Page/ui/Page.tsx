@@ -10,7 +10,6 @@ import { StateSchema } from "@/app/providers/StoreProvider";
 import { useThrottle } from "@/shared/lib/hooks/useThrottle/useThrottle";
 import classes from "./Page.module.scss";
 import { TestProps } from "@/shared/types/tests";
-import { toggleFeatures } from "@/shared/lib/features";
 
 interface PageProps extends TestProps {
     className?: string;
@@ -54,15 +53,7 @@ export const Page = (props: PageProps) => {
             // eslint-disable-next-line react/destructuring-assignment
             data-testid={props["data-testid"] ?? "Page"}
             ref={wrapperRef}
-            className={classNames(
-                toggleFeatures({
-                    name: "isAppRedesigned",
-                    on: () => classes.PageRedesigned,
-                    off: () => classes.Page,
-                }),
-                {},
-                [className]
-            )}
+            className={classNames(classes.PageRedesigned, {}, [className])}
             onScroll={onScroll}
         >
             {children}
