@@ -1,26 +1,46 @@
 .Button {
   cursor: pointer;
-  padding: 10px 15px;
   color: var(--text-redesigned);
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
 
   &:hover {
     color: var(--accent-redesigned);
+
+    .addonLeft svg,
+    .addonRight svg {
+      color: var(--accent-redesigned);
+    }
   }
 }
 
+.withAddon {
+  padding: 0 16px;
+}
+
+.addonLeft,
+.addonRight {
+  display: flex;
+}
+
+.addonRight svg,
+.addonLeft svg {
+  color: var(--hint-redesigned);
+}
+
+
 .clear {
   padding: 0;
-  margin: 0;
   border: none;
   background: none;
   outline: none;
 }
 
 .filled {
-  background-color: var(--light-bg-redesigned);
+  background: var(--light-bg-redesigned);
   border: none;
   outline: none;
-  padding: 8px 16px;
   border-radius: 34px;
 }
 
@@ -31,19 +51,16 @@
 .square.m {
   width: var(--font-line-m);
   height: var(--font-line-m);
-  font: var(--font-m);
 }
 
 .square.l {
   width: var(--font-line-l);
   height: var(--font-line-l);
-  font: var(--font-l);
 }
 
 .square.xl {
   width: var(--font-line-xl);
   height: var(--font-line-xl);
-  font: var(--font-xl);
 }
 
 .m {
