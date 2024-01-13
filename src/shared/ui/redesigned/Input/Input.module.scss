@@ -1,0 +1,12 @@
+.Input {
+    input {
+        padding: 5px 15px;
+        width: 100%;
+        background-color: var(--bg-color);
+        color: var(--inverted-bg-color);
+    }
+}
+
+.readonly {
+    opacity: 0.6;
+}

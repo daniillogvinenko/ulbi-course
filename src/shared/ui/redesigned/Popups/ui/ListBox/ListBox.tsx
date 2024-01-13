@@ -8,27 +8,30 @@ import { mapDirectionClass } from "../../styles/consts";
 import popupClasses from "../../styles/popup.module.scss";
 import { HStack } from "../../../../redesigned/Stack";
 
-interface ListBoxItem {
-    value: string;
+interface ListBoxItem<T extends string> {
+    // value: string;
+    value: T;
     content: ReactNode;
     disabled?: boolean;
 }
 
-interface ListBoxProps {
-    items?: ListBoxItem[];
+interface ListBoxProps<T extends string> {
+    items?: ListBoxItem<T>[];
     className?: string;
-    value?: string;
+    value?: T;
     defaultValue?: string;
-    onChange: (value: string) => void;
+    onChange: (value: T) => void;
     readonly?: boolean;
     direction?: DropdownDirection;
     label?: string;
 }
 
-export function ListBox(props: ListBoxProps) {
+export function ListBox<T extends string>(props: ListBoxProps<T>) {
     const { className, items, defaultValue, value, onChange, readonly, direction = "bottom right", label } = props;
 
     const optionsClasses = [mapDirectionClass[direction], popupClasses.menu];
+
+    const selectedItem = items?.find((item) => item.value === value);
 
     return (
         <HStack gap="16">
@@ -41,8 +44,8 @@ export function ListBox(props: ListBoxProps) {
                 onChange={onChange}
             >
                 <HListbox.Button disabled={readonly} className={popupClasses.trigger}>
-                    <Button disabled={readonly} variant="outline">
-                        {value ?? defaultValue}
+                    <Button disabled={readonly} variant="filled">
+                        {selectedItem?.content ?? defaultValue}
                     </Button>
                 </HListbox.Button>
                 <HListbox.Options className={classNames(classes.options, {}, optionsClasses)}>
@@ -55,11 +58,12 @@ export function ListBox(props: ListBoxProps) {
                                         {
                                             [popupClasses.active]: active,
                                             [popupClasses.disabled]: item.disabled,
+                                            [popupClasses.selected]: selected,
                                         },
                                         []
                                     )}
                                 >
-                                    {selected && "-> "}
+                                    {selected}
                                     {item.content}
                                 </li>
                             )}

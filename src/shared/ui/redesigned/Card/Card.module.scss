@@ -1,6 +1,5 @@
 .Card {
     padding: 24px;
-    border-radius: 12px;
 }
 
 .withoutPaddings {
@@ -18,6 +17,15 @@
 .outlined {
     border: 1px solid var(--accent-redesigned);
 }
+
+.roundBorder {
+    border-radius: 40px;
+}
+
+.normalBorder {
+    border-radius: 12px;
+}
+
 
 .max {
     width: 100%;

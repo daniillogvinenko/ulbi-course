@@ -1,3 +1,13 @@
-.notSelected {
-    fill: var(--secondary-color);
+.ArticleViewSwitcher {
+    .notSelected {
+        fill: var(--secondary-color);
+    }
+}
+
+
+
+.ArticleViewSwitcherRedesigned {
+    .notSelected {
+        color: var(--light-bg-redesigned);
+    }
 }
