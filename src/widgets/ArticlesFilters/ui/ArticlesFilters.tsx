@@ -32,6 +32,7 @@ export const ArticlesFilters = (props: ArticlesFiltersProps) => {
         <Card className={classNames(classes.ArticlesFilters, {}, [className])} padding="24">
             <VStack gap="32">
                 <Input
+                    size="s"
                     addonLeft={<Icon Svg={SearchIcon} />}
                     value={search}
                     onChange={onChangeSearch}

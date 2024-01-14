@@ -1,7 +1,9 @@
 import { memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { ListBox } from "@/shared/ui/deprecated/Popups";
+import { ListBox as ListBoxDeprecated } from "@/shared/ui/deprecated/Popups";
 import { Country } from "../../model/types/Country";
+import { ToggleFeatures } from "@/shared/lib/features";
+import { ListBox } from "@/shared/ui/redesigned/Popups";
 
 interface CountrySelectProps {
     className?: string;
@@ -29,26 +31,32 @@ export const CountrySelect = memo((props: CountrySelectProps) => {
     );
 
     return (
-        <ListBox
-            readonly={readonly}
-            className={className}
-            onChange={onChangeHandler}
-            value={value}
-            items={options}
-            defaultValue={t("Укажите страну")}
-            direction="top right"
-            label={t("Укажите страну")}
+        <ToggleFeatures
+            feature="isAppRedesigned"
+            off={
+                <ListBoxDeprecated
+                    readonly={readonly}
+                    className={className}
+                    onChange={onChangeHandler}
+                    value={value}
+                    items={options}
+                    defaultValue={t("Укажите страну")}
+                    direction="top right"
+                    label={t("Укажите страну")}
+                />
+            }
+            on={
+                <ListBox
+                    readonly={readonly}
+                    className={className}
+                    onChange={onChangeHandler}
+                    value={value}
+                    items={options}
+                    defaultValue={t("Укажите страну")}
+                    direction="top right"
+                    label={t("Укажите страну")}
+                />
+            }
         />
     );
-
-    // return (
-    //     <Select
-    //         className={classNames("", {}, [className])}
-    //         label={t("Укажите страну")}
-    //         options={options}
-    //         value={value}
-    //         onChange={onChangeHandler}
-    //         readonly={readonly}
-    //     />
-    // );
 });

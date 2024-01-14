@@ -1,23 +1,30 @@
 import React, { InputHTMLAttributes, memo, ReactNode, useEffect, useRef, useState } from "react";
 import { classNames, Mods } from "@/shared/lib/classNames/classNames";
-import cls from "./Input.module.scss";
+import classes from "./Input.module.scss";
+import { HStack } from "../Stack";
+import { Text } from "../Text";
 
-type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "value" | "onChange" | "readOnly">;
+type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "value" | "onChange" | "readOnly" | "size">;
+
+type InputSize = "s" | "m" | "l";
 
 interface InputProps extends HTMLInputProps {
     className?: string;
     value?: string | number;
+    label?: string;
     onChange?: (value: string) => void;
     autofocus?: boolean;
     readonly?: boolean;
     addonLeft?: ReactNode;
     addonRight?: ReactNode;
+    size?: InputSize;
 }
 
 export const Input = memo((props: InputProps) => {
     const {
         className,
         value,
+        label,
         onChange,
         type = "text",
         placeholder,
@@ -25,6 +32,7 @@ export const Input = memo((props: InputProps) => {
         readonly,
         addonLeft,
         addonRight,
+        size = "m",
         ...otherProps
     } = props;
     const ref = useRef<HTMLInputElement>(null);
@@ -50,28 +58,39 @@ export const Input = memo((props: InputProps) => {
     };
 
     const mods: Mods = {
-        [cls.readonly]: readonly,
-        [cls.focused]: isFocused,
-        [cls.withAddonLeft]: Boolean(addonLeft),
-        [cls.withAddonRight]: Boolean(addonRight),
+        [classes.readonly]: readonly,
+        [classes.focused]: isFocused,
+        [classes.withAddonLeft]: Boolean(addonLeft),
+        [classes.withAddonRight]: Boolean(addonRight),
     };
 
-    return (
-        <div className={classNames(cls.InputWrapper, mods, [className])}>
-            <div className={cls.addonLeft}>{addonLeft}</div>
+    const inputContent = (
+        <div className={classNames(classes.InputWrapper, mods, [className, classes[size]])}>
+            <div className={classes.addonLeft}>{addonLeft}</div>
             <input
                 ref={ref}
                 type={type}
                 value={value}
                 onChange={onChangeHandler}
-                className={cls.input}
+                className={classes.input}
                 onFocus={onFocus}
                 onBlur={onBlur}
                 readOnly={readonly}
                 placeholder={placeholder}
                 {...otherProps}
             />
-            <div className={cls.addonRight}>{addonRight}</div>
+            <div className={classes.addonRight}>{addonRight}</div>
         </div>
     );
+
+    if (label) {
+        return (
+            <HStack max gap="8">
+                <Text title={label} />
+                {inputContent}
+            </HStack>
+        );
+    }
+
+    return inputContent;
 });

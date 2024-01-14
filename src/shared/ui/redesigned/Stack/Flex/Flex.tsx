@@ -5,7 +5,7 @@ import classes from "./Flex.module.scss";
 export type FlexJustify = "start" | "center" | "end" | "between";
 export type FlexAlign = "start" | "center" | "end";
 export type FlexDirection = "row" | "column";
-export type FlexGap = "4" | "8" | "16" | "32";
+export type FlexGap = "4" | "8" | "16" | "24" | "32";
 
 const justifyClasses: Record<FlexJustify, string> = {
     start: classes.justifyStart,
@@ -29,13 +29,11 @@ const gapClasses: Record<FlexGap, string> = {
     4: classes.gap4,
     8: classes.gap8,
     16: classes.gap16,
+    24: classes.gap24,
     32: classes.gap32,
 };
 
-type DivProps = DetailedHTMLProps<
-    HTMLAttributes<HTMLDivElement>,
-    HTMLDivElement
->;
+type DivProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 
 export interface FlexProps extends DivProps {
     className?: string;
@@ -48,15 +46,7 @@ export interface FlexProps extends DivProps {
 }
 
 export const Flex = (props: FlexProps) => {
-    const {
-        className,
-        children,
-        justify = "start",
-        align = "center",
-        direction = "row",
-        gap,
-        max,
-    } = props;
+    const { className, children, justify = "start", align = "center", direction = "row", gap, max } = props;
 
     const classesArr = [
         className,
@@ -70,9 +60,5 @@ export const Flex = (props: FlexProps) => {
         [classes.max]: max,
     };
 
-    return (
-        <div className={classNames(classes.Flex, mods, classesArr)}>
-            {children}
-        </div>
-    );
+    return <div className={classNames(classes.Flex, mods, classesArr)}>{children}</div>;
 };
