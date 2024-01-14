@@ -6,6 +6,7 @@ export type FlexJustify = "start" | "center" | "end" | "between";
 export type FlexAlign = "start" | "center" | "end";
 export type FlexDirection = "row" | "column";
 export type FlexGap = "4" | "8" | "16" | "24" | "32";
+export type FlexWrap = "nowrap" | "wrap";
 
 const justifyClasses: Record<FlexJustify, string> = {
     start: classes.justifyStart,
@@ -43,10 +44,20 @@ export interface FlexProps extends DivProps {
     direction: FlexDirection;
     gap?: FlexGap;
     max?: boolean;
+    wrap?: FlexWrap;
 }
 
 export const Flex = (props: FlexProps) => {
-    const { className, children, justify = "start", align = "center", direction = "row", gap, max } = props;
+    const {
+        className,
+        children,
+        justify = "start",
+        align = "center",
+        direction = "row",
+        gap,
+        max,
+        wrap = "nowrap",
+    } = props;
 
     const classesArr = [
         className,
@@ -54,6 +65,7 @@ export const Flex = (props: FlexProps) => {
         alignClasses[align],
         directionClasses[direction],
         gap && gapClasses[gap],
+        classes[wrap],
     ];
 
     const mods: Mods = {

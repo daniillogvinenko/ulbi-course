@@ -15,6 +15,12 @@ interface ArticleListItemSkeletonProps {
 export const ArticleListItemSkeleton = (props: ArticleListItemSkeletonProps) => {
     const { className, view } = props;
 
+    const mainClass = toggleFeatures({
+        name: "isAppRedesigned",
+        on: () => classes.ArticleListItemRedesigned,
+        off: () => classes.ArticleListItem,
+    });
+
     const Skeleton = toggleFeatures({
         name: "isAppRedesigned",
         on: () => SkeletonRedesigned,
@@ -29,7 +35,7 @@ export const ArticleListItemSkeleton = (props: ArticleListItemSkeletonProps) => 
 
     if (view === ArticleView.BIG) {
         return (
-            <div className={classNames(classes.ArticleListItem, {}, [className, classes[view]])}>
+            <div className={classNames(mainClass, {}, [className, classes[view]])}>
                 <Card className={classes.card}>
                     <div className={classes.header}>
                         <Skeleton width={30} height={30} border="50%" />

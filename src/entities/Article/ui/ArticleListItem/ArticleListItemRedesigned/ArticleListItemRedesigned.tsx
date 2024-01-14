@@ -20,7 +20,13 @@ export const ArticleListItemRedesigned = (props: ArticleListItemProps) => {
     const { className, article, view, target } = props;
     const { t } = useTranslation();
 
-    const types = <Text text={article.type.join(", ")} className={classes.types} />;
+    const userInfo = (
+        <>
+            <Avatar size={32} src={article.user.avatar} />
+            <Text bold text={article.user.username} />
+        </>
+    );
+
     const views = (
         <HStack gap="8">
             <Icon Svg={EyeIcon} />
@@ -35,9 +41,7 @@ export const ArticleListItemRedesigned = (props: ArticleListItemProps) => {
             <Card max padding="24" className={classNames(classes.ArticleListItem, {}, [className, classes[view]])}>
                 <VStack max gap="16">
                     <HStack gap="8" max>
-                        <Avatar size={32} src={article.user.avatar} />
-                        <Text bold text={article.user.username} />
-                        <Text text={article.createdAt} />
+                        {userInfo}
                     </HStack>
                     <Text title={article.title} bold />
                     <Text title={article.subtitle} size="s" />
@@ -65,26 +69,28 @@ export const ArticleListItemRedesigned = (props: ArticleListItemProps) => {
     // если view - small
     return (
         <AppLink
+            data-testid="ArticleListItem"
             target={target}
             to={getRouteArticleDetails(article.id)}
             className={classNames(classes.ArticleListItem, {}, [className, classes[view]])}
         >
-            <Card className={classes.card}>
-                <div className={classes.imageWrapper}>
-                    <AppImage
-                        errorFallback={<Skeleton height={200} width="100%" />}
-                        fallback={<Skeleton height={200} width="100%" />}
-                        src={article.img}
-                        alt={article.title}
-                        className={classes.img}
-                    />
-                    <Text text={article.createdAt} className={classes.date} />
-                </div>
-                <div className={classes.infoWrapper}>
-                    {types}
-                    {views}
-                </div>
-                <Text text={article.title} className={classes.title} />
+            <Card className={classes.card} border="roundBorder">
+                <AppImage
+                    fallback={<Skeleton width={200} height={200} />}
+                    alt={article.title}
+                    src={article.img}
+                    className={classes.img}
+                />
+                <VStack className={classes.info} gap="4">
+                    <Text title={article.title} className={classes.title} />
+                    <VStack gap="4" className={classes.footer} max>
+                        <HStack justify="between" max>
+                            <Text text={article.createdAt} className={classes.date} />
+                            {views}
+                        </HStack>
+                        <HStack gap="4">{userInfo}</HStack>
+                    </VStack>
+                </VStack>
             </Card>
         </AppLink>
     );
