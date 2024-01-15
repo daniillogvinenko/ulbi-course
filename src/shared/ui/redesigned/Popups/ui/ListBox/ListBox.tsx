@@ -10,7 +10,7 @@ import { HStack } from "../../../../redesigned/Stack";
 import ArrowIcon from "@/shared/assets/icons/arrow-bottom.svg";
 import { Icon } from "../../../Icon";
 
-interface ListBoxItem<T extends string> {
+export interface ListBoxItem<T extends string> {
     // value: string;
     value: T;
     content: ReactNode;
@@ -34,6 +34,8 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
     const optionsClasses = [mapDirectionClass[direction], popupClasses.menu];
 
     const selectedItem = items?.find((item) => item.value === value);
+
+    console.log(label);
 
     return (
         <HStack gap="16">

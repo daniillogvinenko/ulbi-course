@@ -6,9 +6,10 @@ import { classNames } from "@/shared/lib/classNames/classNames";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { getUserAuthData, isUserAdmin, isUserManager, userActions } from "@/entities/User";
 import classes from "./avatarDropdown.module.scss";
-import { getRouteAdmin, getRouteProfile } from "@/shared/const/router";
+import { getRouteAdmin, getRouteProfile, getRouteSettings } from "@/shared/const/router";
 import { Avatar } from "@/shared/ui/redesigned/Avatar";
 import { Dropdown } from "@/shared/ui/redesigned/Popups";
+import { DropdownItem } from "@/shared/ui/redesigned/Popups/ui/Dropdown/Dropdown";
 
 interface avatarDropdownProps {
     className?: string;
@@ -32,7 +33,7 @@ export const AvatarDropdown = (props: avatarDropdownProps) => {
         return null;
     }
 
-    const items = [
+    const items: DropdownItem[] = [
         ...(isAdminPanelAvailable
             ? [
                   {
@@ -48,6 +49,10 @@ export const AvatarDropdown = (props: avatarDropdownProps) => {
         {
             content: t("Выйти"),
             onClick: onLogout,
+        },
+        {
+            content: "Настройки",
+            href: getRouteSettings(),
         },
     ];
 
