@@ -1,8 +1,9 @@
 import React, { MutableRefObject, useCallback, useEffect, useRef, useState } from "react";
 import { classNames, Mods } from "@/shared/lib/classNames/classNames";
 import classes from "./Modal.module.scss";
-import { Overlay } from "../../redesigned/Overlay";
-import { Portal } from "../../redesigned/Portal";
+import { Overlay } from "../Overlay";
+import { Portal } from "../Portal";
+import { toggleFeatures } from "@/shared/lib/features";
 
 interface ModalProps {
     className?: string;
@@ -14,9 +15,6 @@ interface ModalProps {
 
 const ANIMATION_DELAY = 150;
 
-/**
- * @deprecated
- */
 export const Modal = (props: ModalProps) => {
     const { children, className, isOpen, onClose, lazy } = props;
 
@@ -77,8 +75,17 @@ export const Modal = (props: ModalProps) => {
 
     return (
         // Портал рендерит children в любом другом месте DOM (по умолчанию мы указали - body)
-        <Portal>
-            <div className={classNames(classes.Modal, mods, [className])}>
+        <Portal element={document.getElementById("app") ?? document.body}>
+            <div
+                className={classNames(classes.Modal, mods, [
+                    className,
+                    toggleFeatures({
+                        name: "isAppRedesigned",
+                        on: () => classes.modalNew,
+                        off: () => classes.modalOld,
+                    }),
+                ])}
+            >
                 <Overlay onClick={closeHandler} />
                 <div className={classes.content}>{children}</div>
             </div>

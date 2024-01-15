@@ -3,7 +3,7 @@ import { BrowserView, MobileView } from "react-device-detect";
 import { classNames } from "@/shared/lib/classNames/classNames";
 import { NotificationList } from "@/entities/Notification";
 import NotificationIcon from "@/shared/assets/icons/notification.svg";
-import { Drawer } from "@/shared/ui/deprecated/Drawer";
+import { Drawer } from "@/shared/ui/redesigned/Drawer";
 import classes from "./NotificationButton.module.scss";
 import { Icon } from "@/shared/ui/redesigned/Icon";
 import { Popover } from "@/shared/ui/redesigned/Popups";
