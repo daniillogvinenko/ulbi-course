@@ -24,5 +24,8 @@
     "Сохранить": "Save",
     "Редактировать": "Edit",
     "Профиль пользователя": "User profile",
-    "Укажите валюту": "Choose currency"
+    "Укажите валюту": "Choose currency",
+    "{{count}} просмотров_zero": "{{count}} views",
+    "{{count}} просмотров_one": "{{count}} view",
+    "{{count}} просмотров_other": "{{count}} views"
 }

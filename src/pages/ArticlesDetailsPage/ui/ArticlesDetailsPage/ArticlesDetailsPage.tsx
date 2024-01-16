@@ -1,5 +1,3 @@
-/* eslint-disable i18next/no-literal-string */
-/* eslint-disable react/no-unstable-nested-components */
 import { memo } from "react";
 import { useParams } from "react-router-dom";
 import { VStack } from "@/shared/ui/redesigned/Stack";
@@ -15,6 +13,9 @@ import { Page } from "@/widgets/Page";
 import { ToggleFeatures } from "@/shared/lib/features";
 import { ArticleRating } from "@/features/articleRating";
 import { Card } from "@/shared/ui/deprecated/Card";
+import { StickyContentLayout } from "@/shared/layouts/StickyContentLayout";
+import { DetailsContainer } from "../DetailsContainer/DetailsContainer";
+import { AdditionalInfoContainer } from "../AdditionalInfoContainer/AdditionalInfoContainer";
 
 export interface ArticlesDetailsPageProps {
     className?: string;
@@ -32,19 +33,40 @@ const ArticlesDetailsPage = (props: ArticlesDetailsPageProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers} removeReducersAfterUnmount>
-            <VStack gap="16" max>
-                <Page className={classNames(classes.ArticlesDetailsPage, {}, [className])}>
-                    <ArticlesDetailsPageHeader />
-                    <ArticleDetails id={id} />
-                    <ToggleFeatures
-                        feature="isArticleRatingEnabled"
-                        on={<ArticleRating articleId={id} />}
-                        off={<Card>Оценка статей скоро появится!</Card>}
+            <ToggleFeatures
+                feature="isAppRedesigned"
+                off={
+                    <Page className={classNames(classes.ArticlesDetailsPage, {}, [className])}>
+                        <VStack gap="16" max>
+                            <ArticlesDetailsPageHeader />
+                            <ArticleDetails id={id} />
+                            <ToggleFeatures
+                                feature="isArticleRatingEnabled"
+                                on={<ArticleRating articleId={id} />}
+                                // eslint-disable-next-line i18next/no-literal-string
+                                off={<Card>Оценка статей скоро появится!</Card>}
+                            />
+                            <ArticleRecommendationsList />
+                            <ArticleDetailsComments id={id} />
+                        </VStack>
+                    </Page>
+                }
+                on={
+                    <StickyContentLayout
+                        content={
+                            <Page className={classNames(classes.ArticlesDetailsPage, {}, [className])}>
+                                <VStack gap="16" max>
+                                    <DetailsContainer />
+                                    <ArticleRating articleId={id} />
+                                    <ArticleRecommendationsList />
+                                    <ArticleDetailsComments id={id} />
+                                </VStack>
+                            </Page>
+                        }
+                        right={<AdditionalInfoContainer />}
                     />
-                    <ArticleRecommendationsList />
-                    <ArticleDetailsComments id={id} />
-                </Page>
-            </VStack>
+                }
+            />
         </DynamicModuleLoader>
     );
 };
