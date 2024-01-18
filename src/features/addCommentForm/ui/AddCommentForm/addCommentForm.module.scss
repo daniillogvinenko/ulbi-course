@@ -1,10 +1,11 @@
 .AddCommentForm {
     border: 1px solid var(--primary-color);
     padding: 10px;
-    ;
+
+    .input {
+        margin-right: 50px;
+        flex-grow: 1;
+    }
 }
 
-.input {
-    margin-right: 50px;
-    flex-grow: 1;
-}
+.AddCommentFormRedesigned {}

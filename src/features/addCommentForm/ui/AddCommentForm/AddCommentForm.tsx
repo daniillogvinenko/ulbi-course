@@ -3,12 +3,16 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { classNames } from "@/shared/lib/classNames/classNames";
 import { DynamicModuleLoader, ReducerList } from "@/shared/lib/components/DynamicModuleLoader/ui/DynamicModuleLoader";
-import { Button, ButtonTheme } from "@/shared/ui/deprecated/Button";
-import { Input } from "@/shared/ui/deprecated/Input";
+import { Button as ButtonDeprecated, ButtonTheme } from "@/shared/ui/deprecated/Button";
+import { Input as InputDeprecated } from "@/shared/ui/deprecated/Input";
 import { HStack } from "@/shared/ui/redesigned/Stack";
-import { getAddCommentFormError, getAddCommentFormText } from "../../model/selectors/addCommentFormSelectors";
+import { getAddCommentFormText } from "../../model/selectors/addCommentFormSelectors";
 import { addCommentFormActions, addCommentFormReducer } from "../../model/slices/addCommentFormSlice";
 import classes from "./addCommentForm.module.scss";
+import { ToggleFeatures } from "@/shared/lib/features";
+import { Input } from "@/shared/ui/redesigned/Input";
+import { Button } from "@/shared/ui/redesigned/Button";
+import { Card } from "@/shared/ui/redesigned/Card";
 
 export interface addCommentFormProps {
     className?: string;
@@ -24,7 +28,6 @@ const AddCommentForm = (props: addCommentFormProps) => {
     const { t } = useTranslation();
 
     const text = useSelector(getAddCommentFormText);
-    const error = useSelector(getAddCommentFormError);
     const dispatch = useDispatch();
 
     const onCommentTextChange = useCallback(
@@ -41,17 +44,42 @@ const AddCommentForm = (props: addCommentFormProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <HStack justify="between" className={classNames(classes.AddCommentForm, {}, [className])}>
-                <Input
-                    className={classes.input}
-                    value={text}
-                    onChange={onCommentTextChange}
-                    placeholder={t("Введите комментарий")}
-                />
-                <Button onClick={onSendHandler} theme={ButtonTheme.OUTLINE}>
-                    {t("Отправить")}
-                </Button>
-            </HStack>
+            <ToggleFeatures
+                feature="isAppRedesigned"
+                off={
+                    <HStack justify="between" className={classNames(classes.AddCommentForm, {}, [className])}>
+                        <InputDeprecated
+                            className={classes.input}
+                            value={text}
+                            onChange={onCommentTextChange}
+                            placeholder={t("Введите комментарий")}
+                        />
+                        <ButtonDeprecated onClick={onSendHandler} theme={ButtonTheme.OUTLINE}>
+                            {t("Отправить")}
+                        </ButtonDeprecated>
+                    </HStack>
+                }
+                on={
+                    <Card max padding="24" border="roundBorder">
+                        <HStack
+                            justify="between"
+                            gap="16"
+                            max
+                            className={classNames(classes.AddCommentFormRedesigned, {}, [className])}
+                        >
+                            <Input
+                                className={classes.input}
+                                value={text}
+                                onChange={onCommentTextChange}
+                                placeholder={t("Введите комментарий")}
+                            />
+                            <Button onClick={onSendHandler} variant="outline">
+                                {t("Отправить")}
+                            </Button>
+                        </HStack>
+                    </Card>
+                }
+            />
         </DynamicModuleLoader>
     );
 };

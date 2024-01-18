@@ -1,17 +1,40 @@
-.StarRating {}
+.StarRating {
 
-.starIcon {
-    stroke: var(--primary-color);
-    cursor: pointer;
+    .hovered {
+        fill: var(--primary-color);
+    }
+
+    .starIcon {
+        stroke: var(--primary-color);
+        cursor: pointer;
+    }
+}
+
+.StarRatingRedesigned {
+
+    // ?
+    display: flex;
+    gap: 4px;
+
+    .normal {
+        fill: none;
+    }
+
+    .hovered {
+        fill: var(--icon-redesigned);
+    }
+
+    .starIcon {
+        stroke: var(--icon-redesigned);
+        cursor: pointer;
+    }
 }
 
 .normal {
     fill: none;
 }
 
-.hovered {
-    fill: var(--primary-color);
-}
+
 
 .isSelected {
     cursor: auto;

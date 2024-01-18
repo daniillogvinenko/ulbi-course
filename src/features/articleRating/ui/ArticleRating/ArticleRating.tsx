@@ -61,7 +61,7 @@ const ArticleRating = (props: ArticleRatingProps) => {
             rate={rating?.rate}
             className={className}
             title={t("Оцените статью")}
-            feedbackTitle={t("Оставьте свой отзыва о статье, это поможет улучшить качетво")}
+            feedbackTitle={t("Оставьте свой отзыв о статье, это поможет улучшить качетво контента")}
             hasFeedback
         />
     );
