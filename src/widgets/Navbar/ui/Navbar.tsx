@@ -5,11 +5,13 @@ import { useSelector } from "react-redux";
 import { LoginModal } from "@/features/AuthByUsername";
 import { getUserAuthData } from "@/entities/User";
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { Button, ButtonTheme } from "@/shared/ui/deprecated/Button";
+import { Button as ButtonDeprecated, ButtonTheme } from "@/shared/ui/deprecated/Button";
 import { AvatarDropdown } from "@/features/avatarDropdown";
 import { HStack } from "@/shared/ui/redesigned/Stack";
 import { NotificationButton } from "@/features/notificationButton";
 import classes from "./Navbar.module.scss";
+import { ToggleFeatures, toggleFeatures } from "@/shared/lib/features";
+import { Button } from "@/shared/ui/redesigned/Button";
 
 interface NavbarProps {
     className?: string;
@@ -40,10 +42,34 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     }
 
     return (
-        <header className={classNames(classes.Navbar, {}, [className])}>
-            <Button theme={ButtonTheme.CLEAR_INVERTED} className={classes.links} onClick={onShowModal}>
-                {t("Войти")}
-            </Button>
+        <header
+            className={classNames(
+                toggleFeatures({
+                    name: "isAppRedesigned",
+                    off: () => classes.Navbar,
+                    on: () => classes.NavbarRedesigned,
+                }),
+                {},
+                [className]
+            )}
+        >
+            <ToggleFeatures
+                feature="isAppRedesigned"
+                off={
+                    <ButtonDeprecated
+                        theme={ButtonTheme.CLEAR_INVERTED}
+                        className={classes.links}
+                        onClick={onShowModal}
+                    >
+                        {t("Войти")}
+                    </ButtonDeprecated>
+                }
+                on={
+                    <Button variant="clear" className={classes.links} onClick={onShowModal}>
+                        {t("Войти")}
+                    </Button>
+                }
+            />
             {isAuthModal && <LoginModal isOpen={isAuthModal} onCLose={onCLoseModal} />}
         </header>
     );
