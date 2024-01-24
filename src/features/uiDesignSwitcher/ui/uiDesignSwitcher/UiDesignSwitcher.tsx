@@ -1,11 +1,12 @@
+import { useSelector } from "react-redux";
 import { ListBox } from "@/shared/ui/redesigned/Popups";
 import { getFeatureFlag, updateFeatureFlag } from "@/shared/lib/features";
 import { ListBoxItem } from "@/shared/ui/redesigned/Popups/ui/ListBox/ListBox";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { useSelector } from "react-redux";
 import { getUserAuthData } from "@/entities/User";
 import { HStack } from "@/shared/ui/redesigned/Stack";
 import { Text } from "@/shared/ui/redesigned/Text";
+import { useForceUpdate } from "@/shared/lib/render/forceUpdate";
 
 interface uiDesignSwitcherProps {
     className?: string;
@@ -15,8 +16,9 @@ export const UiDesignSwitcher = (props: uiDesignSwitcherProps) => {
     const { className } = props;
     const dispatch = useAppDispatch();
     const authData = useSelector(getUserAuthData);
-
     const isAppRedesigned = getFeatureFlag("isAppRedesigned");
+
+    const forceUpdate = useForceUpdate();
 
     const items: ListBoxItem<string>[] = [
         {
@@ -39,6 +41,7 @@ export const UiDesignSwitcher = (props: uiDesignSwitcherProps) => {
                     },
                 })
             );
+            forceUpdate();
         }
     };
 
