@@ -20,7 +20,7 @@ interface ArticleListProps {
 
 // eslint-disable-next-line
 const getSkeletons = (view: ArticleView) => {
-    return new Array(view === ArticleView.SMALL ? 9 : 3)
+    return new Array(view === ArticleView.SMALL ? 5 : 1)
         .fill(0)
         .map((item, index) => <ArticleListItemSkeleton className={classes.card} key={index} view={view} />);
 };

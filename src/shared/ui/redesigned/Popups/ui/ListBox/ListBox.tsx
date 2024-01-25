@@ -35,8 +35,6 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
 
     const selectedItem = items?.find((item) => item.value === value);
 
-    console.log(label);
-
     return (
         <HStack gap="16">
             {label && <span>{label}</span>}
@@ -47,10 +45,14 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
                 value={value}
                 onChange={onChange}
             >
-                <HListbox.Button disabled={readonly} className={popupClasses.trigger}>
-                    <Button addonRight={<Icon Svg={ArrowIcon} />} disabled={readonly} variant="filled">
-                        {selectedItem?.content ?? defaultValue}
-                    </Button>
+                <HListbox.Button
+                    as={Button}
+                    className={popupClasses.trigger}
+                    addonRight={<Icon Svg={ArrowIcon} />}
+                    disabled={readonly}
+                    variant="filled"
+                >
+                    {selectedItem?.content ?? defaultValue}
                 </HListbox.Button>
                 <HListbox.Options className={classNames(classes.options, {}, optionsClasses)}>
                     {items?.map((item) => (
