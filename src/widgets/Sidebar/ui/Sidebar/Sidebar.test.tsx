@@ -1,9 +1,5 @@
-import React from "react";
 import { fireEvent, screen } from "@testing-library/react";
-// eslint-disable-next-line
-import { renderWithTranslation } from "@/shared/lib/tests/renderWithTranslation/renderWithTranslation";
 import { Sidebar } from "./Sidebar";
-// eslint-disable-next-line
 import { componentRender } from "@/shared/lib/tests/componentRender/componentRender";
 
 describe("Sidebar component", () => {
@@ -11,6 +7,7 @@ describe("Sidebar component", () => {
         componentRender(<Sidebar />);
         expect(screen.getByTestId("sidebar")).toBeInTheDocument();
     });
+
     test("test toggle", () => {
         componentRender(<Sidebar />);
         const toggleBtn = screen.getByTestId("sidebar-toggle");
