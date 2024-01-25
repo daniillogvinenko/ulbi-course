@@ -49,6 +49,7 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
                     as={Button}
                     className={popupClasses.trigger}
                     addonRight={<Icon Svg={ArrowIcon} />}
+                    // @ts-ignore
                     disabled={readonly}
                     variant="filled"
                 >
