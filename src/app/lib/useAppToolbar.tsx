@@ -9,8 +9,6 @@ export function useAppToolbar() {
     const toolbarByAppRoute: OptionalRecord<AppRoutes, ReactElement> = {
         [AppRoutes.ARTICLES]: <ScrollToolbar />,
         [AppRoutes.ARTICLE_DETAILS]: <ScrollToolbar />,
-        // eslint-disable-next-line i18next/no-literal-string
-        [AppRoutes.MAIN]: <div>TEST useAppToolbar</div>,
     };
 
     return toolbarByAppRoute[appRoute];

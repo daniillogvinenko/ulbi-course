@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 import { ListBox } from "@/shared/ui/redesigned/Popups";
 import { getFeatureFlag, updateFeatureFlag } from "@/shared/lib/features";
 import { ListBoxItem } from "@/shared/ui/redesigned/Popups/ui/ListBox/ListBox";
@@ -17,6 +18,7 @@ export const UiDesignSwitcher = (props: uiDesignSwitcherProps) => {
     const dispatch = useAppDispatch();
     const authData = useSelector(getUserAuthData);
     const isAppRedesigned = getFeatureFlag("isAppRedesigned");
+    const { t } = useTranslation();
 
     const forceUpdate = useForceUpdate();
 
@@ -47,7 +49,7 @@ export const UiDesignSwitcher = (props: uiDesignSwitcherProps) => {
 
     return (
         <HStack gap="16">
-            <Text title="Вариант интерфейса" />
+            <Text title={t("Вариант интерфейса")} />
             <ListBox onChange={onChange} items={items} value={isAppRedesigned ? "new" : "old"} className={className} />
         </HStack>
     );

@@ -65,7 +65,6 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     }, [dispatch, username, password, onSuccess, forceUpdate]);
 
     return (
-        // eslint-disable-next-line i18next/no-literal-string
         <DynamicModuleLoader removeReducersAfterUnmount reducers={initialReducers}>
             <ToggleFeatures
                 feature="isAppRedesigned"

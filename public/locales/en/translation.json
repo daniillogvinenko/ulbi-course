@@ -27,5 +27,8 @@
     "Укажите валюту": "Choose currency",
     "{{count}} просмотров_zero": "{{count}} views",
     "{{count}} просмотров_one": "{{count}} view",
-    "{{count}} просмотров_other": "{{count}} views"
+    "{{count}} просмотров_other": "{{count}} views",
+    "Вариант интерфейса": "Interface option",
+    "Оценка статей скоро появится!": "Article ratings coming soon!",
+    "Настройки": "Settings"
 }

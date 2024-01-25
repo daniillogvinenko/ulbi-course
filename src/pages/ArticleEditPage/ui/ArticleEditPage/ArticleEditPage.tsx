@@ -14,7 +14,6 @@ const ArticleEditPage = (props: ArticleEditPageProps) => {
     const isEdit = Boolean(id);
 
     return (
-        // eslint-disable-next-line i18next/no-literal-string
         <Page className={classNames(classes.ArticleEditPage, {}, [className])}>
             {isEdit ? `Редактирование статьи с ID = ${id}` : "Создание новой статьи"}
         </Page>

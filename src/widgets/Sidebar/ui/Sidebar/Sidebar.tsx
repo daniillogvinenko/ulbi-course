@@ -29,7 +29,6 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
         <aside
             data-testid="sidebar"
             className={classNames(classes.SidebarRedesigned, { [classes.collapsedRedesigned]: collapsed }, [className])}
-            // eslint-disable-next-line i18next/no-literal-string
         >
             <AppLogo className={classes.appLogo} size={collapsed ? 30 : 50} />
             <VStack role="navigation" gap="8" className={classes.items}>

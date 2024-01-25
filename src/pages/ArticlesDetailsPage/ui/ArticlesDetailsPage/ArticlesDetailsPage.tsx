@@ -1,4 +1,5 @@
 import { memo } from "react";
+import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import { VStack } from "@/shared/ui/redesigned/Stack";
 import { ArticleDetails } from "@/entities/Article";
@@ -28,7 +29,7 @@ const reducers: ReducerList = {
 const ArticlesDetailsPage = (props: ArticlesDetailsPageProps) => {
     const { className } = props;
     const { id } = useParams<{ id: string }>();
-
+    const { t } = useTranslation();
     if (!id) return null;
 
     return (
@@ -43,8 +44,7 @@ const ArticlesDetailsPage = (props: ArticlesDetailsPageProps) => {
                             <ToggleFeatures
                                 feature="isArticleRatingEnabled"
                                 on={<ArticleRating articleId={id} />}
-                                // eslint-disable-next-line i18next/no-literal-string
-                                off={<CardDeprecated>Оценка статей скоро появится!</CardDeprecated>}
+                                off={<CardDeprecated>{t("Оценка статей скоро появится!")}</CardDeprecated>}
                             />
                             <ArticleRecommendationsList />
                             <ArticleDetailsComments id={id} />
