@@ -20,7 +20,6 @@
         "test:unit": "jest --config ./config/jest/jest.config.ts",
         "test:e2e": "cypress open",
         "test:ui": "loki test",
-        "test:ui:ci": "loki --requireReference --reactUri file:./storybook-static",
         "test:ui:ok": "loki test approve --reference .loki/reference",
         "test:ui:report": "npm run test:ui:json && npm run test:ui:html",
         "test:ui:json": "node scripts/generate-visual-json-report.js",
