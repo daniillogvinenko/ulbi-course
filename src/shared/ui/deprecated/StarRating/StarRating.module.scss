@@ -1,5 +1,4 @@
 .StarRating {
-
     .hovered {
         fill: var(--primary-color);
     }
@@ -10,9 +9,11 @@
     }
 }
 
-.StarRatingRedesigned {
+.normal {
+    fill: none;
+}
 
-    // ?
+.StarRatingRedesigned {
     display: flex;
     gap: 4px;
 
@@ -29,12 +30,6 @@
         cursor: pointer;
     }
 }
-
-.normal {
-    fill: none;
-}
-
-
 
 .isSelected {
     cursor: auto;

@@ -2,10 +2,8 @@
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useCallback } from "react";
-import { classNames } from "@/shared/lib/classNames/classNames";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { getUserAuthData, isUserAdmin, isUserManager, userActions } from "@/entities/User";
-import classes from "./avatarDropdown.module.scss";
 import { getRouteAdmin, getRouteProfile, getRouteSettings } from "@/shared/const/router";
 import { Avatar } from "@/shared/ui/redesigned/Avatar";
 import { Dropdown } from "@/shared/ui/redesigned/Popups";
@@ -58,7 +56,7 @@ export const AvatarDropdown = (props: avatarDropdownProps) => {
 
     return (
         <Dropdown
-            className={classNames(classes.avatarDropdown, {}, [className])}
+            className={className}
             direction="bottom left"
             // по условию добавляем в dropdown ссылку на админку
             items={items}

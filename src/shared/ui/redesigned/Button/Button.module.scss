@@ -22,13 +22,8 @@
 .addonLeft,
 .addonRight {
   display: flex;
-}
-
-.addonRight svg,
-.addonLeft svg {
   color: var(--hint-redesigned);
 }
-
 
 .clear {
   padding: 0;
@@ -55,7 +50,6 @@
       border: 2px solid var(--accent-redesigned);
     }
   }
-
 
   &.error {
     border: 2px solid var(--cancel-redesigned);

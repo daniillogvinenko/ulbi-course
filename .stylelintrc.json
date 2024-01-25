@@ -3,6 +3,7 @@
     "rules": {
         "indentation": null,
         "selector-class-pattern": null,
-        "no-missing-end-of-source-newline": null
+        "no-missing-end-of-source-newline": null,
+        "max-line-length": null
     }
 }

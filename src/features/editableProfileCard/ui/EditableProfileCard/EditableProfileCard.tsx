@@ -3,7 +3,6 @@ import { memo, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { ProfileCard } from "@/entities/Profile";
-import { classNames } from "@/shared/lib/classNames/classNames";
 import { useInitialEffect } from "@/shared/lib/hooks/useInitialEffect/useInitialEffect";
 import { Country } from "@/entities/Country";
 import { Currency } from "@/entities/Currency";
@@ -17,7 +16,6 @@ import { getProfileForm } from "../../model/selectors/getProfileForm/getProfileF
 import { getProfileValidateErrors } from "../../model/selectors/getProfileValidateErrors/getProfileValidateErrors";
 import { fetchProfileData } from "../../model/services/fetchProfileData/fetchProfileData";
 import { profileActions, profileReducer } from "../../model/slice/profileSlice";
-import classes from "./EditableProfileCard.module.scss";
 import { ValidateProfileError } from "../../model/consts/consts";
 
 interface EditableProfileCardProps {
@@ -121,7 +119,7 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <VStack gap="8" max className={classNames(classes.EditableProfileCard, {}, [className])}>
+            <VStack gap="8" max className={className}>
                 {validateErrors?.length &&
                     validateErrors.map((err) => (
                         <Text text={validateErrorTranslates[err]} theme={TextTheme.ERROR} key={err} />
