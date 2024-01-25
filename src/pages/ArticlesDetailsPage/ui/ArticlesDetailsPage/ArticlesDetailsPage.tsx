@@ -12,7 +12,7 @@ import { ArticleDetailsComments } from "../ArticleDetailsComments/ArticleDetails
 import { Page } from "@/widgets/Page";
 import { ToggleFeatures } from "@/shared/lib/features";
 import { ArticleRating } from "@/features/articleRating";
-import { Card } from "@/shared/ui/deprecated/Card";
+import { Card as CardDeprecated } from "@/shared/ui/deprecated/Card";
 import { StickyContentLayout } from "@/shared/layouts/StickyContentLayout";
 import { DetailsContainer } from "../DetailsContainer/DetailsContainer";
 import { AdditionalInfoContainer } from "../AdditionalInfoContainer/AdditionalInfoContainer";
@@ -44,7 +44,7 @@ const ArticlesDetailsPage = (props: ArticlesDetailsPageProps) => {
                                 feature="isArticleRatingEnabled"
                                 on={<ArticleRating articleId={id} />}
                                 // eslint-disable-next-line i18next/no-literal-string
-                                off={<Card>Оценка статей скоро появится!</Card>}
+                                off={<CardDeprecated>Оценка статей скоро появится!</CardDeprecated>}
                             />
                             <ArticleRecommendationsList />
                             <ArticleDetailsComments id={id} />

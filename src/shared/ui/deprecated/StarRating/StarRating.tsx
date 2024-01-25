@@ -69,6 +69,7 @@ export const StarRating = (props: StarRatingProps) => {
 
                 return (
                     <ToggleFeatures
+                        key={starNumber}
                         feature="isAppRedesigned"
                         off={<IconDeprecated {...commonProps} />}
                         on={<Icon {...commonProps} clickable={!isSelected} />}
