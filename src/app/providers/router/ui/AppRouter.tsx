@@ -1,13 +1,26 @@
 import { memo, Suspense, useCallback } from "react";
 import { Route, Routes } from "react-router-dom";
 import RequireAuth from "./RequireAuth";
-import { PageLoader } from "@/widgets/PageLoader";
 import { AppRoutesProps } from "@/shared/types/router";
 import { routeConfig } from "../config/routerConfig";
+import { VStack } from "@/shared/ui/redesigned/Stack";
+import { Skeleton } from "@/shared/ui/redesigned/Skeleton";
+
+const PageLoaderRedesigned = () => (
+    <VStack gap="16" style={{ height: "100%" }}>
+        <Skeleton width="70%" height={32} border="16px" />
+        <Skeleton width="40%" height={20} border="16px" />
+        <Skeleton width="50%" height={20} border="16px" />
+        <Skeleton width="30%" height={32} border="16px" />
+        <Skeleton width="80%" height="40%" border="16px" />
+        <Skeleton width="80%" height="40%" border="16px" />
+    </VStack>
+);
 
 const AppRouter = () => {
     const renderWithWrapper = useCallback((route: AppRoutesProps) => {
-        const element = <Suspense fallback={<PageLoader />}>{route.element}</Suspense>;
+        // @ts-ignore
+        const element = <Suspense fallback={<PageLoaderRedesigned />}>{route.element}</Suspense>;
 
         return (
             <Route

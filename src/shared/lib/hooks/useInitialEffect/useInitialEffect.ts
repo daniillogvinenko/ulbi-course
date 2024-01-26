@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 
+// тут должно было быть условие __PROJECT__ !== "storybook"
 export function useInitialEffect(callback: () => void) {
     useEffect(() => {
         callback();

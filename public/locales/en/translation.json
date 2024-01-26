@@ -30,5 +30,19 @@
     "{{count}} просмотров_other": "{{count}} views",
     "Вариант интерфейса": "Interface option",
     "Оценка статей скоро появится!": "Article ratings coming soon!",
-    "Настройки": "Settings"
+    "Настройки": "Settings",
+    "Профиль": "Profile",
+    "Статьи": "Articles",
+    "Админка": "Admin panel",
+    "Имя": "First name",
+    "Фамилия": "Last name",
+    "Возраст": "Age",
+    "Город": "City",
+    "Аватар": "Avatar",
+    "Имя пользователя": "Username",
+    "Ошибка сервера": "Server error",
+    "Неправильно введен возраст": "Incorrect age entered",
+    "Неправильно введена страна": "Incorrect country entered",
+    "Неправильные имя/фамилия": "Incorrect first/last name entered",
+    "Данные не указаны": "Data is not entered"
 }

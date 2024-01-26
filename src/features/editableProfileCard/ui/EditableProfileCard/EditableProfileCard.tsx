@@ -8,7 +8,7 @@ import { Country } from "@/entities/Country";
 import { Currency } from "@/entities/Currency";
 import { DynamicModuleLoader, ReducerList } from "@/shared/lib/components/DynamicModuleLoader/ui/DynamicModuleLoader";
 import { VStack } from "@/shared/ui/redesigned/Stack";
-import { Text, TextTheme } from "@/shared/ui/deprecated/Text";
+import { Text as TextDeprecated, TextTheme } from "@/shared/ui/deprecated/Text";
 import { getProfileIsLoading } from "../../model/selectors/getProfileIsLoading/getProfileIsLoading";
 import { getProfileError } from "../../model/selectors/getProfileError/getProfileError";
 import { getProfileReadonly } from "../../model/selectors/getProfileReadonly/getProfileReadonly";
@@ -17,6 +17,8 @@ import { getProfileValidateErrors } from "../../model/selectors/getProfileValida
 import { fetchProfileData } from "../../model/services/fetchProfileData/fetchProfileData";
 import { profileActions, profileReducer } from "../../model/slice/profileSlice";
 import { ValidateProfileError } from "../../model/consts/consts";
+import { Text as TextRedesigned } from "@/shared/ui/redesigned/Text";
+import { ToggleFeatures } from "@/shared/lib/features";
 
 interface EditableProfileCardProps {
     className?: string;
@@ -122,7 +124,13 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
             <VStack gap="8" max className={className}>
                 {validateErrors?.length &&
                     validateErrors.map((err) => (
-                        <Text text={validateErrorTranslates[err]} theme={TextTheme.ERROR} key={err} />
+                        <ToggleFeatures
+                            feature="isAppRedesigned"
+                            off={
+                                <TextDeprecated text={validateErrorTranslates[err]} theme={TextTheme.ERROR} key={err} />
+                            }
+                            on={<TextRedesigned text={validateErrorTranslates[err]} variant="error" key={err} />}
+                        />
                     ))}
                 <ProfileCard
                     onChangeFirstname={onChangeFirstname}

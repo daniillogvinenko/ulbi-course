@@ -76,28 +76,28 @@ export const ProfileCardRedesigned = (props: ProfileCardProps) => {
                 <HStack gap="24" max>
                     <VStack gap="16" max>
                         <Input
-                            label="Имя:"
+                            label={`${t("Имя")}:`}
                             value={data?.fisrt}
                             placeholder={t("Введите имя")}
                             onChange={onChangeFirstname}
                             readonly={readonly}
                         />
                         <Input
-                            label="Фамилия:"
+                            label={`${t("Фамилия")}:`}
                             value={data?.lastname}
                             placeholder={t("Введите фамилию")}
                             onChange={onChangeLastname}
                             readonly={readonly}
                         />
                         <Input
-                            label="Возраст:"
+                            label={`${t("Возраст")}:`}
                             value={data?.age}
                             placeholder={t("Введите возраст")}
                             onChange={onChangeAge}
                             readonly={readonly}
                         />
                         <Input
-                            label="Город:"
+                            label={`${t("Город")}:`}
                             value={data?.city}
                             placeholder={t("Введите город")}
                             onChange={onChangeCity}
@@ -106,14 +106,14 @@ export const ProfileCardRedesigned = (props: ProfileCardProps) => {
                     </VStack>
                     <VStack gap="16" max>
                         <Input
-                            label="Аватар:"
+                            label={`${t("Аватар")}:`}
                             value={data?.avatar}
                             placeholder={t("Введите url аватара")}
                             onChange={onChangeAvatar}
                             readonly={readonly}
                         />
                         <Input
-                            label="Имя пользователя:"
+                            label={`${t("Имя пользователя")}:`}
                             value={data?.username}
                             placeholder={t("Введите имя пользователя")}
                             onChange={onChangeUsername}

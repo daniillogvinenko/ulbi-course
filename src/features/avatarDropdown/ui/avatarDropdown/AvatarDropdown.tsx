@@ -45,7 +45,7 @@ export const AvatarDropdown = (props: avatarDropdownProps) => {
             href: getRouteProfile(authData.id),
         },
         {
-            content: "Настройки",
+            content: t("Настройки"),
             href: getRouteSettings(),
         },
         {
