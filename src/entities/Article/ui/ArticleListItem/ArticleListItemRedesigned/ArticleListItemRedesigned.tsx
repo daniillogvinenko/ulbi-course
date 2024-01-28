@@ -19,7 +19,6 @@ import { getRouteArticleDetails } from "@/shared/const/router";
 export const ArticleListItemRedesigned = (props: ArticleListItemProps) => {
     const { className, article, view, target } = props;
     const { t } = useTranslation();
-
     const userInfo = (
         <>
             <Avatar size={32} src={article.user.avatar} className={classes.avatar} />

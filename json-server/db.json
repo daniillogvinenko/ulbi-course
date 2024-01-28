@@ -725,6 +725,18 @@
       "userId": "1",
       "text": "123 1 1  1 1 123 1 1  1 1 123 1 1  1 1 123 1 1  1 1 123 1 1  1 1 123 1 1  1 1 123 1 1  1 1 123 1 1  1 1 123 1 1  1 1 123 1 1  1 1 123 1 1  1 1 123 1 1  1 1 123 1 1  1 1 123 1 1  1 1 123 1 1  1 1 123 1 1  1 1 123 1 1  1 1 123 1 1  1 1 123 1 1  1 1 ",
       "id": "p846hno"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "123",
+      "id": "YR-tD1w"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "q",
+      "id": "gHPppQV"
     }
   ],
   "users": [
@@ -742,7 +754,7 @@
         "isAppRedesigned": true
       },
       "jsonSettings": {
-        "theme": "app_light_theme",
+        "theme": "app_dark_theme",
         "isFirstVisit": false,
         "settingsPageHasBeenOpened": true,
         "isArticlesPageWasVisited": true
@@ -759,7 +771,7 @@
       "features": {
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true,
-        "isAppRedesigned": false
+        "isAppRedesigned": true
       },
       "jsonSettings": {
         "theme": "app_dark_theme",
@@ -812,7 +824,7 @@
   "profile": [
     {
       "id": "1",
-      "fisrt": "Даниил123",
+      "fisrt": "Даниил",
       "lastname": "Логвиненко",
       "age": 20,
       "currency": "RUB",
