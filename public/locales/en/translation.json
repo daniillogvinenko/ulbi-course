@@ -25,6 +25,7 @@
     "Редактировать": "Edit",
     "Профиль пользователя": "User profile",
     "Укажите валюту": "Choose currency",
+    "Укажите страну": "Choose country",
     "{{count}} просмотров_zero": "{{count}} views",
     "{{count}} просмотров_one": "{{count}} view",
     "{{count}} просмотров_other": "{{count}} views",
@@ -44,5 +45,16 @@
     "Неправильно введен возраст": "Incorrect age entered",
     "Неправильно введена страна": "Incorrect country entered",
     "Неправильные имя/фамилия": "Incorrect first/last name entered",
-    "Данные не указаны": "Data is not entered"
+    "Данные не указаны": "Data is not entered",
+    "Все статьи": "All articles",
+    "Айти": "IT",
+    "Экономика": "Economics",
+    "Наука": "Science",
+    "Сортировать по: ": "Sort by: ",
+    "дате создания": "date",
+    "заголовку": "title",
+    "просмотрам": "views",
+    "возрастанию": "ascending",
+    "убыванию": "descending",
+    "Поиск": "Search"
 }

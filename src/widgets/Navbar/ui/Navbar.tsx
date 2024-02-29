@@ -1,4 +1,3 @@
-/* eslint-disable i18next/no-literal-string */
 import React, { memo, useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";

@@ -1,4 +1,3 @@
-/* eslint-disable i18next/no-literal-string */
 import { useTranslation } from "react-i18next";
 import { TextAlign } from "@/shared/ui/deprecated/Text";
 import { ProfileCardProps } from "../ProfileCard/ProfileCard";

@@ -1,4 +1,3 @@
-/* eslint-disable i18next/no-literal-string */
 import { Fragment, ReactNode } from "react";
 import { Menu } from "@headlessui/react";
 import { classNames } from "@/shared/lib/classNames/classNames";
