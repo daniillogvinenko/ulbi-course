@@ -121,7 +121,8 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                             onChange={onChangePassword}
                             value={password}
                         />
-
+                        {/* eslint-disable-next-line i18next/no-literal-string */}
+                        <Text text="*Вы можете авторизоваться используя следующие данные: логин - admin пароль - 123" />
                         <Button
                             onClick={onLoginClick}
                             variant="outline"
